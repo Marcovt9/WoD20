@@ -1,0 +1,43 @@
+{
+  "id": "WoD20",
+  "title": "World of Darkness 20th Anniversary Edition",
+  "description": "System for Foundry Virtual Tabletop implementing a custom version of World of Darkness 20th Anniversay Edition.",
+  "version": "0.1",
+  "authors": [
+		{
+			"name": "Marcovt9"
+		}
+	],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "esmodules": ["module/mta.js"],
+  "styles": ["styles/default.css", "styles/override.css"],
+  "packs": [
+    {
+      "name": "macros",
+      "label": "Macros",
+      "system": "WoD20",
+      "path": "./packs/macros.db",
+      "type": "Macro"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
+    }
+  ],
+  "initiative": "1d10 + @derivedTraits.initiativeMod.final",
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "health"
+}
