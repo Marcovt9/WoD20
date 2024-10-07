@@ -1,7 +1,7 @@
 {
-  "id": "WoD20",
-  "title": "World of Darkness 20th Anniversary Edition",
-  "description": "System for Foundry Virtual Tabletop implementing a custom version of World of Darkness 20th Anniversay Edition.",
+  "id": "WoD20Test",
+  "title": "World of Darkness 20th Anniversary EditionTest",
+  "description": "System for Foundry Virtual Tabletop implementing a custom version of World of Darkness 20th Anniversay EditionTest.",
   "version": "0.1",
   "authors": [
 		{
@@ -19,7 +19,7 @@
     {
       "name": "macros",
       "label": "Macros",
-      "system": "WoD20",
+      "system": "WoD20Test",
       "path": "./packs/macros.db",
       "type": "Macro"
     }
