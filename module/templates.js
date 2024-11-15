@@ -93,18 +93,8 @@ export const registerHandlebarsHelpers = function () {
     else return "ERROR";
   });
 
-  Handlebars.registerHelper('getMagicalColor', function (magicType, magicClass) {
-    if(CONFIG.MTA.magicItemColors[magicClass]) return CONFIG.MTA.magicItemColors[magicClass];
-    else if(CONFIG.MTA.magicItemColors[magicType]) return CONFIG.MTA.magicItemColors[magicType];
-    else return CONFIG.MTA.magicItemColors.Default;
-  });
-
   Handlebars.registerHelper('translateTrait', function (value) {
     return value.split('.').reduce((o,i)=> o[i], CONFIG.MTA);
-  });
-
-  Handlebars.registerHelper('usesJoining', function (characterType, scelestiRank) {
-    return characterType === "Scelesti" && MTA.scelestiRanks.indexOf(scelestiRank) >= MTA.scelestiRanks.indexOf("Nasnas");
   });
 
   // Return enriched text WITH secret blocks if the user is GM and otherwise WITHOUT

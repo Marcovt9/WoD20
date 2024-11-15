@@ -45,16 +45,6 @@ export const registerSystemSettings = function() {
     }
   });
 
-  game.settings.register("mta", "lowerDefense", {
-    name: "Homebrew rule: lower defense rating",
-    hint: "Lowers defense values of characters to more reasonable values. Normal characters now calculate their defense rating with the lowest of their Dexterity and Wits.",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean,
-    requiresReload: true
-  });
-
   game.settings.register("mta", "showConditionsOnTokens", {
     name: "Show Conditions icons on Tokens",
     hint: "Determines whether Conditions are shown as status icons on Tokens for the user",

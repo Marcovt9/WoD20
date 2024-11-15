@@ -20,113 +20,35 @@ import { TacticDialogue } from "./dialogue-tactic.js";
 
 const getInventory = () => ({
   firearm: {
-    dataset: [ "MTA.DamageShort", "MTA.Range", "MTA.Cartridge", "MTA.Magazine", "MTA.InitiativeShort", "MTA.Size" ]
+    dataset: [ "MTA.DamageShort", "MTA.Range", "MTA.Cartridge", "MTA.Magazine", "MTA.InitiativeShort"]
   },
   melee: {
-    dataset: [ "MTA.Damage", "MTA.Type", "MTA.Initiative", "MTA.Size" ]
+    dataset: [ "MTA.Damage", "MTA.Type", "MTA.Initiative"]
   },
   armor: {
-    dataset: [ "MTA.Rating", "MTA.Defense", "MTA.Speed", "MTA.Coverage" ]
+    dataset: [ "MTA.Rating", "MTA.Speed", "MTA.Coverage" ]
   },
   equipment: {
-    dataset: [ "MTA.DiceBonus", "MTA.Durability", "MTA.Structure", "MTA.Size" ]
+    dataset: [ "MTA.DiceBonus", "MTA.Durability", "MTA.Structure"]
   },
   ammo: {
     dataset: [ "MTA.Cartridge", "MTA.Quantity" ]
   },
-  spell: {
-    dataset: [ "MTA.Arcanum", "MTA.Level", "MTA.PrimaryFactorShort", "MTA.Withstand", "MTA.RoteSkill" ]
-  },
-  activeSpell: {
-    dataset: [ "MTA.Arcanum", "MTA.Level", "MTA.Potency", "MTA.Duration", "MTA.Scale" ]
-  },
   merit: {
     dataset: [ "MTA.Rating" ]
-  },
-  dreadPower: {
-    dataset: [ "MTA.Rating" ]
-  },
-  numen: {
-    dataset: [ "MTA.Reaching" ]
-  },
-  manifestation: {
-    dataset: []
-  },
-  influence: {
-    dataset: [ "MTA.Rating" ]
-  },
-  condition: {
-    dataset: [ "MTA.Persistent" ]
-  },
-  tilt: {
-    dataset: [ "MTA.Environmental" ]
-  },
-  yantra: {
-    dataset: [ "MTA.DiceBonus", "MTA.Type" ]
-  },
-  attainment: {
-    dataset: [ "MTA.Arcanum", "MTA.Level", "MTA.Legacy" ]
-  },
-  relationship: {
-    dataset: [ "MTA.Impression", "MTA.Doors", "MTA.Penalty" ]
-  },
-  vehicle: {
-    dataset: [ "MTA.DiceBonus", "MTA.Size", "MTA.Durability", "MTA.Structure", "MTA.Speed" ]
-  },
-  devotion: {
-    dataset: [ "MTA.Cost", "MTA.Action" ]
   },
   rite: {
     dataset: [ "MTA.Type", "MTA.RiteTarget", "MTA.Withstand" ]
   },
-  vinculum: {
-    dataset: [ "MTA.VinculumStage" ]
-  },
   discipline_power: {
     dataset: [ "MTA.Discipline", "MTA.Level", "MTA.Cost", "MTA.Action" ]
-  },
-  container: {
-    dataset: [ "MTA.Durability", "MTA.Structure", "MTA.Size" ]
-  },
-  service: {
-    dataset: [ "MTA.DiceBonus", "MTA.Skill" ]
-  },
-  contract: {
-    dataset: [ "MTA.Type", "MTA.Cost", "MTA.Action", "MTA.Duration" ]
-  },
-  pledge: {
-    dataset: [ "MTA.Type" ]
   },
   form: {
     descriptions: [],
     dataset: []
   },
-  embed: {
-    dataset: [ "MTA.Category", "MTA.Action", "MTA.Key" ]
-  },
-  interlock: {
-    dataset: [ "MTA.Action", "MTA.Cost", "MTA.Key" ]
-  },
-  exploit: {
-    dataset: [ "MTA.Action", "MTA.Cost" ]
-  },
-  cover: {
-    dataset: [ "MTA.Rating", "MTA.Beats", "MTA.Active" ]
-  },
   formAbility: {
     dataset: [ "MTA.Weapon", "MTA.Active" ]
-  },
-  coil: {
-    dataset: [ "MTA.Rating", "MTA.Mystery" ]
-  },
-  scale: {
-    dataset: [ "MTA.Mystery" ]
-  },
-  tactic: {
-    dataset: [ "MTA.Favored" ]
-  },
-  advanced_armory: {
-    dataset: [ "MTA.Loadout", "MTA.Action", "MTA.Duration" ]
   }
 });
 
@@ -562,10 +484,6 @@ export class MtAActorSheet extends ActorSheet {
       this.actor.calculateAndSetMaxResource();
     });
 
-    html.find('.calculate.clarity').click(event => {
-      this.actor.calculateAndSetMaxClarity();
-    });
-
     // Macros
 
     html.find('.perceptionButton').mousedown(ev => {
@@ -583,48 +501,6 @@ export class MtAActorSheet extends ActorSheet {
 
     });
     
-    html.find('.breakingPointButton').mousedown(ev => {
-      switch (ev.which) {
-        case 1:
-          this.actor.rollBreakingPoint(false, false);
-          break;
-        case 2:
-          break;
-        case 3:
-          //Quick Roll
-          this.actor.rollBreakingPoint(true, false);
-          break;
-      }
-    });
-    
-    html.find('.dissonanceButton').mousedown(ev => {
-      switch (ev.which) {
-        case 1:
-          this.actor.rollDissonance(false, false);
-          break;
-        case 2:
-          break;
-        case 3:
-          //Quick Roll
-          this.actor.rollDissonance(true, false);
-          break;
-      }
-    });
-
-    html.find('.compromiseButton').mousedown(ev => {
-      switch (ev.which) {
-        case 1:
-          this.actor.rollCompromise(false, false);
-          break;
-        case 2:
-          break;
-        case 3:
-          //Quick Roll
-          this.actor.rollCompromise(true, false);
-          break;
-      }
-    });
-
     html.find('.dreamingButton').mousedown(ev => {
       switch (ev.which) {
         case 1:
@@ -638,10 +514,6 @@ export class MtAActorSheet extends ActorSheet {
           break;
       }
       
-    });
-
-    html.find('.amnionButton').mousedown(ev => {
-      this.actor.callAmnion();
     });
 
     // Clicking roll button
@@ -678,8 +550,6 @@ export class MtAActorSheet extends ActorSheet {
       attributeChecks.prop("checked", !attributeChecks.prop("checked"));
     });
 
-    //Clicking spellcasting button
-    html.find('.improvisedSpellButton').mousedown(ev => this._onActivateSpell(ev));
   }
   
   /* Handles drag-and-drop visual */
@@ -748,16 +618,6 @@ export class MtAActorSheet extends ActorSheet {
 
   }
 
-  async _onActivateSpell(ev, spell) {
-    this.actor.castSpell(spell);
-  }
-
-  async _onRollTactic(ev, item) {
-    let tacticDialogue = new TacticDialogue(this.actor, item);
-    tacticDialogue.render(true);
-  }
-
-
 
 /** @override */
 async _onDropItemCreate(itemData) {
@@ -794,15 +654,6 @@ async _onDropItemCreate(itemData) {
 
   // Clean up data
   if ( itemData.system ) {
-    if(itemData.type ==="spell"){
-      itemData.system.isPraxis = false;
-      itemData.system.isRote = false;
-      itemData.system.isInured = false;
-      itemData.system.isBefouled = false;
-    }
-    if(itemData.type ==="cover"){
-      itemData.system.isActive = false;
-    }
     if(itemData.system.equipped) itemData.system.equipped = false;
     if(itemData.system.isFavorite) itemData.system.isFavorite = false;
   }
@@ -1077,26 +928,7 @@ async _onDropItemCreate(itemData) {
             };
             r += `<div class="info"><span>${game.i18n.localize('MTA.HealthPenalty.YouAre')} <b>${penaltyMap[dots[dots.length -1]]}</b>.</span><span>${game.i18n.localize('MTA.DicePenalty')}<b>−${dicePenalty}</b></span></div>`;
           }
-          else if (trackerType == 'clarity') {
-            //let dicePenalty = dots.slice(-stateHighest).reduce( (a,v) => (v>0)?a+1:a ,0);
-            let diceBonus = this.actor.getClarityBonus();
 
-            //const dmg = dots.filter(v => v === 0);
-            //let dicePenalty = (dmg.length < 3) ? -2 : (dmg.length < 5) ? -1 : 0;
-            //if(dmg.length === dots.length) dicePenalty += 2;
-            if(diceBonus >= 0) diceBonus = '+' + diceBonus;
-            if(diceBonus === -99) diceBonus = '?';
-            let penaltyMap = {
-              '+2': game.i18n.localize('MTA.ClarityPenalty.lucid'),
-              '+1': game.i18n.localize('MTA.ClarityPenalty.rational'),
-              '+0': game.i18n.localize('MTA.ClarityPenalty.clear-headed'),
-              '-1': game.i18n.localize('MTA.ClarityPenalty.hazy'),
-              '-2': game.i18n.localize('MTA.ClarityPenalty.losingTrack'),
-              '?':  game.i18n.localize('MTA.ClarityPenalty.inAComa')
-            };
-  
-            r += `<div class="info"><span>${game.i18n.localize('MTA.HealthPenalty.YouAre')} <b>${penaltyMap[diceBonus]}</b>.</span><span>${game.i18n.localize('MTA.Perception')}:  <b>${diceBonus}</b></span></div>`;
-          }
           renderBox.innerHTML = r;
           
           if(num !== 0){   inputs[1].dispatchEvent( new Event('change',{'bubbles':true}) )   }

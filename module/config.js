@@ -8,7 +8,6 @@ export const MTA = {};
 
 const path = 'systems/WoD20/icons/placeholders/';
 
-
 /**
  * The paths to the individual placeholder icons
  * for each item type within the system.
@@ -19,24 +18,10 @@ const path = 'systems/WoD20/icons/placeholders/';
 */
 MTA.placeholders = new Map([
   ["condition", path + 'Condition.svg'],
-  ["tilt", path + 'Tilt.svg'],
-  ["environmental", path + 'EnvironmentalTilt.svg'],
-  ["death", path + "Death.svg"],
-  ["fate", path + "Fate.svg"],
-  ["forces", path + "Forces.svg"],
-  ["life", path + "Life.svg"],
-  ["matter", path + "Matter.svg"],
-  ["mind", path + "Mind.svg"],
-  ["prime", path + "Prime.svg"],
-  ["space", path + "Space.svg"],
-  ["spirit", path + "Spirit.svg"],
-  ["time", path + "Time.svg"],
   ["relationship", path + 'Relationship.svg'],
-  ["vinculum", path + 'Relationship.svg'],
   ["service", path + 'Service.svg'],
   ["container", path + 'Container.svg'],
   ["merit", path + 'Merit.svg'],
-  ["yantra", path + 'Yantra.svg'],
   ["firearm", path + 'Firearm.svg'],
   ["melee", path + 'Melee.svg'],
   ["unarmed", path + 'Unarmed.svg'],
@@ -44,41 +29,11 @@ MTA.placeholders = new Map([
   ["equipment", path + 'Equipment.svg'],
   ["armor", path + 'Armor.svg'],
   ["ammo", path + 'Ammo.svg'],
-  ["contract", path + 'Contract.svg'],
-  ["pledge", path + 'Pledge.svg'],
-  ["devotion", path + 'devotion.svg'],
   ["rite", path + 'Rite.svg'],
-  ["miracle", path + 'Miracle.svg'],
   ["discipline_power", path + 'DisciplinePower.svg'],
-  ["magic", path + 'Magic.svg'],
-  ["werewolf_rite", path + 'Rite-Wolf.svg'],
-  ["pack_rite", path + 'Rite-Pack.svg'],
-  ["numen", path + 'Numen.svg'],
-  ["manifestation", path + 'Manifestation.svg'],
-  ["influence", path + 'Influence.svg'],
-  ["moonGift", path + 'Gift-Moon.svg'],
-  ["shadowGift", path + 'Gift-Shadow.svg'],
-  ["wolfGift", path + 'Gift-Wolf.svg'],
   ["vehicle", path + 'Vehicle.svg'],
-  ["dreadPower", path + 'DreadPower.svg'],
-  ["embed", path + 'Embed.svg'],
-  ["interlock", path + 'Interlock.svg'],
-  ["exploit", path + 'Exploit.svg'],
-  ["cover", path + 'Cover.svg'],
-  ["glitch", path + 'Glitch.svg'],
-  ["pact", path + 'Pact.svg'],
   ["formAbility", path + 'Manifestation.svg'],
-  ["coil", path + 'Coil.svg'],
-  ["scale", path + 'Scale.svg'],
   ["form", 'systems/WoD20/icons/forms/Gauru.svg'],
-  ["tactic", path + 'Tactic.svg'],
-  ["advanced_armory", path + 'advanced_armory.svg'],
-  ["virtuous_ritual", path + 'virtuous_ritual.svg'],
-  ["castigation_rite", path + 'castigation_rite.svg'],
-  ["elixir", path + 'elixir.svg'],
-  ["perispiritism_ritual", path + 'perispiritism_ritual.svg'],
-  ["teleinformatics", path + 'teleinformatics.svg'],
-  ["thaumatech_implant", path + 'thaumatech_implant.svg'],
 ]);
 
 /**
@@ -218,9 +173,7 @@ MTA.skills_mental = {
  * @type {Object}
  */
 MTA.derivedTraits = {
-  "size": "MTA.Size",
   "speed": "MTA.Speed",
-  "defense": "MTA.Defense",
   "armor": "MTA.Armor",
   "initiativeMod": "MTA.Initiative",
   "ballistic": "MTA.BallisticArmor",
@@ -266,7 +219,7 @@ MTA.impressions = ["Hostile","Average","Good","Excellent","Perfect"];
  * A list of item types that only normal characters use, to make sure that other characters can't use them.
  */
 MTA.characterItemTypes = [
-  "spell", "merit", "activeSpell", "attainment", "relationship", "rite", "vinculum", "discipline_power", "form", "embed", "exploit", "pact", "formAbility", "coil", "scale"
+ "relationship", "rite", "discipline_power", "form", "formAbility"
 ]
 
 /**
@@ -277,36 +230,9 @@ MTA.characterItemTypes = [
  */
 MTA.typeColors = {
   unknown: "DimGray", 
-  Mortal: "White", 
-  Sleepwalker: "CadetBlue", 
-  Proximi: "Aquamarine", 
-  Mage: "Aqua", 
-  Scelesti: "Purple",
-  Ghost: "BurlyWood", 
-  Spirit: "MediumPurple", 
-  Angel: "Gold", 
-  Demon: "Orangered", 
-  Vampire: "Crimson", 
-  Changeling: "DarkGreen", 
-  Werewolf: "saddlebrown",
-  Hunter: "slategray "
+  Mortal: "White",
+  Vampire: "Crimson",
 };
-
-
-MTA.magicItemColors = {
-  Default: 'MediumPurple',
-  Awakened: 'Aqua',
-  Gadget: 'Gold',
-  Imbued: 'Aqua',
-  Enhanced: 'Coral',
-  Artifact: 'darkorange',
-  Embedded: 'Gold',
-  Exploited: 'Orangered'
-}
-
-
-
-
 
 /**
  * The list of supported melee weapon types.
@@ -315,17 +241,6 @@ MTA.magicItemColors = {
  * @type {Array[]}
  */
 MTA.meleeTypes = ["Melee", "Unarmed", "Thrown"];
-
-
-/**
- * List of merits with special functions in order to display tooltips.
- * Don't modify.
- */
-MTA.SPECIAL_MERITS = [
-  {name: "Defensive Combat (Brawl)", tooltip: "Uses Brawl to calculate Defense"},
-  {name: "Defensive Combat (Weaponry)", tooltip: "Uses Weaponry to calculate Defense (only if a weapon is equipped)"},
-  {name: "Iron Stamina", tooltip: "Reduces wound penalty by rating"}
-];
 
 /* -------------------------------------------- */
 /*          Vampire the Requiem                 */
@@ -356,21 +271,15 @@ MTA.rite_withstandTypes = ["Resisted by", "Contested by"];
  * @type {Object}
  */
 MTA.disciplines_common = {
-  "celerity": "MTA.DisciplineCelerity", // Adds to defense
-  "resilience": "MTA.DisciplineResilience",
-  "vigor": "MTA.DisciplineVigor",
+  "celerity": "MTA.DisciplineCelerity",
   "animalism": "MTA.DisciplineAnimalism",
   "obfuscate": "MTA.DisciplineObfuscate",
-  "cruac": "MTA.DisciplineCruac"
 };
 
 MTA.disciplines_unique = {
   "auspex": "MTA.DisciplineAuspex",
   "dominate": "MTA.DisciplineDominate",
-  "majesty": "MTA.DisciplineMajesty",
-  "nightmare": "MTA.DisciplineNightmare",
   "protean": "MTA.DisciplineProtean",
-  "thebanSorcery": "MTA.DisciplineThebanSorcery"
 };
 
 /**

@@ -24,9 +24,7 @@ export class ActorMtA extends Actor {
     const systemData = this.system;
 
     if(!systemData.derivedTraits) systemData.derivedTraits = {
-      size: {value: 0, mod: 0},
       speed: {value: 0, mod: 0},
-      defense: {value: 0, mod: 0},
       armor: {value: 0, mod: 0},
       ballistic: {value: 0, mod: 0},
       initiativeMod: {value: 0, mod: 0},
@@ -40,13 +38,11 @@ export class ActorMtA extends Actor {
         if (item.system.initiativeMod) acc.initiativeMod += item.system.initiativeMod;
         if (item.type === "armor") acc.armor += item.system.rating;
         if (item.type === "armor") acc.ballistic += item.system.ballistic;
-        if (item.system.defensePenalty) acc.defense -= item.system.defensePenalty;
         if (item.system.speedPenalty) acc.speed -= item.system.speedPenalty;
       }
       return acc;
     }, {
       initiativeMod: 0,
-      defense: 0,
       speed: 0,
       armor: 0,
       ballistic: 0
@@ -124,18 +120,15 @@ export class ActorMtA extends Actor {
 
       
       der.speed.value = 5 + str + dex;
-      der.defense.value = Math.min(wit, dex) + this._getDefenseSkill();
       der.initiativeMod.value = comp + dex;
       der.health.value = systemData.attributes_physical.stamina.final;
       der.perception.value = comp + wit;
     }
 
-    der.size.value = 5 + der.size.mod;
     der.armor.value = der.armor.mod + item_mods.armor;
     der.ballistic.value += der.ballistic.mod + item_mods.ballistic;
 
     der.speed.value += der.speed.mod + item_mods.speed;
-    der.defense.value += der.defense.mod + item_mods.defense;
     der.initiativeMod.value += der.initiativeMod.mod + item_mods.initiativeMod;
     der.perception.value += der.perception.mod;
     der.health.value += der.health.mod;
@@ -154,11 +147,7 @@ export class ActorMtA extends Actor {
       trait.isModified = true;
     });
 
-    if(!systemData.isDreaming) der.health.final += der.size.final;
-
-    der.size.final = Math.max(0, der.size.final);
     der.speed.final = Math.max(0, der.speed.final);
-    der.defense.final = Math.max(0, der.defense.final);
     der.armor.final = Math.max(0, der.armor.final);
     der.ballistic.final = Math.max(0, der.ballistic.final);
     der.initiativeMod.final = Math.max(0, der.initiativeMod.final);
@@ -222,8 +211,7 @@ export class ActorMtA extends Actor {
       default:
         return {flavor, dicePool};
     }
-    // TODO: Return result of the roll
-    
+    // TODO: Return result of the roll  
   }
 
   
@@ -269,16 +257,6 @@ export class ActorMtA extends Actor {
         if(cur.split('.')[0] === "disciplines_own") flv = cur.split('.').reduce((o,i)=> o[i], systemData).label;
         else flv = game.i18n.localize("MTA." + cur);
 
-        // Apply penalty if character has 0 in a skill
-        const skillType = cur.split('.')[0];
-        if((skillType === "skills_physical" || skillType === "skills_social") && ret <= 0){
-          flv += " (unskilled)";
-          ret -= 1;
-        } else if(skillType === "skills_mental" && ret <= 0){
-          flv += " (unskilled)";
-          ret -= 3;
-        }
-
         if(flavor) flavor += " + " + flv;
         else flavor = flv;
         return acc + ret;
@@ -313,28 +291,6 @@ export class ActorMtA extends Actor {
   static getTrait(trait){
     console.warn("CofD system: The getTrait() function has been deprecated. Please simply use trait.final instead.")
     return trait.final;
-  }
-
-  //Search for Merit Defensive Combat
-  _getDefenseSkill() {
-    if(game.settings.get("mta", "lowerDefense")) return 0;
-    const systemData = this.system;
-
-    const hasBrawlMerit = this.items.find(ele => {
-      return ele.name === "Defensive Combat (Brawl)" && ele.type === "merit";
-    });
-    let hasWeaponryMerit = this.items.find(ele => {
-      return ele.name === "Defensive Combat (Weaponry)" && ele.type === "merit";
-    });
-    if (hasWeaponryMerit) {
-      hasWeaponryMerit = this.items.find(ele => {
-        return ele.system.equipped && ele.type === "melee";
-      });
-    }
-
-    const brawlSkill = hasBrawlMerit ? systemData.skills_physical.brawl.final  : 0;
-    const weaponrySkill = hasWeaponryMerit ? systemData.skills_physical.weaponry.final : 0;
-    return Math.max(Math.max(brawlSkill, weaponrySkill), systemData.skills_physical.athletics.final);
   }
 
   /** Returns the attribute limit of the character (e.g. Gnosis for mages) **/
@@ -438,57 +394,6 @@ export class ActorMtA extends Actor {
     return woundPenalty;
   }
 
-  castSpell(spell){
-    const itemData = spell ? duplicate(spell.system) : {};
-    if (spell) {
-      if (spell.system.isRote) itemData.castRote = true;
-      else if (spell.system.isPraxis) itemData.castPraxis = true;
-    }
-
-    let activeSpell = new CONFIG.Item.documentClass({
-      data: mergeObject(game.system.model.Item["activeSpell"], itemData, {
-        inplace: false
-      }),
-      name: spell ? spell.name : 'Improvised Spell',
-      img: spell ? spell.img : '',
-      type:  "activeSpell"
-    }); 
-
-    activeSpell.img = spell ? spell.img : '';
-    
-    let spellDialogue = new ImprovisedSpellDialogue(activeSpell, this);
-    spellDialogue.render(true);
-  }
-
-  /**
-   * Executes a breaking point roll using Resolve + Composure.
-   * if hidden is set, the roll is executed as a blind GM roll.
-   */
-  rollBreakingPoint(quickRoll, hidden) {
-    const systemData = this.system;
-    let dicepool = systemData.attributes_social.composure.final + systemData.attributes_mental.resolve.final;
-    let penalty = systemData.integrity >= 8 ? 2 : systemData.integrity >= 6 ? 1 : systemData.integrity <= 1 ? -2 : systemData.integrity <= 3 ? -1 : 0;
-    dicepool += penalty;
-    let flavor = "Breaking Point: Resolve + Composure + " + penalty;
-    if (quickRoll) DiceRollerDialogue.rollToChat({
-      dicePool: dicepool,
-      flavor: flavor,
-      title: flavor,
-      blindGMRoll: hidden
-    });
-    else {
-      let diceRoller = new DiceRollerDialogue({
-        dicePool: dicepool,
-        flavor: flavor,
-        title: flavor,
-        addBonusFlavor: true,
-        blindGMRoll: hidden
-      });
-      diceRoller.render(true);
-    }
-  }
-
-
   /**
    * Converts the character's stats into dream stats, 
    * depending on the template.
@@ -541,78 +446,13 @@ export class ActorMtA extends Actor {
   }
 
   /**
-   * Prompts the user with a dialogue to enter name and beats to add
-   * a progress entry to the actor.
-   */
-   addProgressDialogue() {
-    let d = new Dialog({
-      title: "Add Progress",
-      content: "<div> <span> Name </span> <input class='attribute-value' type='text' name='input.name' placeholder='No Reason'/></div> <div> <span> Beats </span> <input class='attribute-value' type='number' name='input.beats' data-dtype='Number' min='0' placeholder='0'/></div> <div> <span> Arc. Beats </span> <input class='attribute-value' type='number' name='input.arcaneBeats' data-dtype='Number' min='0' placeholder='0'/></div>",
-      buttons: {
-        ok: {
-          icon: '<i class="fas fa-check"></i>',
-          label: "OK",
-          callback: html => {
-            let name = html.find(".attribute-value[name='input.name']").val();
-            if (!name) name = "No Reason";
-            let beats = html.find(".attribute-value[name='input.beats']").val();
-            if (!beats) beats = 0;
-            let arcaneBeats = html.find(".attribute-value[name='input.arcaneBeats']").val();
-            if (!arcaneBeats) arcaneBeats = 0;
-            this.addProgress(name, beats, arcaneBeats);
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: "Cancel"
-        }
-      },
-      default: "cancel"
-    });
-    d.render(true);
-  }
-
-  /**
-   * Adds a progress entry to the actor, with given name and beats.
-   */
-  addProgress(name = "", beats = 0, arcaneBeats = 0) {
-    const system = this.system;
-    beats = Math.floor(beats);
-    arcaneBeats = Math.floor(arcaneBeats);
-    let progress = system.progress ? duplicate(system.progress) : [];
-    progress.push({
-      name: name,
-      beats: beats,
-      arcaneBeats: arcaneBeats
-    });
-    return this.update({
-      'system.progress': progress
-    });
-  }
-
-  /**
-   * Removes a progress entry from the actor at a given position.
-   * Note, that the first entry (__INITIAL__) is not part of the progress array;
-   * the element coming after it has index 0.
-   */
-  removeProgress(index = 0) {
-    const system = this.system;
-    let progress = system.progress ? duplicate(system.progress) : [];
-    progress.splice(index, 1);
-    return this.update({
-      'system.progress': progress
-    });
-  }
-
-  /**
    * Calculates and sets the maximum health for the actor using the formula
-   * Stamina + Size.
+   * Stamina.
    * If health is set lower than any damage, the damage is lost.
    */
   calculateAndSetMaxHealth() {
     const system = this.system;
     const maxHealth_old = system.health.max;
-    //let maxHealth = data.derivedTraits.size.final + data.attributes_physical.stamina.final;
     let maxHealth = system.derivedTraits.health.final;
     //if(data.characterType === "Vampire") maxHealth += data.disciplines.common.resilience.value;
 
@@ -663,29 +503,5 @@ export class ActorMtA extends Actor {
       obj['system.vitae.max'] = maxResource;
       this.update(obj);
     }
-  }
-
-  
-  /**
-   * Updates the number of touchstones based on the maximum clarity.
-   */
-  updateChangelingTouchstones() {
-    const system = this.system;
-    let touchstones = duplicate(system.touchstones_changeling);
-    let touchstone_amount = Object.keys(touchstones).length;
-    if (touchstone_amount < system.clarity.max) {
-      while (touchstone_amount < system.clarity.max) {
-        touchstones[touchstone_amount + 1] = "";
-        touchstone_amount = Object.keys(touchstones).length;
-      }
-    } else if (touchstone_amount > system.clarity.max) {
-      while (touchstone_amount > system.clarity.max) {
-        touchstones['-=' + touchstone_amount] = null;
-        touchstone_amount -= 1;
-      }
-    }
-    let updateData = {};
-    updateData['system.touchstones_changeling'] = touchstones;
-    this.update(updateData);
   }
 }

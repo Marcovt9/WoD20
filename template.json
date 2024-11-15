@@ -12,15 +12,7 @@
         "description": "",
         "notes": "",
         "derivedTraits": {
-          "size": {
-            "value": 0,
-            "mod": 0
-          },
           "speed": {
-            "value": 0,
-            "mod": 0
-          },
-          "defense": {
             "value": 0,
             "mod": 0
           },
@@ -250,84 +242,6 @@
           "value": 5
         }
       },
-      "sleeper": {
-        "integrity": 7
-      },
-      "mage": {
-        "scelestiType": "Rabashak",
-        "storedParadox": 0,
-        "shadowName": "",
-        "mage_traits": {
-          "gnosis": {"value": 0},
-          "wisdom": {"value": 7},
-          "joining": {"value": 1}
-        },
-        "mana": {
-          "value": 0,
-          "max": 0
-        },
-        "arcaneBeats": 0,
-        "arcaneExperience": 0,
-        "obsessions": "",
-        "nimbus": "",
-        "path": "",
-        "order": "",
-        "legacy": "",
-        "arcana_gross": {
-          "forces": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "life": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "matter": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "space": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "time": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          }
-        },
-        "arcana_subtle": {
-          "death": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "fate": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "mind": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "prime": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          },
-          "spirit": {
-            "value": 0,
-            "isInferior": false,
-            "isRuling": false
-          }
-        }
-      },
       "vampire": {
         "clan": "",
         "bloodline": "",
@@ -395,106 +309,6 @@
           }
         },
         "disciplines_own": {}
-      },
-      "changeling": {
-        "seeming": "",
-        "kith": "",
-        "court": "",
-        "touchstones_changeling": {
-          "2": "",
-          "1": ""
-        },
-        "glamour": {
-          "value": 10,
-          "max": 10
-        },
-        "clarity": {
-          "value": 2,
-          "max": 2,
-          "severe": 2
-        },
-        "goblinDebt": {
-          "value": 10,
-          "max": 10
-        },
-        "changeling_traits": {
-          "wyrd": {"value": 1},
-          "mantle": {"value": 1}
-        }
-      },
-      "werewolf": {
-        "auspice": "",
-        "tribe": "",
-        "werewolf_traits": {
-          "primalUrge": {"value": 1},
-          "harmony": {"value": 7}
-        },
-        "werewolf_renown": {
-          "purity": {
-            "value": 0
-          },
-          "glory": {
-            "value": 0
-          },
-          "honor": {
-            "value": 0
-          },
-          "wisdom": {
-            "value": 0
-          },
-          "cunning": {
-            "value": 0
-          }
-        },
-        "essence": {
-          "value": 0,
-          "max": 10
-        }
-      },
-      "demon": {
-        "incarnation": "",
-        "agenda": "",
-        "catalyst": "",
-        "aether": {
-          "value": 7,
-          "max": 10
-        },
-        "demon_traits": {
-          "primum": {"value": 1}
-        },
-        "cipher": "",
-        "cipherVisible": false,
-        "finalTruth": "",
-        "finalTruthVisible": false
-      },
-      "hunter": {
-        "cell": "",
-        "compact": "",
-        "conspiracy": "",
-        "theCode": "",
-        "hunter_traits": {
-          "advanced_armory": {
-            "value": 0
-          },
-          "benediction": {
-            "value": 0
-          },
-          "elixir": {
-            "value": 0
-          }
-        },
-        "touchstones_hunter": {
-          "10": "",
-          "9": "",
-          "8": "",
-          "7": "",
-          "6": "",
-          "5": "",
-          "4": "",
-          "3": "",
-          "2": "",
-          "1": ""
-        }
       }
       },
     "character": {
@@ -543,7 +357,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "container", "service", "firearm", "melee", "armor", "ammo", "spell", "condition", "tilt", "merit", "activeSpell", "yantra", "attainment", "relationship", "vehicle", "influence", "devotion", "rite", "vinculum", "discipline_power", "contract", "pledge", "form", "facet", "werewolf_rite", "numen", "manifestation", "dreadPower", "embed", "interlock", "exploit", "cover", "glitch", "pact", "formAbility", "coil", "scale", "tactic", "advanced_armory", "virtuous_ritual", "castigation_rite", "elixir", "perispiritism_ritual", "teleinformatics", "thaumatech_implant"],
+    "types": ["equipment", "container", "service", "firearm", "melee", "armor", "ammo", "spell", "condition", "merit", "activeSpell", "vehicle", "influence", "devotion", "rite", "discipline_power", "form", "embed", "formAbility"],
     "templates": {
       "common": {
         "description": "",
@@ -560,8 +374,7 @@
         }
       },
       "tool": {
-        "diceBonus": 0,
-        "size": 1
+        "diceBonus": 0
       },
       "combatEquipment": {
         "strengthReq": 1,
@@ -636,7 +449,6 @@
       "label": "Armor",
       "rating": 1,
       "ballistic": 0,
-      "defensePenalty": 0,
       "speedPenalty": 0,
       "coverage": {
         "torso": true,
@@ -788,11 +600,6 @@
       "withstand": "",
       "sacrament": ""
     },
-    "vinculum": {
-      "label": "Vinculum",
-      "description": "",
-      "stage": 1
-    },
     "discipline_power": {
       "templates": ["rollable", "effect"],
       "description": "",
@@ -923,14 +730,6 @@
       "favored": false,
       "dicepools_primary": [],
       "dicepools_secondary": [],
-      "description": ""
-    },
-    "advanced_armory": {
-      "templates": ["rollable", "effect"],
-      "loadout": "",
-      "loadout_current": "",
-      "action": "",
-      "duration": "",
       "description": ""
     },
     "virtuous_ritual": {

@@ -26,15 +26,6 @@ export class ItemMtA extends Item {
         if(this.system.weaponType === "Unarmed") type = "unarmed";
         else if(this.system.weaponType === "Thrown") type = "thrown";
       }
-      else if(type === "tilt"){
-        if(this.system.isEnvironmental) type = "environmental";
-      }
-      else if(this.type === "rite"){
-        if(this.system.riteType !== "Rite") type = "miracle";
-      }
-      else if(this.type === "spell" || this.type === "attainment" || this.type === "activeSpell"){
-        type = this.system.arcanum;
-      }
       
       img = CONFIG.MTA.placeholders.get(type);
       if(!img) img = 'systems/WoD20/icons/placeholders/item-placeholder.svg';
@@ -152,12 +143,6 @@ export class ItemMtA extends Item {
 
     const damageRoll = this.isWeapon();
     if(damageRoll) { // TODO: Put into another function?
-      if(this.type === "melee") {
-        if(target?.actor?.system.derivedTraits) { // Remove target defense
-          const def = target.actor.system.derivedTraits.defense;
-          penalty = -(def.final ? def.final : def.value);
-        }
-      }
       if(target) {
         flavor += " vs target " + target.name;
       }

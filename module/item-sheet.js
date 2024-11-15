@@ -302,12 +302,12 @@ export class MtAItemSheet extends ItemSheet {
         firearm: {
           label: "Firearm",
           items: [],
-          dataset: ["Dmg.", "Range", "Cartridge", "Magazine", "Init.", "Size"]
+          dataset: ["Dmg.", "Range", "Cartridge", "Magazine", "Init."]
         },
         melee: {
           label: "Melee",
           items: [],
-          dataset: ["Damage", "Type", "Initiative", "Size"]
+          dataset: ["Damage", "Type", "Initiative"]
         },
         armor: {
           label: "Armor",
@@ -317,17 +317,12 @@ export class MtAItemSheet extends ItemSheet {
         equipment: {
           label: "Equipment",
           items: [],
-          dataset: ["Dice bonus", "Durability", "Structure", "Size"]
+          dataset: ["Dice bonus", "Durability", "Structure"]
         },
         ammo: {
           label: "Ammo",
           items: [],
           dataset: ["Cartridge", "Quantity"]
-        },
-        container: {
-          label: "Containers",
-          items: [],
-          dataset: ["Durability", "Structure", "Size"]
         }
       };
     }

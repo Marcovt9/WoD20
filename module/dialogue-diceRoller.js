@@ -1,5 +1,5 @@
 export class DiceRollerDialogue extends Application {
-  constructor({dicePool=0, targetNumber=8, extended=false, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, advancedAction=false, macro, actor={}, token={}, comment=""}, ...args){
+  constructor({dicePool=0, targetNumber=8, extended=false, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, advancedAction= false, macro, actor={}, token={}, comment=""}, ...args){
     super(...args);
     this.targetNumber = +targetNumber;
     this.dicePool = +dicePool;

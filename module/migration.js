@@ -188,28 +188,22 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
       updateData['system.-=resistance'] = null;
     }
 
-    if(actor.system.sizeMod && actor.system.speedMod && actor.system.defenseMod && actor.system.armorMod && actor.system.initiativeModMod && actor.system.ballisticMod && actor.system.perceptionMod){ 
+    if(actor.system.speedMod && actor.system.armorMod && actor.system.initiativeModMod && actor.system.ballisticMod && actor.system.perceptionMod){ 
       updateData["system.derivedTraits"] = {
-        size: {value: 0, mod: actor.system.sizeMod},
         speed: {value: 0, mod: actor.system.speedMod},
-        defense: {value: 0, mod: actor.system.defenseMod},
         armor: {value: 0, mod: actor.system.armorMod},
         initiativeMod: {value: 0, mod: actor.system.initiativeModMod},
         ballistic: {value: 0, mod: actor.system.ballisticMod},
         perception: {value: 0, mod: actor.system.perceptionMod}
       };
 
-      updateData['system.-=size'] = null;
       updateData['system.-=speed'] = null;
-      updateData['system.-=defense'] = null;
       updateData['system.-=armor'] = null;
       updateData['system.-=initiativeMod'] = null;
       updateData['system.-=ballistic'] = null;
       updateData['system.-=perception'] = null;
 
-      updateData['system.-=sizeMod'] = null;
       updateData['system.-=speedMod'] = null;
-      updateData['system.-=defenseMod'] = null;
       updateData['system.-=armorMod'] = null;
       updateData['system.-=initiativeModMod'] = null;
       updateData['system.-=ballisticMod'] = null;
@@ -302,18 +296,6 @@ export const migrateItemData = function(item, version_nums_current, version_nums
   if(compareVersion(version_nums_current, [0,3,0]) && item.type === "melee" && !item.system.weaponType) updateData["system.weaponType"] = "Melee"; // 0.2.3 -> 0.3.0
 
   if(compareVersion(version_nums_current, [0,6,0])) { // 0.5.0 -> 0.6.0
-    if(item.system.arcanum){
-      if(item.system.arcanum === "Forces") updateData["system.arcanum"] = "forces";
-      else if(item.system.arcanum === "Life") updateData["system.arcanum"] = "life";
-      else if(item.system.arcanum === "Matter") updateData["system.arcanum"] = "matter";
-      else if(item.system.arcanum === "Space") updateData["system.arcanum"] = "space";
-      else if(item.system.arcanum === "Time") updateData["system.arcanum"] = "time";
-      else if(item.system.arcanum === "Death") updateData["system.arcanum"] = "death";
-      else if(item.system.arcanum === "Fate") updateData["system.arcanum"] = "fate";
-      else if(item.system.arcanum === "Mind") updateData["system.arcanum"] = "mind";
-      else if(item.system.arcanum === "Prime") updateData["system.arcanum"] = "prime";
-      else if(item.system.arcanum === "Spirit") updateData["system.arcanum"] = "spirit";
-    }
     if(item.system.effects) updateData["system.effects"] = [];
   }
 

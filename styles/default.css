@@ -1895,10 +1895,6 @@ button {
   border: var(--border-sheet-block);
   font-size: small;
 }
-
-.mta-sheet .item-table .cell.item-name.magic-item, option.attainment {
-  color:aqua;
-}
 .mta-sheet .item-table .item-summary {
   text-align: left;
   border-bottom: 2px inset #67191b;
