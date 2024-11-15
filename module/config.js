@@ -17,7 +17,6 @@ const path = 'systems/WoD20/icons/placeholders/';
  * have an explicity width and height.
 */
 MTA.placeholders = new Map([
-  ["condition", path + 'Condition.svg'],
   ["relationship", path + 'Relationship.svg'],
   ["service", path + 'Service.svg'],
   ["container", path + 'Container.svg'],

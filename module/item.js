@@ -256,13 +256,7 @@ export class ItemMtA extends Item {
       for(let i = 0; i < spellFactorsArray.length; i++){
         spellFactors[spellFactorsArray[i][0]] = {value: spellFactorsArray[i][1].trim(), isAdvanced: spellFactorsArray[i][2]};
       }
-      
-      //Special handling for conditional duration, and advanced potency
-      let durationSplit = spellFactors.Duration.value.split("(",2);
-      spellFactors.Duration.value = durationSplit[0];
-      if(durationSplit[1]) spellFactors.Duration.condition = durationSplit[1].split(")",1)[0];
-      spellFactors.Potency.value = spellFactors.Potency.value.split("(",1)[0].trim();
-      
+            
       const spellData = {
         name: spellName,
         img: image,

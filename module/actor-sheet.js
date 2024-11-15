@@ -16,7 +16,6 @@ import {
 import "../lib/dragster/dragster.js";
 import * as customui from "./ui.js";
 import * as templates from "./templates.js";
-import { TacticDialogue } from "./dialogue-tactic.js";
 
 const getInventory = () => ({
   firearm: {

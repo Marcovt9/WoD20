@@ -61,16 +61,6 @@ export class TokenHotBar extends Application {
     
                 data.characterName = token.name;
                 if(token.actor){
-                    if(token.actor.system.characterType === "Mage" || token.actor.system.characterType === "Proximi"){
-                        this.macros.push({
-                            name: "Improvised Spellcasting",
-                            img: "systems/WoD20/icons/gui/macro-improvisedSpell.svg",
-                            sheetMacro: true,
-                            callback: () => {
-                                token.actor.castSpell();
-                            }
-                        });
-                    }
 
                     // Add equipped items and favourited abilities
                     let equipped = token.actor.items.filter(item => (typeOrder.has(item.type) && (data.showNonWielded || item.system.equipped)) || item.system.isFavorite || (item.type === "formAbility" && item.system.effectsActive))

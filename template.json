@@ -357,7 +357,7 @@
     }
   },
   "Item": {
-    "types": ["equipment", "container", "service", "firearm", "melee", "armor", "ammo", "spell", "condition", "merit", "activeSpell", "vehicle", "influence", "devotion", "rite", "discipline_power", "form", "embed", "formAbility"],
+    "types": ["equipment", "container", "service", "firearm", "melee", "armor", "ammo", "spell", "activeSpell", "vehicle", "influence", "rite", "discipline_power", "form", "formAbility"],
     "templates": {
       "common": {
         "description": "",
@@ -500,52 +500,6 @@
         "value": 0
       }
     },
-    "condition": {
-      "templates": ["effect", "rollable"],
-      "description": "",
-      "isPersistent": false,
-      "isClarity": false,
-      "statusVisibility": "Owner"
-    },
-    "tilt": {
-      "templates": ["effect", "rollable"],
-      "label": "Tilt",
-      "description": "",
-      "isEnvironmental": false,
-      "statusVisibility": "All"
-    },
-    "merit": {
-      "templates": ["effect", "rollable"],
-      "label": "Merit",
-      "description": "",
-      "rating": 1
-    },
-    "dreadPower": {
-      "templates": ["effect", "rollable"],
-      "description": "",
-      "rating": 1
-    },
-    "numen": {
-      "templates": ["effect", "rollable", "weapon"],
-      "description": "",
-      "reaching": false,
-      "isWeapon": false
-    },
-    "yantra": {
-      "label": "Yantra",
-      "description": "",
-      "subtype": "",
-      "isDedicated": false,
-      "diceBonus": 1
-    },
-    "attainment": {
-      "templates": ["effect", "rollable"],
-      "label": "Attainment",
-      "description": "",
-      "level": 1,
-      "arcanum": "death",
-      "legacy": ""
-    },
     "relationship": {
       "label": "Relationship",
       "description": "",
@@ -574,21 +528,6 @@
       "description": "",
       "rating": 1
     },
-    "manifestation": {
-      "label": "Manifestation",
-      "description": ""
-    },
-    "devotion": {
-      "templates": ["rollable", "effect"],
-      "label": "Devotion",
-      "description": "",
-      "cost": {
-        "value": 0,
-        "perTurn": false
-      },
-      "action": "Instant",
-      "duration": ""
-    },
     "rite": {
       "templates": ["rollable", "effect"],
       "label": "Rite",
@@ -609,179 +548,17 @@
       "action": "Instant",
       "duration": ""
     },
-    "container": {
-      "templates": ["tool", "object", "common"],
-      "label": "Container",
-      "durability": 1,
-      "structure": 1,
-      "contents": []
-    },
-    "contract": {
-      "templates": ["rollable", "effect"],
-      "label": "Contract",
-      "description": "",
-      "costGlamour": {
-        "value": 0,
-        "perTurn": false
-      },
-      "costWillpower": {
-        "value": 0,
-        "perTurn": false
-      },
-      "action": "",
-      "duration": "Scene",
-      "majorType": "Arcadian",
-      "subType": "Crown",
-      "regalia": "Common"
-    },
-    "pledge": {
-      "description": "",
-      "type": "Sealing"
-    },
     "form": {
       "templates": ["effect"],
       "description": "",
       "description_short": "",
       "subname": ""
     },
-    "facet": {
-      "templates": ["rollable", "effect"],
-      "description": "",
-      "cost": {
-        "value": 0,
-        "misc": ""
-      },
-      "action": "Instant",
-      "duration": "",
-      "giftType": "moon",
-      "level": 1,
-      "gift": ""
-    },
-    "werewolf_rite": {
-      "templates": ["rollable", "effect"],
-      "description": "",
-      "level": 1,
-      "riteType": "Wolf Rite",
-      "action": "Extended"
-    },
-    "embed": {
-      "templates": ["rollable", "effect"],
-      "category": "Mundane",
-      "action": "Instant",
-      "withstand": "",
-      "isKey": false,
-      "keyNumber": 1,
-      "description": ""
-    },
-    "interlock": {
-      "templates": ["rollable", "effect"],
-      "action": "Instant",
-      "cost": 0,
-      "withstand": "",
-      "keyNumber": 1,
-      "description": ""
-    },
-    "exploit": {
-      "templates": ["rollable", "effect"],
-      "action": "Instant",
-      "cost": 0,
-      "description": ""
-    },
-    "cover": {
-      "age": 0,
-      "notes": "",
-      "rating": 7,
-      "beats": 0,
-      "isActive": false,
-      "contents": [],
-      "description": ""
-    },
-    "glitch": {
-      "category": "Transient",
-      "duration": "One Scene|Hour",
-      "class": "Brand",
-      "variation": "Minor",
-      "description": ""
-    },
-    "pact": {
-      "demon_aspectPoints": 0,
-      "human_aspectPoints": 0,
-      "duration": "Day",
-      "description": ""
-    },
     "formAbility": {
       "templates": ["effect", "rollable", "weapon"],
       "label": "Form Ability",
       "description": "",
       "isWeapon": false
-    },
-    "coil": {
-      "mystery": "",
-      "rating": 1,
-      "description": ""
-    },
-    "scale": {
-      "mystery": "",
-      "rating": 1,
-      "description": "",
-      "prerequisite": ""
-    },
-    "tactic": {
-      "favored": false,
-      "dicepools_primary": [],
-      "dicepools_secondary": [],
-      "description": ""
-    },
-    "virtuous_ritual": {
-      "templates": ["rollable", "effect"],
-      "duration": "",
-      "description": "",
-      "dicePool": {
-        "value": 0,
-        "attributes": ["hunter_traits.benediction", "attributes_mental.intelligence", "skills_mental.occult"],
-        "extended": true,
-        "target_successes": 0
-      }
-    },
-    "castigation_rite": {
-      "templates": ["rollable", "effect"],
-      "cost": "",
-      "action": "",
-      "duration": "",
-      "description": ""
-    },
-    "elixir": {
-      "templates": ["rollable", "effect"],
-      "prepared": 0,
-      "cost": "",
-      "action": "",
-      "duration": "",
-      "description": "",
-      "dicePool": {
-        "value": 0,
-        "attributes": ["hunter_traits.elixir", "attributes_physical.stamina"]
-      }
-    },
-    "perispiritism_ritual": {
-      "templates": ["rollable", "effect"],
-      "cost": "",
-      "action": "",
-      "duration": "",
-      "description": ""
-    },
-    "teleinformatics": {
-      "templates": ["rollable", "effect"],
-      "cost": "",
-      "action": "",
-      "duration": "",
-      "description": ""
-    },
-    "thaumatech_implant": {
-      "templates": ["rollable", "effect"],
-      "cost": "",
-      "action": "",
-      "duration": "",
-      "description": ""
     }
   }
 }

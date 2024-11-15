@@ -1,9 +1,6 @@
 import {
   DiceRollerDialogue
 } from "./dialogue-diceRoller.js";
-import {
-  ImprovisedSpellDialogue
-} from "./dialogue-improvisedSpell.js";
 /**
  * Override and extend the basic :class:`Actor` implementation
  */

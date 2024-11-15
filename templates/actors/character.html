@@ -77,20 +77,6 @@
             </div>
           {{else if (eq system.characterType "Werewolf")}}
             {{{bigStatBox actor false "werewolf_traits.harmony"}}}
-          {{else if (eq system.characterType "Demon")}}
-            <div class="kInput statBox big">
-              <h4>
-                <input class="attribute-check" id="CurrentCover{{actor.id}}" data-attribute="currentCover" data-trait="currentCover" type="checkbox" data-dtype="Boolean">
-                <label class="button attribute-button" for="CurrentCover{{actor.id}}">{{ localize "MTA.Cover" }}</label>
-              </h4>
-              <div class="gold-border"> </div>
-              <div class="split">
-                <div class="niceNumber">
-                  <input name="currentCover" type="number" value="{{currentCover}}" data-dtype="Number" readonly>
-                </div>
-              </div>
-              <div class="currentCoverName">{{currentCoverName}}</div>
-            </div>
           {{else}}
             {{#if system.usesDreadPowers}}
               {{{bigStatBox actor false "potency"}}}
@@ -227,90 +213,8 @@
           </table>
         </div>
       </div>
-      {{#if system.usesDreadPowers}}
       <div class="items-block">
         <div class="items-table">
-          {{!-- Dread Powers --}}
-          <table class="item-table">
-            <thead>
-              <tr class="item-row header">
-                <th class="cell header first"> 
-                  <span class="collapsible button fas fa-minus-square"> </span>
-                  <span class="sortable button" data-type="dreadPower">{{ localize "MTA.DreadPowers" }}<i class="fas fa-sort"></i> </span>
-                </th>
-                {{#each inventory.dreadPower.dataset}}
-                  <th class="cell header"> {{this}} </th>
-                {{/each}}
-                <th class="cell header"> </th>
-                <th class="cell header button item-create" data-type="dreadPower">{{ localize "MTA.ButtonAdd" }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each inventory.dreadPower.items as |item iid|}}
-                <tr class="item-row item" data-item-id="{{item.id}}">
-                  <td class="cell item-name first {{#if @last}} lastRow {{/if}}" data-item-id="{{item.id}}">
-                    <div class="item-name-wrapper">
-                      <div class="item-image {{#if system.effectsActive}} effectActive {{/if}}" style="background-image: url({{item.img}})"></div>
-                      <span> {{item.name}} </span>
-                    </div>
-                  </td>
-                  <td class="cell {{#if @last}} lastRow {{/if}}"> {{system.rating}}</td>
-                  <td class="cell {{#if @last}} lastRow {{/if}}"> 
-                    {{#if system.effects }}<i class="activeIcon {{#if system.effectsActive}} fas {{else}} far {{/if}} fa-dot-circle" title="Effects active" data-item-id="{{item._id}}"></i>{{/if}}
-                    <i class="favicon {{#if system.isFavorite}} fas {{else}} far {{/if}} fa-star" title="Favorite" data-item-id="{{item.id}}"></i>
-                  </td>
-                  <td class="cell edit-delete {{#if @last}} lastRow {{/if}}">
-                    <span class="button stoneButton item-edit" data-item-id="{{item.id}}" title="{{ localize 'MTA.EditItem' }}"><i class="fas fa-edit"></i></span>
-                    <span class="button stoneButton item-delete" data-item-id="{{item.id}}" title="{{ localize 'MTA.DeleteItem' }}"><i class="fas fa-times-circle"></i></span>
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {{/if}}
-      <div class="items-block">
-        <div class="items-table">
-          {{!-- Conditions --}}
-          <table class="item-table">
-            <thead>
-              <tr class="item-row header">
-                <th class="cell header first"> 
-                  <span class="collapsible button fas fa-minus-square"> </span>
-                  <span class="sortable button" data-type="condition">{{ localize "MTA.Conditions" }}<i class="fas fa-sort"></i> </span>
-                </th>
-                {{#each inventory.condition.dataset}}
-                  <th class="cell header"> {{this}} </th>
-                {{/each}}
-                <th class="cell header"> </th>
-                <th class="cell header button item-create" data-type="condition">{{ localize "MTA.ButtonAdd" }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each inventory.condition.items as |item iid|}}
-                <tr class="item-row item" data-item-id="{{item.id}}">
-                  <td class="cell item-name first {{#if @last}} lastRow {{/if}}" data-item-id="{{item.id}}">
-                    <div class="item-name-wrapper">
-                      <div class="item-image {{#if system.effectsActive}} effectActive {{/if}}" style="background-image: url({{item.img}})"></div>
-                      <span> {{item.name}} </span>
-                    </div>
-                  </td>
-                  <td class="cell {{#if @last}} lastRow {{/if}}">{{convertBool system.isPersistent}}</td>
-                  {{#if (eq ../system.characterType "Changeling")}}
-                    <td class="cell {{#if @last}} lastRow {{/if}}">{{convertBool system.isClarity}}</td>
-                  {{/if}}
-                  <td class="cell {{#if @last}} lastRow {{/if}}">
-                    {{#if system.effects }}<i class="activeIcon {{#if system.effectsActive}} fas {{else}} far {{/if}} fa-dot-circle" title="Effects active" data-item-id="{{item._id}}"></i>{{/if}}
-                  </td>
-                  <td class="cell edit-delete {{#if @last}} lastRow {{/if}}">
-                    <span class="button stoneButton item-edit" data-item-id="{{item.id}}" title="{{ localize 'MTA.EditItem' }}"><i class="fas fa-edit"></i></span>
-                    <span class="button stoneButton item-delete" data-item-id="{{item.id}}" title="{{ localize 'MTA.DeleteItem' }}"><i class="fas fa-times-circle"></i></span>
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
         </div>
       </div>
       <div class="items-block">
@@ -365,42 +269,16 @@
           <span class="tooltip-text">{{ localize "MTA.TooltipPerceptionCheck" }}</span>
           <img src="systems/WoD20/icons/gui/perception.svg" alt="Perception check.">
         </div>
-        {{#if (eqAny system.characterType "Mage" "Scelesti" "Proximi")}}
-          <div class="button charMacroButton improvisedSpellButton tooltip">
-            <span class="tooltip-text">{{ localize "MTA.TooltipSpellCast" }}</span>
-            <img src="systems/WoD20/icons/gui/macro-improvisedSpell.svg" alt="Improvised spell cast.">
-          </div>
-        {{/if}}
-        {{#if (eqAny system.characterType "Mortal" "Sleepwalker" "Proximi")}}
-          <div class="button charMacroButton breakingPointButton tooltip">
-            <span class="tooltip-text">{{ localize "MTA.TooltipBreakingPoint" }}</span>
-            <img src="systems/WoD20/icons/gui/macro-breaking-point.svg" alt="Breaking point.">
-          </div>
-        {{/if}}
         {{#if (eq system.characterType "Mortal")}}
           <div class="button charMacroButton dissonanceButton tooltip">
             <span class="tooltip-text">{{ localize "MTA.TooltipDissonance" }}</span>
             <img src="systems/WoD20/icons/gui/macro-dissonance.svg" alt="Dissonance.">
           </div>
         {{/if}}
-        {{#if (eq system.characterType "Demon")}}
-          <div class="button charMacroButton compromiseButton tooltip">
-            <span class="tooltip-text">{{ localize "MTA.TooltipCoverCompromise" }}</span>
-            <img src="systems/WoD20/icons/gui/macro-compromise.svg" alt="Compromise.">
-          </div>
-        {{/if}}
         <div class="button charMacroButton dreamingButton tooltip {{#if system.isDreaming}}dreaming{{/if}}">
           <span class="tooltip-text">{{ localize "MTA.TooltipDreaming" }}</span>
           <img src="systems/WoD20/icons/gui/macro-dreaming.svg" alt="Dream.">
         </div>
-        {{#if (eqAny system.characterType "Mage" "Scelesti")}}
-          {{#if system.isDreaming}}
-            <div class="button charMacroButton amnionButton tooltip dreaming">
-              <span class="tooltip-text">{{ localize "MTA.TooltipAmnion" }}</span>
-              <img src="systems/WoD20/icons/gui/macro-amnion.svg" alt="Amnion.">
-            </div>
-          {{/if}}
-        {{/if}}
       </div>
     </div>
 
