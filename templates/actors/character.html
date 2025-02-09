@@ -118,38 +118,7 @@
       {{#if system.usesDreadPowers}}
       <div class="horrorHeader">Horror</div>
       {{/if}}
-      <!-- Block #1 -->
-      <div class="expBox">
-        <div>
-          <div class="button charMacroButton progress tooltip">
-            <span class="tooltip-text">{{ localize "MTA.TooltipProgressMenu" }}</span>
-            <img src="systems/WoD20/icons/gui/progress-menu.svg" alt="Open progress menu.">
-          </div>
-          <div>
-            <div class="exp-header">{{localize "MTA.Beats" }}</div>
-            <input class="attribute-value borderInput disabled" type="number" name="beats_computed" value={{beats_computed}} disabled/>
-          </div>
-          <div>
-            <div class="exp-header">{{localize "MTA.Exp" }}</div>
-            <input class="attribute-value borderInput disabled" type="number" name="experience_computed" value={{experience_computed}} disabled/>
-          </div>
-        </div>
-        {{#if (eqAny system.characterType "Mage" "Scelesti" "Hunter")}}
-          <div>
-            <div style="width:32px;min-width:32px"></div>
-            <div>
-              <div class="exp-header">{{#if (eqAny system.characterType "Mage" "Scelesti")}}{{localize "MTA.ArcBeats"}}{{else}}{{localize "MTA.GroupBeats"}}{{/if}}</div>
-              <input class="attribute-value borderInput disabled" type="number" name="arcaneBeats_computed" value={{arcaneBeats_computed}} disabled/>
-            </div>
-            <div>
-              <div class="exp-header">{{#if (eqAny system.characterType "Mage" "Scelesti")}}{{localize "MTA.ArcExp"}}{{else}}{{localize "MTA.GroupExp"}}{{/if}}</div>
-              <input class="attribute-value borderInput disabled" type="number" name="arcaneExperience_computed" value={{arcaneExperience_computed}} disabled/>
-            </div>
-          </div>
-        {{/if}}
-      </div>
-
-
+  
       <!-- Block #2 -->
       <div class="kInput statBox">
         <h4> {{ localize "MTA.DerivedTraits" }}</h4>
@@ -314,10 +283,10 @@
       <div class="tab description" data-tab="description">
         <div class="item-stat-block">
           <div class="form-line">
-            <label> {{#if (eq system.characterType "Vampire")}} {{localize "MTA.Mask"}} {{else if (eq system.characterType "Changeling")}} {{localize "MTA.Needle"}} {{else if (eq system.characterType "Werewolf")}} {{localize "MTA.Blood"}} {{else}} {{localize "MTA.Virtue"}} {{/if}} </label> <input name="system.virtue" type="text" value="{{system.virtue}}" />
+            <label> {{#if (eq system.characterType "Vampire")}} {{/if}} </label> <input name="system.virtue" type="text" value="{{system.virtue}}" />
           </div>
           <div class="form-line">
-            <label> {{#if (eq system.characterType "Vampire")}} {{localize "MTA.Dirge"}} {{else if (eq system.characterType "Changeling")}} {{localize "MTA.Thread"}} {{else if (eq system.characterType "Werewolf")}} {{localize "MTA.Bone"}} {{else}} {{localize "MTA.Vice"}} {{/if}} </label> <input name="system.vice" type="text" value="{{system.vice}}" />
+            <label> {{#if (eq system.characterType "Vampire")}} {{/if}} </label> <input name="system.vice" type="text" value="{{system.vice}}" />
           </div>
           <div class="form-line">
             <label> {{localize "MTA.Age"}} </label> <input name="system.age" type="number" data-dtype="Number" value="{{system.age}}" />

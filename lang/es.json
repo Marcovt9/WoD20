@@ -89,7 +89,6 @@
   "MTA.Magical": "Mágico",
   "MTA.MagicType": "Tipo magia",
   "MTA.MagicClass": "Clase",
-  "MTA.Beats": "Pasos",
   "MTA.Exp": "Exp",
   "MTA.DerivedTraits": "Atributos derivados",
   "MTA.Physical": "Físico",
@@ -117,16 +116,15 @@
   "MTA.Discipline": "Disciplina",
   "MTA.DisciplinePower": "Poder de disciplina",
   "MTA.DisciplinePowers": "Poderes de disciplina",
-  "MTA.Mask": "Máscara",
-  "MTA.Dirge": "Lamento",
   "MTA.Clan": "Clan",
   "MTA.Bloodline": "Línea de sangre",
   "MTA.Covenant": "Alianza",
-  "MTA.Rank": "Rango",
   "MTA.AgeAsVampire": "Edad como vampiro",
-  "MTA.Banes": "Perdiciones",
-  "MTA.Touchstones": "Anclas",
   "MTA.Rites": "Ritos",
+
+  "MTA.Scion": "Heredero",
+  "MTA.Pantheon": "Panteon",
+
   "MTA.TooltipCalcMaxHealth": "Calcular salud máxima.",
   "MTA.TooltipCalcMaxVitae": "Calcular vitae máxima.",
   "MTA.TooltipTypeVisible": "¿Debería ser visible el tipo de personaje para jugadores con permiso limitado?",
@@ -146,6 +144,5 @@
   "MTA.Loadout": "Equipamiento",
   "MTA.TargetSuccesses": "Éxitos objetivo",
   "MTA.Prepared": "Preparado",
-  "MTA.GroupBeats": "Pasos de Grupo",
   "MTA.GroupExp": "Exp. de grupo"
 }

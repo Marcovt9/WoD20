@@ -1,27 +1,5 @@
-
-/* Hooks.on('createActiveEffect ', (activeEffect, ) => {
-  if(activeEffect._statusId === CONFIG.specialStatusEffects.TWILLIGHT)
-  canvas.perception.update({refreshVision: true, refreshLighting: true}, true);
-  this.mesh.refresh();
-  break;
-}); */
-
 export class TokenMTA extends Token {
-  
-  /**
-   * Draw the active effects and overlay effect icons which are present upon the Token
-   * @Override Also draws conditions and tilts
-   */
-  /* _onApplyStatusEffect(statusId, active) {
-    super(statusId, active);
-    return;
-    if(statusId === CONFIG.specialStatusEffects.TWILLIGHT) {
-      canvas.perception.update({refreshVision: true, refreshLighting: true}, true);
-      this.mesh.refresh();
-    }
-  } */
-
-  
+   
    /**
    * Draw the active effects and overlay effect icons which are present upon the Token
    * @Override Also draws conditions and tilts

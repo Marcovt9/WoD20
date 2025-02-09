@@ -1,0 +1,66 @@
+<div class="kUltraBlock">
+
+  <div class="flexBlock">
+    <div>
+      <dl>
+        <!-- {{#if dicePool}}
+        <dt>Dice Pool:</dt>
+        <dd>
+          <div class="niceNumber" onmousedown="let v = event.target.textContent;let i= this.querySelectorAll('input')[1];if(v=='+'){i.value++}if(v=='−'){i.value--};i.dispatchEvent(new Event('input'))">
+            <input name="dicePoolBase" type="number" min="-99" max="99" value="{{dicePool}}" readonly>
+            <div class="theNumber"><span>+0</span><input name="dicePoolBonus" type="number" min="-99" max="99" value="0" oninput="this.previousElementSibling.textContent=((this.value==''||this.value<0)?'':'+')+this.value"></div>
+            <div class="numBtns">
+              <div class="plusBtn">+</div>
+              <div class="minusBtn">−</div>
+            </div>
+          </div>
+        </dd>
+        {{else}} -->
+        <dt>Pool de dados:</dt>
+        <dd>
+          <div class="niceNumber" onmousedown="let v = event.target.textContent;let i= this.querySelectorAll('input')[0];if(v=='+'){i.value++}if(v=='−'){i.value--};i.dispatchEvent(new Event('input'))">
+            <div class="theNumber first"><span>0</span><input name="dicePoolBonus" type="number" min="-99" max="99" value="0" oninput="this.previousElementSibling.textContent=this.value"></div>
+            <div class="numBtns">
+              <div class="plusBtn">+</div>
+              <div class="minusBtn">−</div>
+            </div>
+          </div>
+        </dd>
+        <!-- {{/if}} -->
+        {{#if enableDifficulty}}
+        <dt>Dificultad:</dt>
+        <dd>
+          <p>
+            <div class="niceNumber" onmousedown="let v = event.target.textContent;let i= this.querySelectorAll('input')[0];if(v=='+'){i.value++}if(v=='−'){i.value--};i.dispatchEvent(new Event('input'))">
+              <div class="theNumber first"><span>6</span><input name="dicePoolDifficulty" type="number" min="1" max="10" value="6" oninput="this.previousElementSibling.textContent=this.value"></div>
+              <div class="numBtns">
+                <div class="plusBtn">+</div>
+                <div class="minusBtn">−</div>
+              </div>
+            </div>
+          </p>
+        </dd>
+        {{/if}}
+        <dt> Especialización:</dt>
+        <dd>
+          <div>
+            <p>
+              <label class="checkBox">
+                <input data-dtype="Boolean" name="rote_action" type="checkbox" {{checked data.isMagical}}>
+                <span> </span>
+              </label>
+            </p>
+          </div>
+        </dd>
+
+      </dl>
+    </div>
+    <div>
+      <div class="megaBtn">
+        <button type="button" class="button roll-execute stoneButton">Execute</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

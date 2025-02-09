@@ -49,7 +49,7 @@ MTA.traitMaximumLower = 5; // The maximum used for buffs without the checkbox, o
  * Any value added to this list will fall back to the Mortal sheet.
  * @type {Array[]}
  */
-MTA.characterTypes = ["Mortal", "Vampire"];
+MTA.characterTypes = ["Mortal", "Vampire", "Scion"];
 
 /**
  * The list of supported ephemeral entity types.
@@ -231,6 +231,7 @@ MTA.typeColors = {
   unknown: "DimGray", 
   Mortal: "White",
   Vampire: "Crimson",
+  Scion: "Gold",
 };
 
 /**
@@ -242,7 +243,13 @@ MTA.typeColors = {
 MTA.meleeTypes = ["Melee", "Unarmed", "Thrown"];
 
 /* -------------------------------------------- */
-/*          Vampire the Requiem                 */
+/*          Scion                               */
+/* -------------------------------------------- */
+
+
+
+/* -------------------------------------------- */
+/*          Vampire                             */
 /* -------------------------------------------- */
 
 MTA.bloodPotency_levels = [
@@ -259,7 +266,6 @@ MTA.bloodPotency_levels = [
     {vitae_per_turn: 15, max_vitae: 75}
   ];
 MTA.actionTypes = ["Instant", "Reflexive", "Contested vs", "Contested (refl. resist.) vs", "Extended"];
-MTA.rite_types = ["Rite", "Miracle"];
 MTA.rite_withstandTypes = ["Resisted by", "Contested by"];
 
 

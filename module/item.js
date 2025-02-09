@@ -224,61 +224,6 @@ export class ItemMtA extends Item {
     const message =  game.messages.get(messageId);
     const action = button.dataset.action;
     
-    if(action === "addActiveSpell"){
-      // Validate permission to proceed with the roll
-      if ( !( game.user.isGM || message.isAuthor ) ) return;
-
-      // Get the Actor from a synthetic Token
-      const actor = this._getChatCardActor(card);
-      if ( !actor ) return;
-      
-      //Get spell data
-      let description = $(card).find(".card-description");
-      description = description[0].innerHTML;
-      
-      let spellName = $(card).find(".item-name");
-      spellName = spellName[0].innerText;
-      
-      //let image = $(card).find(".item-img");
-      //image = image[0].src;
-      let image = card.dataset.img;
-
-      let spellFactorsArray = $(card).find(".spell-factors > li");
-      spellFactorsArray = $.makeArray(spellFactorsArray);
-      spellFactorsArray = spellFactorsArray.map(ele => {
-        let text = ele.innerText;
-        let advanced = ele.dataset.advanced === "true";
-        let splitText = text.split(":",2);
-        
-        return [splitText[0], splitText[1], advanced];
-      });
-      let spellFactors = {};
-      for(let i = 0; i < spellFactorsArray.length; i++){
-        spellFactors[spellFactorsArray[i][0]] = {value: spellFactorsArray[i][1].trim(), isAdvanced: spellFactorsArray[i][2]};
-      }
-            
-      const spellData = {
-        name: spellName,
-        img: image,
-        system: {
-          potency: spellFactors.Potency,
-          duration: spellFactors.Duration,
-          scale: spellFactors.Scale,
-          arcanum: card.dataset.arcanum, 
-          level: card.dataset.level, 
-          practice: card.dataset.practice, 
-          primaryFactor: card.dataset.primfactor, 
-          withstand: card.dataset.withstand,
-          description: description
-        }
-      };
-      
-      //Add spell to active spells
-      const activeSpellData = mergeObject(spellData, {type: "activeSpell"},{insertKeys: true,overwrite: true,inplace: false,enforceTypes: true});
-      await actor.createEmbeddedDocuments("Item", [activeSpellData]);
-      ui.notifications.info("Spell added to active spells of " + actor.name);
-    }
-    
     // Re-enable the button
     button.disabled = false;
   }

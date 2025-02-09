@@ -12,9 +12,6 @@ import {
   ActorMtA
 } from "./actor.js";
 import {
-  DetectionModeTwillight
-} from "./detection-mode.js";
-import {
   DiceRollerDialogue
 } from "./dialogue-diceRoller.js"
 import { registerSystemSettings } from "./settings.js";
@@ -27,9 +24,6 @@ import {
 import {
   TokenMTA
 } from "./token.js"
-import {
-  TokenTwillightSamplerShader
-} from './shaders.js'
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -50,30 +44,6 @@ Hooks.once("init", async function () {
   CONFIG.Item.documentClass = ItemMtA;
   CONFIG.Actor.documentClass = ActorMtA;
   CONFIG.Token.objectClass = TokenMTA;
-
-  // FUNCTION OVERRIDES (shame on the foundryVTT devs for hardcoding)
-
-  // This override draws a specific shader for the Twillight condition
-  TokenMesh.prototype._refresh = TokenMesh.prototype.refresh;
-  TokenMesh.prototype.refresh = function(attributes=undefined) {
-    TokenMesh.prototype._refresh.call(this, attributes);
-    // Handle special shader assignment
-    
-    const isTwillight = this.document.hasStatusEffect(CONFIG.specialStatusEffects.TWILLIGHT);
-    if(isTwillight) { // FIXME: This doesn't refresh automatically seemingly. Not sure if I can fix that
-      this.setShaderClass(TokenTwillightSamplerShader);
-    }
-  };
-
-  // This override refreshes vision/lighting on applying the Twillight condition
-  TokenMTA.prototype._onApplyStatusEffect_Original = TokenMTA.prototype._onApplyStatusEffect;
-  TokenMTA.prototype._onApplyStatusEffect = function(statusId, active) {
-    TokenMTA.prototype._onApplyStatusEffect_Original.call(this, statusId, active);
-    if(statusId === CONFIG.specialStatusEffects.TWILLIGHT) {
-      canvas.perception.update({refreshVision: true, refreshLighting: true}, true);
-      this.mesh.refresh();
-    }
-  }
 
   //---------------------------------------------------
 
@@ -215,56 +185,6 @@ Hooks.once("ready", function() {
   }
   CONFIG.MTA.TOKENBAR = TokenHotBar.tokenHotbarInit();
   debounce(createTokenBar, 200);
-
-  // NEW STATUS EFFECTS & VISION MODES
-  CONFIG.statusEffects.push({
-    id: "twillight",
-    label: "MTA.Effect.Twillight",
-    icon: "systems/WoD20/icons/statusEffects/twillight.svg"
-  });
-  CONFIG.specialStatusEffects.TWILLIGHT = "twillight";
-
-  CONFIG.Canvas.detectionModes.seeTwillight = new DetectionModeTwillight({
-    id: "seeTwillight",
-    label: "MTA.Detection.SeeTwillight",
-    type: DetectionMode.DETECTION_TYPES.SIGHT
-  });
-  CONFIG.Canvas.detectionModes.senseTwillight = new DetectionModeTwillight({
-    id: "senseTwillight",
-    label: "MTA.Detection.SenseTwillight",
-    walls: false,
-    type: DetectionMode.DETECTION_TYPES.OTHER
-  });
-
-  CONFIG.Canvas.detectionModes.xray = new DetectionModeBasicSight({
-    id: "xray",
-    label: "MTA.Detection.Xray",
-    type: DetectionMode.DETECTION_TYPES.SIGHT,
-    walls: false
-  });
-
-  // Basic sight can't see Twillight
-  const basicSight_canDetect = CONFIG.Canvas.detectionModes.basicSight._canDetect;
-  CONFIG.Canvas.detectionModes.basicSight._canDetect = function(visionSource, target) {
-    let isVisible = basicSight_canDetect(visionSource,target);
-    const tgt = target?.document;
-    if((tgt instanceof TokenDocument) && tgt.hasStatusEffect(CONFIG.specialStatusEffects.TWILLIGHT)) isVisible = false;
-    return isVisible;
-  }
-
-  // X-ray vision is the same as basic sight
-  CONFIG.Canvas.detectionModes.xray._canDetect = CONFIG.Canvas.detectionModes.basicSight._canDetect;
-
-  // Tremor feel can't see Twillight
-  const feelTremor_canDetect = CONFIG.Canvas.detectionModes.feelTremor._canDetect;
-  CONFIG.Canvas.detectionModes.feelTremor._canDetect = function(visionSource, target) {
-    let isVisible = feelTremor_canDetect(visionSource,target);
-    const tgt = target?.document;
-    if((tgt instanceof TokenDocument) && tgt.hasStatusEffect(CONFIG.specialStatusEffects.TWILLIGHT)) isVisible = false;
-    return isVisible;
-  }
-  // -------------------------------------
-
 
 });
 
