@@ -289,11 +289,6 @@ export class MtAItemSheet extends ItemSheet {
           label: "Conditions",
           items: [],
           dataset: ["MTA.Persistent"]
-        },
-        tilt: {
-          label: "Tilts",
-          items: [],
-          dataset: ["MTA.Environmental"]
         }
       };
     }

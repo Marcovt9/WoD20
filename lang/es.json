@@ -128,7 +128,6 @@
   "MTA.TooltipCalcMaxHealth": "Calcular salud máxima.",
   "MTA.TooltipCalcMaxVitae": "Calcular vitae máxima.",
   "MTA.TooltipTypeVisible": "¿Debería ser visible el tipo de personaje para jugadores con permiso limitado?",
-  "MTA.TooltipProgressMenu": "Abrir menú de progreso.",
   "MTA.TooltipSkillTest": "Hacer una tirada con los atributos/habilidades seleccionados. Click derecho hace una tirada sin modificadores.",
   "MTA.TooltipPerceptionCheck": "Tirada de percepción con Astucia + Compostura. El resultado será oculto para el jugador. Click derecho hace una tirada sin modificadores.",
   "MTA.TooltipMagazine": "Click izquierdo para incrementar munición, derecho para reducirla. Sólo funciona si hay un cargador instalado.",

@@ -10,9 +10,7 @@ import {
 import {
   SkillEditDialogue
 } from "./dialogue-skillEdit.js";
-import {
-  ProgressDialogue
-} from "./dialogue-progress.js";
+
 import "../lib/dragster/dragster.js";
 import * as customui from "./ui.js";
 import * as templates from "./templates.js";
