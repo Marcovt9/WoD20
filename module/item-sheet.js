@@ -7,6 +7,7 @@ import * as templates from "./templates.js";
 /**
  * Extend the basic ItemSheet with some very simple modifications
  */
+
 export class MtAItemSheet extends ItemSheet {
   constructor(...args) {
     super(...args);
@@ -29,11 +30,11 @@ export class MtAItemSheet extends ItemSheet {
   }
 
   /* -------------------------------------------- */
-
   /**
    * Return a dynamic reference to the HTML template path used to render this Item Sheet
    * @return {string}
    */
+
   get template() {
     const path = "systems/WoD20/templates/items";
     return `${path}/${this.item.type}.html`;
@@ -45,6 +46,7 @@ export class MtAItemSheet extends ItemSheet {
    * Prepare data for rendering the Item sheet
    * The prepared data object contains both the actor data as well as additional sheet options
    */
+
   getData() {
     const sheetData = super.getData();
     const item = this.item;
@@ -52,24 +54,7 @@ export class MtAItemSheet extends ItemSheet {
 
     const owner = this.actor;
   
-
-    // These attributes are sorted to the top in dice pool pickers
-    /* const priority_traits = {
-      Vampire: ["vampire_traits"],
-    } */
-
-    // Sort the traits according to the character type
     sheetData.all_traits = JSON.parse(JSON.stringify(CONFIG.MTA.all_traits));
-
-    /* sheetData.all_traits = Object.fromEntries(Object.entries(sheetData.all_traits).sort((a,b) =>{
-      const charType = owner?.system.characterType;
-      if(priority_traits[charType] && priority_traits[charType].includes(a[0])) {
-        return -1;
-      } 
-      else if(priority_traits[charType] && priority_traits[charType].includes(b[0])) {
-        return 1;
-      } else return 0;
-    })); */
 
     for(const key in sheetData.all_traits) {
       let t = sheetData.all_traits[key];
@@ -83,13 +68,10 @@ export class MtAItemSheet extends ItemSheet {
       }, {});
     }
 
-      
     console.log("ASD", sheetData.config.all_traits);
     console.log("ASD", sheetData.all_traits);
 
     sheetData.custom_traits = [];
-
-
 
     if (owner?.system.characterType === "Vampire") {
       if(owner.system.disciplines_own) {
@@ -335,7 +317,6 @@ export class MtAItemSheet extends ItemSheet {
 
 
   _registerContainerListeners(html) {
-    //this.form.ondragover = ev => this._onDragOver(ev);
     this.form.ondrop = ev => this._onDrop(ev);
 
     html.find('.item-row').each((i, li) => {
@@ -346,7 +327,6 @@ export class MtAItemSheet extends ItemSheet {
 
     html.find('.cell.item-name span').click(async event => await this._onItemSummary(event));
 
-    //document.addEventListener("dragend", this._onDragEnd.bind(this));
 
     // Delete Inventory Item
     html.find('.item-delete').click(event => {
@@ -401,9 +381,7 @@ export class MtAItemSheet extends ItemSheet {
       summary.children().children("div").slideUp(200, () => summary.remove());
     } else {
       let tr = $(`<tr class="item-summary"> <td colspan="${colSpanMax}"> <div> ${chatData.description} </div> </td> </tr>`);
-      //let props = $(`<div class="item-properties"></div>`);
-      //chatData.properties.forEach(p => props.append(`<span class="tag">${p}</span>`));
-      //div.append(props);
+ 
       let div = tr.children().children("div");
       div.hide();
       li.after(tr);
@@ -413,8 +391,7 @@ export class MtAItemSheet extends ItemSheet {
   }
 
   async _onDragItemStart(event) {
-    //event.preventDefault();
-    //event.stopPropagation();
+
     const data = this.getData();
     const index = this._getItemIndex(Number(event.currentTarget.dataset.index),event.currentTarget.dataset.type,data);
     let item = this.item.system.contents[index];
@@ -433,8 +410,6 @@ export class MtAItemSheet extends ItemSheet {
 
 
   async _onDrop(event) {
-    //event.preventDefault();
-    //event.stopPropagation();   
 
     // Try to extract the data
     let data;
@@ -457,9 +432,6 @@ export class MtAItemSheet extends ItemSheet {
       if(!newItem.system) {
         newItem.system = newItem.data || {}
       }
-      /* newItem.flags.mta = {
-        containerID: this.item.id
-      }; */
       
       itemList.push(newItem);
 

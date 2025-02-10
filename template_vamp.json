@@ -55,7 +55,7 @@
           }
         },
         "attributes_social": {
-          "presence": {
+          "charisma": {
             "value": 1
           },
           "manipulation": {
@@ -77,105 +77,129 @@
           }
         },
         "skills_physical": {
-          "academics": {
-            "value": 0,
-            "specialties": []
-          },
-          "animalKen": {
-            "value": 0,
-            "specialties": []
-          },
-          "art": {
-            "value": 0,
-            "specialties": []
-          },
           "athletics": {
             "value": 0,
-            "specialties": []
-          },
-          "awareness": {
-            "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
           "brawl": {
             "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
-          "command": {
+          "drive": {
             "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
-          "control": {
+          "firearms": {
             "value": 0,
-            "specialties": []
-          }
-        },
-        "skills_social": {
-          "craft": {
-            "value": 0,
-            "specialties": []
-          },
-          "empathy": {
-            "value": 0,
-            "specialties": []
-          },
-          "fortitude": {
-            "value": 0,
-            "specialties": []
-          },
-          "integrity": {
-            "value": 0,
-            "specialties": []
-          },
-          "investigation": {
-            "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
           "larceny": {
             "value": 0,
-            "specialties": []
-          },
-          "marksmanship": {
-            "value": 0,
-            "specialties": []
-          },
-          "medicine": {
-            "value": 0,
-            "specialties": []
-          }
-        },
-        "skills_mental": {
-          "melee": {
-            "value": 0,
-            "specialties": []
-          },
-          "occult": {
-            "value": 0,
-            "specialties": []
-          },
-          "politics": {
-            "value": 0,
-            "specialties": []
-          },
-          "presence": {
-            "value": 0,
-            "specialties": []
-          },
-          "science": {
-            "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
           "stealth": {
             "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
           "survival": {
             "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
           },
-          "thrown": {
+          "weaponry": {
             "value": 0,
-            "specialties": []
+            "specialties": [],
+            "isRote": false
+          }
+        },
+        "skills_social": {
+          "animalKen": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "empathy": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "expression": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "intimidation": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "persuasion": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "socialize": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "streetwise": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "subterfuge": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          }
+        },
+        "skills_mental": {
+          "academics": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "computer": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "crafts": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "investigation": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "medicine": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "occult": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "politics": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
+          },
+          "science": {
+            "value": 0,
+            "specialties": [],
+            "isRote": false
           }
         }
       },
@@ -287,7 +311,7 @@
       }
       },
     "character": {
-      "templates": ["base", "common", "human", "sleeper", "vampire", "dreaming", "scion"],
+      "templates": ["base", "common", "human", "sleeper", "mage", "vampire", "changeling", "werewolf", "dreaming", "demon", "hunter"],
       "characterType": "Mortal"
     },
     "ephemeral": {

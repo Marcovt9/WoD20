@@ -59,6 +59,7 @@ export class ActorMtA extends Actor {
         systemData.attributes_mental_dream, 
         systemData.attributes_social_dream,
         systemData.vampire_traits,
+        systemData.scion_traits,
       ];
     }
     
@@ -296,6 +297,7 @@ export class ActorMtA extends Actor {
   
     const powerStats = { //TODO: Put in config
       Mortal: 5,
+      Scion: 5,
       Vampire: data.vampire_traits.bloodPotency?.final
     };
     if(!powerStats[data.characterType]) {
@@ -384,9 +386,6 @@ export class ActorMtA extends Actor {
     let woundPenalty = 0;
     if(systemData.health.value <= 3 && !(this.type === "ephemeral")) {
       woundPenalty = 2 - (systemData.health.value-1);
-      // Check for Iron Stamina Merit
-      let ironStamina = this.items.find(item => item.type === "merit" && item.name === "Iron Stamina");
-      if(ironStamina) woundPenalty = Math.max(0, woundPenalty - ironStamina.system.rating);
     }
     return woundPenalty;
   }
@@ -500,5 +499,14 @@ export class ActorMtA extends Actor {
       obj['system.vitae.max'] = maxResource;
       this.update(obj);
     }
+
+    if (system.characterType == "Scion") { // Leyenda
+      let maxResource = CONFIG.MTA.legend * CONFIG.MTA.legend;
+
+      let obj = {}
+      obj['system.legendPoints.max'] = maxResource;
+      this.update(obj);
+    }
+
   }
 }

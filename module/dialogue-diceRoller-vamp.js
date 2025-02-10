@@ -1,5 +1,7 @@
+/*Dice Roller para Vampiro*/
+
 export class DiceRollerDialogue extends Application {
-  constructor({dicePool=0, targetNumber=8, extended=false, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, advancedAction= false, macro, actor={}, token={}, comment=""}, ...args){
+  constructor({dicePool=0, targetNumber=7, extended=false, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, advancedAction= false, macro, actor={}, token={}, comment=""}, ...args){
     super(...args);
     this.targetNumber = +targetNumber;
     this.dicePool = +dicePool;
@@ -108,7 +110,7 @@ export class DiceRollerDialogue extends Application {
     }
   }
   
-  static _roll({dicePool=1, targetNumber=8, tenAgain=false, nineAgain=false, eightAgain=false, roteAction=false, chanceDie=false, exceptionalTarget=5, advancedAction=false}){
+  static _roll({dicePool=1, targetNumber=7, tenAgain=false, nineAgain=false, eightAgain=false, roteAction=false, chanceDie=false, exceptionalTarget=5, advancedAction=false}){
     //Create dice pool qualities
     const roteActionString = roteAction ? "r<1" : "";
     const explodeString = eightAgain ? "x>=8" : nineAgain ? "x>=9" : tenAgain ? "x>=10" : "" ;
@@ -127,7 +129,6 @@ export class DiceRollerDialogue extends Application {
               roll._total = roll._total+ 1;
           }
       }
-      //let successes = roll.dice[0].results.reduce((acc, die) => (die.result === 10) ? acc += 2 : (die.result >= 4) ? acc += 1 : acc, 0);
   }
 
     if(chanceDie && roteAction && roll.terms[0].results[0].result === 1){
@@ -154,7 +155,7 @@ export class DiceRollerDialogue extends Application {
   }
   
   
-  static async rollToHtml({dicePool=1, targetNumber=8, extended=false, extended_accumulatedSuccesses=0, extended_rolls=0, extended_rollsMax=0, tenAgain=true, nineAgain=false, eightAgain=false, roteAction=false, flavor="Tirada", showFlavor=true, exceptionalTarget=5, blindGMRoll=false, rollReturn, advancedAction=false, comment=""}){   
+  static async rollToHtml({dicePool=1, targetNumber=7, extended=false, extended_accumulatedSuccesses=0, extended_rolls=0, extended_rollsMax=0, tenAgain=true, nineAgain=false, eightAgain=false, roteAction=false, flavor="Tirada", showFlavor=true, exceptionalTarget=5, blindGMRoll=false, rollReturn, advancedAction=false, comment=""}){   
     //Is the roll a chance die?
     let chanceDie = false;
     if(dicePool < 1) {
@@ -209,7 +210,7 @@ export class DiceRollerDialogue extends Application {
   }
 
   
-  static async rollToChat({dicePool=1, targetNumber=8, extended=false, extended_accumulatedSuccesses=0, extended_rolls=0, extended_rollsMax=0, tenAgain=false, nineAgain=false, eightAgain=false, roteAction=false, exceptionalTarget=5, flavor="Tirada", blindGMRoll=false, actorOverride=undefined, rollReturn={}, advancedAction=false, comment=""}){
+  static async rollToChat({dicePool=1, targetNumber=7, extended=false, extended_accumulatedSuccesses=0, extended_rolls=0, extended_rollsMax=0, tenAgain=false, nineAgain=false, eightAgain=false, roteAction=false, exceptionalTarget=5, flavor="Tirada", blindGMRoll=false, actorOverride=undefined, rollReturn={}, advancedAction=false, comment=""}){
     
     const templateData = {
       roll: await DiceRollerDialogue.rollToHtml({
@@ -263,7 +264,7 @@ export class DiceRollerDialogue extends Application {
 
 
   static async rollWithDamage({dicePool=1, 
-    targetNumber=8, 
+    targetNumber=7, 
     tenAgain=false, 
     nineAgain=false, 
     eightAgain=false, 
