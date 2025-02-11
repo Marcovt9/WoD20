@@ -156,6 +156,7 @@
   "MTA.Attributes": "Attributes",
   "MTA.Skills": "Skills",
   "MTA.Traits": "Traits",
+  "MTA.Scion_traits": "Scion traits",
   "MTA.Vampire_traits": "Vampire traits",
   "MTA.Ephemeral_traits": "Ephemeral traits",
   "MTA.potency": "Potency",
@@ -173,45 +174,50 @@
     "stamina": "Stamina"
   },
   "MTA.attributes_social": {
-    "presence": "Presence",
+    "charisma": "Charisma",
     "manipulation": "Manipulation",
-    "composure": "Composure"
+    "appearance": "Appearance"
   },
   "MTA.attributes_mental": {
+    "perception": "Perception",
     "intelligence": "Intelligence",
-    "wits": "Wits",
-    "resolve": "Resolve"
+    "wits": "Wits"    
   },
   "MTA.skills_physical": {
+    "academics": "Academics",
+    "animalKen": "Animal Ken",
+    "art": "Art",
     "athletics": "Athletics",
-    "brawl": "Brawl",
-    "drive": "Drive",
-    "firearms": "Firearms",
-    "larceny": "Larceny",
-    "stealth": "Stealth", 
-    "survival": "Survival",
-    "weaponry": "Weaponry"
+    "awareness": "Awareness",
+    "brawl": "Brawl", 
+    "command": "Command",
+    "control": "Control"
   },
   "MTA.skills_social": {
-    "animalKen": "Animal Ken",
+    "craft": "Craft",
     "empathy": "Empathy",
-    "expression": "Expression",
-    "intimidation": "Intimidation",
-    "persuasion": "Persuasion",
-    "socialize": "Socialize", 
-    "streetwise": "Streetwise",
-    "subterfuge": "Subterfuge"
+    "fortitude": "Fortitude",
+    "integrity": "Integrity",
+    "investigation": "Investigation",
+    "larceny": "Larceny", 
+    "marksmanship": "Marksmanship",
+    "medicine": "Medicine"
   },
   "MTA.skills_mental": {
-    "academics": "Academics",
-    "computer": "Computer",
-    "crafts": "Crafts",
-    "investigation": "Investigation",
-    "medicine": "Medicine",
-    "occult": "Occult", 
+    "melee": "Melee",
+    "occult": "Occult",
     "politics": "Politics",
-    "science": "Science"
+    "presence": "Presence",
+    "science": "Science",
+    "stealth": "Stealth", 
+    "survival": "Survival",
+    "thrown": "Thrown"
   },
+
+  "MTA.scion_traits":{
+    "legend": "Legend"
+  },
+
 
   "MTA.vampire_traits": {
     "bloodPotency": "Blood Potency",

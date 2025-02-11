@@ -217,6 +217,11 @@
           "value": 5
         }
       },
+      "scion":{
+        "scion_traits": {
+          "legend" : {"value": 0}
+        }
+      },
       "vampire": {
         "clan": "",
         "bloodline": "",
@@ -242,7 +247,6 @@
           "value": 0,
           "max": 0
         },
-        "banes": "",
         "disciplines_common": {
           "celerity": {
             "value": 0
@@ -301,7 +305,6 @@
       "trueName": "",
       "virtue": "",
       "vice": "",
-      "integrity": 0,
       "specialTraits": "",
       "aspirations": "",
       "essenceSource": "",
@@ -359,19 +362,6 @@
         "damage": 0,
         "initiativeMod": 0,
         "penetration": 0
-      },
-      "basicSpell": {
-        "arcanum": "death",
-        "practice": "Compelling",
-        "primaryFactor": "Potency",
-        "withstand": "",
-        "level": 1,
-        "roteSkill": "",
-        "creator": "",
-        "description": "",
-        "isRote": false,
-        "isPraxis": false,
-        "isInured": false
       },
       "rollable": {
         "dicePool": {
@@ -442,38 +432,6 @@
     "spell": {
       "templates": ["basicSpell"],
       "label": "Spell"
-    },
-    "activeSpell": {
-      "templates": ["effect", "basicSpell"],
-      "potency": {
-        "value": 1,
-        "isAdvanced": false
-      },
-      "duration": {
-        "value": "1 turn",
-        "isAdvanced": false
-      },
-      "scale": {
-        "value": "1 Subject, Size 5, Arm's reach",
-        "isAdvanced": false
-      },
-      "casting_time": {
-        "value": "",
-        "isAdvanced": false
-      },
-      "range": {
-        "value": "Self/touch or Aimed",
-        "isAdvanced": false
-      },
-      "isRelinquished": false,
-      "isRelinquishedSafely": false,
-      "paradox": {
-        "previous_rolls": 0,
-        "sleeper_witnesses": "None",
-        "magical_tool_used": false,
-        "mana_spent": 0,
-        "value": 0
-      }
     },
     "relationship": {
       "label": "Relationship",

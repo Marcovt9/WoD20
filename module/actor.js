@@ -402,7 +402,7 @@ export class ActorMtA extends Actor {
       // Start dreaming. Replace attributes and health.
       updateData['system.attributes_physical_dream.power.value'] = systemData.attributes_mental.intelligence.final;
       updateData['system.attributes_social_dream.finesse.value'] = systemData.attributes_mental.wits.final;
-      updateData['system.attributes_mental_dream.resistance.value'] = systemData.attributes_mental.resolve.final;
+      updateData['system.attributes_mental_dream.resistance.value'] = systemData.attributes_mental.perception.final;
 
       // Slightly unusual: to make sure that token's health bars stll show the currently important health,
       // the normal health is backed up into dream_health, and health is replaced, instead of introducing

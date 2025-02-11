@@ -80,6 +80,12 @@ MTA.all_traits = {
       "derivedTraits"
     ]
   },
+  scion_traits: {
+    name: "MTA.Scion_traits",
+    list: [
+      "legend"
+    ]
+  },
   vampire_traits: {
     name: "MTA.Vampire_traits",
     list: [
@@ -120,14 +126,14 @@ MTA.attributes_physical = {
     "stamina": "MTA.Stamina"
   };
 MTA.attributes_social = {
-    "presence": "MTA.Presence",
+    "charisma": "MTA.Charisma",
     "manipulation": "MTA.Manipulation",
-    "composure": "MTA.Composure"
+    "appearance": "MTA.Appearance"
   };
 MTA.attributes_mental = {
     "intelligence": "MTA.Intelligence",
     "wits": "MTA.Wits",
-    "resolve": "MTA.Resolve"
+    "perception": "MTA.Perception"
   };
 
 /**
@@ -136,34 +142,34 @@ MTA.attributes_mental = {
  * @type {Object}
  */
 MTA.skills_physical = {
+    "academics": "MTA.Academics",
+    "animalKen": "MTA.AnimalKen",
+    "art": "MTA.Art",
     "athletics": "MTA.Athletics",
-    "brawl": "MTA.Brawl",
-    "drive": "MTA.Drive",
-    "firearms": "MTA.Firearms",
-    "larceny": "MTA.Larceny",
-    "stealth": "MTA.Stealth", 
-    "survival": "MTA.Survival",
-    "weaponry": "MTA.Weaponry"
+    "awareness": "MTA.Awareness",
+    "brawl": "MTA.Brawl", 
+    "command": "MTA.Command",
+    "control": "MTA.Control"
   };
 MTA.skills_social = {
-    "animalKen": "MTA.AnimalKen",
+    "craft": "MTA.Craft",
     "empathy": "MTA.Empathy",
-    "expression": "MTA.Expression",
-    "intimidation": "MTA.Intimidation",
-    "persuasion": "MTA.Persuasion",
-    "socialize": "MTA.Socialize", 
-    "streetwise": "MTA.Streetwise",
-    "subterfuge": "MTA.Subterfuge"
+    "fortitude": "MTA.Fortitude",
+    "integrity": "MTA.Integrity",
+    "investigation": "MTA.Investigation",
+    "larceny": "MTA.Larceny", 
+    "marksmanship": "MTA.Marksmanship",
+    "medicine": "MTA.Medicine"
   };
 MTA.skills_mental = {
-    "academics": "MTA.Academics",
-    "computer": "MTA.Computer",
-    "crafts": "MTA.Crafts",
-    "investigation": "MTA.Investigation",
-    "medicine": "MTA.Medicine",
-    "occult": "MTA.Occult", 
+    "melee": "MTA.Melee",
+    "occult": "MTA.Occult",
     "politics": "MTA.Politics",
-    "science": "MTA.Science"
+    "presence": "MTA.Presence",
+    "science": "MTA.Science",
+    "stealth": "MTA.Stealth", 
+    "survival": "MTA.Survival",
+    "thrown": "MTA.Thrown"
   };
 
 /**
@@ -295,4 +301,14 @@ MTA.disciplines_unique = {
  MTA.vampire_traits = {
   "bloodPotency": "MTA.BloodPotency",
   "humanity": "MTA.Humanity"
+}
+
+
+/**
+ * The set of rollable Scion traits used within the system.
+ * Do not modify.
+ * @type {Object}
+ */
+MTA.scion_traits = {
+ "legend": "MTA.Legend"
 }

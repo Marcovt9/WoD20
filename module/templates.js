@@ -34,10 +34,10 @@ export const registerHandlebarsHelpers = function () {
     return newValues[value - 1];
   });
 
-  Handlebars.registerHelper('isActiveVampTouchstone', function (value, integrity) {
+  Handlebars.registerHelper('isActiveVampTouchstone', function (value) {
     let newValues = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
     let newValue = newValues[value - 1];
-    return newValue <= integrity;
+    return newValue <= 8;
   });
 
   Handlebars.registerHelper('convertBool', function (value) {

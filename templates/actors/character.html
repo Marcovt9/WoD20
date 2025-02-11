@@ -54,15 +54,8 @@
               </div>
             </div>
           </div>
-          {{#if (eqAny system.characterType "Mage" "Scelesti")}}
-            {{#if (usesJoining system.characterType system.scelestiRank)}}
-              {{{bigStatBox actor false "mage_traits.joining"}}}
-            {{else}}
-              {{{bigStatBox actor false "mage_traits.wisdom"}}}
-            {{/if}}
-          {{else if (eq system.characterType "Vampire")}}
+          {{#if (eq system.characterType "Vampire")}}
             {{{bigStatBox actor false "vampire_traits.humanity"}}}
-          {{else if (eq system.characterType "Changeling")}}
             <div class="kInput statBox big health">
               <h4>
                 <div class="button charMacroButton calculate clarity tooltip">
@@ -72,17 +65,7 @@
                 <input class="attribute-check" id="Clarity{{actor.id}}" data-attribute="clarity" data-trait="clarity.value" type="checkbox" data-dtype="Boolean">
                 <label class="button attribute-button" for="Clarity{{actor.id}}">{{ localize "MTA.ChangelingClarity" }}</label>
               </h4>
-              <div class="gold-border"> </div>
-              <div class="kMageTracker clarity" data-type="clarity" data-name="system.clarity" data-states="max/value/severe" data-max="{{system.clarity.max}}" data-severe="{{system.clarity.severe}}" data-value="{{system.clarity.value}}"></div>
-            </div>
-          {{else if (eq system.characterType "Werewolf")}}
-            {{{bigStatBox actor false "werewolf_traits.harmony"}}}
-          {{else}}
-            {{#if system.usesDreadPowers}}
-              {{{bigStatBox actor false "potency"}}}
-            {{else}}
-              {{{bigStatBox actor false "integrity"}}}
-            {{/if}}
+              </div>
           {{/if}}
         </div>
       </div>
@@ -105,19 +88,7 @@
             {{/each}}
           {{/select}}
         </select>
-        {{#if (eq system.characterType "Scelesti")}}
-          <select name="system.scelestiRank">
-            {{#select system.scelestiRank}}
-              {{#each config.scelestiRanks}}
-                <option value="{{this}}">{{this}}</option>
-              {{/each}}
-            {{/select}}
-          </select>
-        {{/if}}
       </div>
-      {{#if system.usesDreadPowers}}
-      <div class="horrorHeader">Horror</div>
-      {{/if}}
   
       <!-- Block #2 -->
       <div class="kInput statBox">

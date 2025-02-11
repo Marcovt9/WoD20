@@ -125,6 +125,7 @@ Hooks.once("setup", function() {
     "disciplines_common",
     "disciplines_unique",
     "vampire_traits",
+    "scion_traits",
     "attributes_physical_dream",
     "attributes_social_dream",
     "attributes_mental_dream"
