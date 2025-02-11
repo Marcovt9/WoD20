@@ -193,30 +193,6 @@
         },
         "aspirations": ""
       },
-      "dreaming": {
-        "isDreaming": false,
-        "attributes_physical_dream": {
-          "power": {
-            "value": 0
-          }
-        },
-        "attributes_social_dream": {
-          "finesse": {
-            "value": 0
-          }
-        },
-        "attributes_mental_dream": {
-          "resistance": {
-            "value": 0
-          }
-        },
-        "dream_health": {
-          "max": 5,
-          "lethal": 5,
-          "aggravated": 5,
-          "value": 5
-        }
-      },
       "scion":{
         "scion_traits": {
           "legend" : {"value": 0}
@@ -291,7 +267,7 @@
       }
       },
     "character": {
-      "templates": ["base", "common", "human", "sleeper", "vampire", "dreaming", "scion"],
+      "templates": ["base", "common", "human", "vampire", "scion"],
       "characterType": "Mortal"
     },
     "ephemeral": {

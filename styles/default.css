@@ -3302,10 +3302,6 @@ button.filePicker > i{
   border-color: hsl(8deg 100% 50%);
 }
 
-.mta-sheet .attributes-list.dreamAttributes, .worldbuilding .charMacroButton.dreaming, .characterSheet .statBox h4.dreaming {
-  background: linear-gradient(#44b8d2bf, #1c7684a3), url(../ui/rock.jpg) repeat;
-}
-
 .cipher-grid {
   display: grid;
   grid-template: auto auto auto auto auto / auto auto auto;

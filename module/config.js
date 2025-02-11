@@ -186,26 +186,6 @@ MTA.derivedTraits = {
   "health": "MTA.Health"
 }
 
-
-/**
- * The set of Derived Dream Traits used within the system.
- * Do not modify.
- * @type {Object}
- */
-
-MTA.attributes_physical_dream = {
-  "power": "MTA.EphPower"
-};
-
-MTA.attributes_social_dream = {
-  "finesse": "MTA.EphFinesse"
-};
-
-MTA.attributes_mental_dream = {
-  "resistance": "MTA.EphResistance"
-};
-
-
 /**
  * The list of firearm ammunition.
  * Can freely be modified.

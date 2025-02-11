@@ -498,20 +498,6 @@ export class MtAActorSheet extends ActorSheet {
 
     });
     
-    html.find('.dreamingButton').mousedown(ev => {
-      switch (ev.which) {
-        case 1:
-          this.actor.dreaming();
-          break;
-        case 2:
-          break;
-        case 3:
-          // Unequip items
-          this.actor.dreaming(true);
-          break;
-      }
-      
-    });
 
     // Clicking roll button
     html.find('.rollButton').mousedown(ev => {

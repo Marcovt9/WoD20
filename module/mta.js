@@ -126,9 +126,6 @@ Hooks.once("setup", function() {
     "disciplines_unique",
     "vampire_traits",
     "scion_traits",
-    "attributes_physical_dream",
-    "attributes_social_dream",
-    "attributes_mental_dream"
   ];
 
   // Exclude some from sorting where the default order matters
@@ -139,10 +136,7 @@ Hooks.once("setup", function() {
     "attributes_physical",
     "attributes_social",
     "attributes_mental",
-    "derivedTraits",
-    "attributes_physical_dream",
-    "attributes_social_dream",
-    "attributes_mental_dream"
+    "derivedTraits"
   ];
 
   // Localize and sort CONFIG objects

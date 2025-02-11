@@ -137,7 +137,6 @@
   "MTA.TooltipPerceptionCheck": "Tirada de percepción con Astucia + Compostura. El resultado será oculto para el jugador. Click derecho hace una tirada sin modificadores.",
   "MTA.TooltipMagazine": "Click izquierdo para incrementar munición, derecho para reducirla. Sólo funciona si hay un cargador instalado.",
   "MTA.TooltipReload": "Recargar arma. Requiere un cargador con cartuchos adecuados y cantidad > 0 en el inventario.",
-  "MTA.TooltipDreaming": "Comenzar a soñar. Reemplaza la salud y atributos con los atributos del sueño. Botón derecho desequipa todos los objetos.",
   "MTA.TabAttributes": "Atributos",
   "MTA.TabItems": "Objetos",
   "MTA.TabTraits": "Características",

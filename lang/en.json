@@ -141,7 +141,6 @@
   "MTA.TooltipPerceptionCheck": "Perception check. Rolls Wits + Composure. The result will be hidden to the player. Right-click executes a roll without modifiers.",
   "MTA.TooltipMagazine": "Left-click to increase ammo, right-click to decrease. Only works if a magazine is loaded.",
   "MTA.TooltipReload": "Reload magazine. Requires a magazine with the correct cartridge and quantity > 0 in the inventory.",
-  "MTA.TooltipDreaming": "Start dreaming. Replaces health and attributes with dream attributes. Right-click unequips all gear.",
   "MTA.TabAttributes": "Attributes",
   "MTA.TabItems": "Items",
   "MTA.TabTraits": "Traits",
@@ -255,14 +254,5 @@
     "nightmare": "Nightmare",
     "protean": "Protean",
     "thebanSorcery": "Theban Sorcery"
-  },
-  "MTA.attributes_physical_dream": {
-    "power": "Power"
-  },
-  "MTA.attributes_social_dream": {
-    "finesse": "Finesse"
-  },
-  "MTA.attributes_mental_dream": {
-    "resistance": "Resistance"
   }
 }

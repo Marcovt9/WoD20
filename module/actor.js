@@ -55,9 +55,6 @@ export class ActorMtA extends Actor {
         systemData.skills_social, 
         systemData.skills_mental, 
         systemData.derivedTraits,
-        systemData.attributes_physical_dream, 
-        systemData.attributes_mental_dream, 
-        systemData.attributes_social_dream,
         systemData.vampire_traits,
         systemData.scion_traits,
       ];
@@ -388,57 +385,6 @@ export class ActorMtA extends Actor {
       woundPenalty = 2 - (systemData.health.value-1);
     }
     return woundPenalty;
-  }
-
-  /**
-   * Converts the character's stats into dream stats, 
-   * depending on the template.
-   */
-  dreaming(unequipItems) {
-    const systemData = this.system;
-    const updateData = {};
-    updateData['system.isDreaming'] = !systemData.isDreaming;
-    if(updateData['system.isDreaming']) {
-      // Start dreaming. Replace attributes and health.
-      updateData['system.attributes_physical_dream.power.value'] = systemData.attributes_mental.intelligence.final;
-      updateData['system.attributes_social_dream.finesse.value'] = systemData.attributes_mental.wits.final;
-      updateData['system.attributes_mental_dream.resistance.value'] = systemData.attributes_mental.perception.final;
-
-      // Slightly unusual: to make sure that token's health bars stll show the currently important health,
-      // the normal health is backed up into dream_health, and health is replaced, instead of introducing
-      // a new type of health as a new trait. Dream health is not backed up, as I believe that's not a thing.
-      updateData['system.dream_health'] = systemData.health;
-      let newMax = 0;
-      if(systemData.characterType === "Changeling") newMax = systemData.clarity.value;
-      else newMax = updateData['system.attributes_mental_dream.resistance.value'];
-      
-      //  Add Gnosis/Wyrd derived maximum
-      newMax += 5;
-
-      updateData['system.health'] = {
-        max: newMax,
-        lethal: newMax,
-        aggravated: newMax,
-        value: newMax
-      }
-      
-    }
-    else {
-      // Dreaming ended. Reset health.
-      if(systemData.dream_health) updateData['system.health'] = systemData.dream_health;
-      let amnion = this.items.filter(item => item.name === "Amnion");
-      if(amnion) this.deleteEmbeddedDocuments("Item", amnion.map(item => item.id));
-    }
-    if(unequipItems) {
-      let equipped = this.items.filter(item => item.system.equipped);
-      if(equipped) {
-        this.updateEmbeddedDocuments("Item", equipped.map(item => {return {
-        _id: item.id, 
-        'data.equipped': false
-      }}));
-      }
-    }
-    this.update(updateData);
   }
 
   /**
