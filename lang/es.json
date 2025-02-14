@@ -147,5 +147,113 @@
   "MTA.Loadout": "Equipamiento",
   "MTA.TargetSuccesses": "Éxitos objetivo",
   "MTA.Prepared": "Preparado",
-  "MTA.GroupExp": "Exp. de grupo"
+  "MTA.GroupExp": "Exp. de grupo",
+
+  "MTA.DicePenalty": "Penalización de dados",
+  "MTA.Attributes": "Atributos",
+  "MTA.Skills": "Habilidades",
+  "MTA.Skill": "Habilidad",
+  "MTA.Traits": "Detalles",
+  "MTA.Scion_traits": "Detalles de Heredero",
+  "MTA.Vampire_traits": "Detalles de Vampiro",
+
+  "MTA.HealthPenalty": {
+    "YouAre": "Estás",
+    "physicallyStable": "físicamente estable",
+    "losingConsciousness": "perdiendo la consciencia",
+    "bleedingOut": "sangrando",
+    "dead": "muerto"
+  },
+ 
+  "MTA.attributes_physical": {
+    "strength": "Fuerza",
+    "dexterity": "Destreza",
+    "stamina": "Estamina"
+  },
+
+  "MTA.attributes_social": {
+    "charisma": "Carisma",
+    "manipulation": "Manipulación",
+    "appearance": "Apariencia"
+  },
+
+  "MTA.attributes_mental": {
+    "perception": "Percepción",
+    "intelligence": "Inteligencia",
+    "wits": "Astucia"    
+  },
+
+  "MTA.skills_physical": {
+    "academics": "Academicismo",
+    "animalKen": "Trato con animales",
+    "art_1": "Arte",
+    "art_2": "Arte",
+    "art_3": "Arte",
+    "athletics": "Atletismo",
+    "awareness": "Consciencia",
+    "brawl": "Pelea", 
+    "command": "Comando",
+    "control": "Manejo"
+  },
+  "MTA.skills_social": {
+    "craft_1": "Artesanía",
+    "craft_2": "Artesanía",
+    "craft_3": "Artesanía",
+    "empathy": "Empatía",
+    "fortitude": "Fortaleza",
+    "integrity": "Integridad",
+    "investigation": "Investigación",
+    "larceny": "Latrocinio", 
+    "marksmanship": "Puntería",
+    "medicine": "Medicina"
+  },
+  "MTA.skills_mental": {
+    "melee": "Pelea con armas",
+    "occult": "Ocultismo",
+    "politics": "Política",
+    "presence": "Presencia",
+    "science_1": "Ciencia",
+    "science_2": "Ciencia",
+    "science_3": "Ciencia",
+    "stealth": "Sigilo", 
+    "survival": "Supervivencia",
+    "thrown": "Arrojar"
+  },
+
+  "MTA.scion_traits":{
+    "legend": "Leyenda"
+  },
+
+
+  "MTA.vampire_traits": {
+    "bloodPotency": "Generación",
+    "humanity": "Humanidad"
+  },
+
+  "MTA.willpower": "Voluntad",
+  "MTA.derivedTraits": {
+    "speed": "Velocidad",
+    "armor": "Armadura",
+    "initiativeMod": "Iniciativa",
+    "ballistic": "Balística",
+    "perception": "Percepción",
+    "health": "Salud"
+  },
+
+  "MTA.disciplines_common": {
+    "animalism": "Animalism",
+    "celerity": "Celerity",
+    "cruac": "Crúac",
+    "obfuscate": "Obfuscate",
+    "resilience": "Resilience",
+    "vigor": "Vigor"
+  },
+  "MTA.disciplines_unique": {
+    "auspex": "Auspex",
+    "dominate": "Dominate",
+    "majesty": "Majesty",
+    "nightmare": "Nightmare",
+    "protean": "Protean",
+    "thebanSorcery": "Theban Sorcery"
+  }
 }

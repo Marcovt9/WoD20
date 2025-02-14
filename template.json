@@ -55,7 +55,7 @@
           }
         },
         "attributes_social": {
-          "presence": {
+          "charisma": {
             "value": 1
           },
           "manipulation": {
@@ -85,7 +85,15 @@
             "value": 0,
             "specialties": []
           },
-          "art": {
+          "art_1": {
+            "value": 0,
+            "specialties": []
+          },
+          "art_2": {
+            "value": 0,
+            "specialties": []
+          },
+          "art_3": {
             "value": 0,
             "specialties": []
           },
@@ -111,7 +119,15 @@
           }
         },
         "skills_social": {
-          "craft": {
+          "craft_1": {
+            "value": 0,
+            "specialties": []
+          },
+          "craft_2": {
+            "value": 0,
+            "specialties": []
+          },
+          "craft_3": {
             "value": 0,
             "specialties": []
           },
@@ -161,7 +177,15 @@
             "value": 0,
             "specialties": []
           },
-          "science": {
+          "science_1": {
+            "value": 0,
+            "specialties": []
+          },
+          "science_2": {
+            "value": 0,
+            "specialties": []
+          },
+          "science_3": {
             "value": 0,
             "specialties": []
           },
@@ -292,21 +316,6 @@
       "willpower": {
         "value": 0,
         "max": 5
-      },
-      "eph_physical": {
-        "power": {
-          "value": 1
-        }
-      },
-      "eph_social": {
-        "finesse": {
-          "value": 1
-        }
-      },
-      "eph_mental": {
-        "resistance": {
-          "value": 1
-        }
       }
     }
   },

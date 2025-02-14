@@ -112,9 +112,6 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "eph_physical",
-    "eph_social",
-    "eph_mental",
     "attributes_physical",
     "attributes_social",
     "attributes_mental",
@@ -125,14 +122,11 @@ Hooks.once("setup", function() {
     "disciplines_common",
     "disciplines_unique",
     "vampire_traits",
-    "scion_traits",
+    "scion_traits"
   ];
 
   // Exclude some from sorting where the default order matters
   const noSort = [
-    "eph_physical",
-    "eph_social",
-    "eph_mental",
     "attributes_physical",
     "attributes_social",
     "attributes_mental",

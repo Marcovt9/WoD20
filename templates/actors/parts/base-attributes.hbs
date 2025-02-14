@@ -12,7 +12,7 @@
         <span class="attribute-valueHeader">{{ localize "MTA.Value" }}</span>
         </li>
         {{#each config.attributes_physical as |cvalue ckey|}}
-            {{{rollableInput ../actor "attributes_physical" ckey}}}
+            {{{rollableInput ../actor "attributes_physical" (localize ckey)}}}
         {{/each}}
     </ol>
 
@@ -51,7 +51,25 @@
         <span class="attribute-valueHeader">{{ localize "MTA.Value" }}</span>
         </li>
         {{#each config.skills_physical as |cvalue ckey|}}
-            {{{rollableInput ../actor "skills_physical" ckey}}}
+            {{{rollableInput ../actor "skills_physical" (localize ckey)}}}
+                {{#if (eq ckey "art_1")}} 
+                    <!-- Agregar un input solo si la clave es "customSkill" -->
+                    <input type="text" name="system.skills_physical.customSkillName_1" 
+                           value="{{../actor.system.skills_physical.customSkillName_1}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                    {{#if (eq ckey "art_2")}} 
+                    <!-- Agregar un input solo si la clave es "customSkill" -->
+                    <input type="text" name="system.skills_physical.customSkillName_2" 
+                           value="{{../actor.system.skills_physical.customSkillName_2}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                    {{#if (eq ckey "art_3")}} 
+                    <!-- Agregar un input solo si la clave es "customSkill" -->
+                    <input type="text" name="system.skills_physical.customSkillName_3" 
+                           value="{{../actor.system.skills_physical.customSkillName_3}}" 
+                           placeholder="{{''}}">
+                {{/if}}
         {{/each}}
     </ol>
 
@@ -62,6 +80,21 @@
         </li>
         {{#each config.skills_social as |cvalue ckey|}}
             {{{rollableInput ../actor "skills_social" ckey}}}
+                {{#if (eq ckey "craft_1")}} 
+                    <input type="text" name="system.skills_social.customSkillName_1" 
+                           value="{{../actor.system.skills_social.customSkillName_1}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                    {{#if (eq ckey "craft_2")}} 
+                    <input type="text" name="system.skills_social.customSkillName_2" 
+                           value="{{../actor.system.skills_social.customSkillName_2}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                {{#if (eq ckey "craft_3")}} 
+                    <input type="text" name="system.skills_social.customSkillName_3" 
+                           value="{{../actor.system.skills_social.customSkillName_3}}" 
+                           placeholder="{{''}}">
+                {{/if}}
         {{/each}}
     </ol>
 
@@ -72,6 +105,21 @@
         </li>
         {{#each config.skills_mental as |cvalue ckey|}}
             {{{rollableInput ../actor "skills_mental" ckey}}}
+                {{#if (eq ckey "science_1")}} 
+                    <input type="text" name="system.skills_mental.customSkillName_1" 
+                           value="{{../actor.system.skills_mental.customSkillName_1}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                    {{#if (eq ckey "science_2")}} 
+                    <input type="text" name="system.skills_mental.customSkillName_2" 
+                           value="{{../actor.system.skills_mental.customSkillName_2}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                {{#if (eq ckey "science_3")}} 
+                    <input type="text" name="system.skills_mental.customSkillName_3" 
+                           value="{{../actor.system.skills_mental.customSkillName_3}}" 
+                           placeholder="{{''}}">
+                {{/if}}
         {{/each}}
     </ol>
     </div>

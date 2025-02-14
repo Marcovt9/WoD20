@@ -147,24 +147,6 @@ export class MtAActorSheet extends ActorSheet {
     }
 
     if (systemData.characterType === "Vampire") sheetData.vitae_per_turn = CONFIG.MTA.bloodPotency_levels[Math.min(10, Math.max(0, systemData.vampire_traits.bloodPotency.final))].vitae_per_turn;
-    if (actor.type !== "ephemeral") {
-      systemData.progress ||= [];
-
-      let beats = systemData.progress.reduce((acc, cur) => {
-        if (cur && cur.beats) return acc + +cur.beats;
-        else return acc;
-      }, 0);
-
-      if(systemData.beats) {
-        beats += systemData.beats;
-      }
-      if(systemData.experience) {
-        beats += 5*systemData.experience;
-      }
-
-      sheetData.beats_computed = beats % 5;
-      sheetData.experience_computed = Math.floor(beats / 5);
-    }
 
     //Get additional attributes & skills from config file
     if (actor.type === "character") {

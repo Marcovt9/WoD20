@@ -120,8 +120,7 @@
   "MTA.Clan": "Clan",
   "MTA.Bloodline": "Bloodline",
   "MTA.AgeAsVampire": "Age as Vampire",
-  "MTA.Scion": "Scion",
-  "MTA.Pantheon": "Pantheon",
+
   "MTA.Touchstones": "Touchstones",
   "MTA.Penalty": "Penalty",
   "MTA.Cost": "Cost",
@@ -151,6 +150,7 @@
   "MTA.TargetSuccesses": "Target successes",
   "MTA.Prepared": "Prepared",
   "MTA.GroupExp": "Group Exp",
+
   "MTA.DicePenalty": "Dice Penalty",
   "MTA.Attributes": "Attributes",
   "MTA.Skills": "Skills",
@@ -159,6 +159,10 @@
   "MTA.Vampire_traits": "Vampire traits",
   "MTA.Ephemeral_traits": "Ephemeral traits",
   "MTA.potency": "Potency",
+
+  "MTA.Scion": "Scion",
+  "MTA.Pantheon": "Pantheon",
+
   "MTA.HealthPenalty": {
     "YouAre": "You are",
     "physicallyStable": "physically stable",
@@ -185,7 +189,9 @@
   "MTA.skills_physical": {
     "academics": "Academics",
     "animalKen": "Animal Ken",
-    "art": "Art",
+    "art_1": "Art",
+    "art_2": "Art",
+    "art_3": "Art",
     "athletics": "Athletics",
     "awareness": "Awareness",
     "brawl": "Brawl", 
@@ -193,7 +199,9 @@
     "control": "Control"
   },
   "MTA.skills_social": {
-    "craft": "Craft",
+    "craft_1": "Craft",
+    "craft_2": "Craft",
+    "craft_3": "Craft",
     "empathy": "Empathy",
     "fortitude": "Fortitude",
     "integrity": "Integrity",
@@ -207,7 +215,9 @@
     "occult": "Occult",
     "politics": "Politics",
     "presence": "Presence",
-    "science": "Science",
+    "science_1": "Science",
+    "science_2": "Science",
+    "science_3": "Science",
     "stealth": "Stealth", 
     "survival": "Survival",
     "thrown": "Thrown"

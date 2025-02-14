@@ -101,7 +101,7 @@
               <input class="attribute-check" id="{{cvalue}}{{../../actor.id}}" data-attribute="{{ckey}}" data-trait="derivedTraits.{{ckey}}" data-attributeValue={{chooseNum final value}} data-attributeLabel="{{cvalue}}" type="checkbox" data-dtype="Boolean">
               <label class="button attribute-button" for="{{cvalue}}{{../../actor.id}}">{{cvalue}}</label>
             </span>
-            <input class="{{#if isModified}}{{posneg final value}}{{/if}}" value={{chooseNum final value}} disabled>
+            <input class="{{#if isModified}}{{posneg final value}}{{/if}}" value="{{chooseNum final value}}" disabled>
             <div class="niceNumber digits2" >
               <input name="system.derivedTraits.{{ckey}}.mod" type="text" placeholder="0" data-dtype="Number" onchange="this.value=Math.clamped(this.value,-99,99);" value="{{numberFormat mod decimals=0 sign=true}}">
               <div class="numBtns">

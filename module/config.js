@@ -97,23 +97,6 @@ MTA.all_traits = {
 }
 
 
-/**
- * The set of ephemeral attributes used within the system.
- * I know these attributes are technically not physical, social, and mental,
- * but do you seriously expect me to call these lists eph_power, etc.?
- * While new attributes can freely be added, removal is not advised (as some are used for derived traits).
- * @type {Object}
- */
-MTA.eph_physical = {
-  "power": "MTA.EphPower"
-};
-MTA.eph_social = {
-  "finesse": "MTA.EphFinesse"
-};
-MTA.eph_mental = {
-  "resistance": "MTA.EphResistance"
-};
-
 
 /**
  * The set of Attributes used within the system.
@@ -131,9 +114,9 @@ MTA.attributes_social = {
     "appearance": "MTA.Appearance"
   };
 MTA.attributes_mental = {
+    "perception": "MTA.Perception",
     "intelligence": "MTA.Intelligence",
-    "wits": "MTA.Wits",
-    "perception": "MTA.Perception"
+    "wits": "MTA.Wits"
   };
 
 /**
@@ -144,7 +127,9 @@ MTA.attributes_mental = {
 MTA.skills_physical = {
     "academics": "MTA.Academics",
     "animalKen": "MTA.AnimalKen",
-    "art": "MTA.Art",
+    "art_1": "MTA.Art",
+    "art_2": "MTA.Art",
+    "art_3": "MTA.Art",
     "athletics": "MTA.Athletics",
     "awareness": "MTA.Awareness",
     "brawl": "MTA.Brawl", 
@@ -152,7 +137,9 @@ MTA.skills_physical = {
     "control": "MTA.Control"
   };
 MTA.skills_social = {
-    "craft": "MTA.Craft",
+    "craft_1": "MTA.Craft",
+    "craft_2": "MTA.Craft",
+    "craft_3": "MTA.Craft",
     "empathy": "MTA.Empathy",
     "fortitude": "MTA.Fortitude",
     "integrity": "MTA.Integrity",
@@ -166,7 +153,9 @@ MTA.skills_mental = {
     "occult": "MTA.Occult",
     "politics": "MTA.Politics",
     "presence": "MTA.Presence",
-    "science": "MTA.Science",
+    "science_1": "MTA.Science",
+    "science_2": "MTA.Science",
+    "science_3": "MTA.Science",
     "stealth": "MTA.Stealth", 
     "survival": "MTA.Survival",
     "thrown": "MTA.Thrown"

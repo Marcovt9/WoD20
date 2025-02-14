@@ -56,7 +56,7 @@ export class ActorMtA extends Actor {
         systemData.skills_mental, 
         systemData.derivedTraits,
         systemData.vampire_traits,
-        systemData.scion_traits,
+        systemData.scion_traits
       ];
     }
     
