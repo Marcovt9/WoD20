@@ -157,14 +157,7 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
       if(actor.system.skills?.social) updateData["system.skills_social"] = duplicate(actor.system.skills.social);
       if(actor.system.skills?.mental) updateData["system.skills_mental"] = duplicate(actor.system.skills.mental);
       updateData['system.-=skills'] = null;
-
-      if(actor.system.arcana?.gross) updateData["system.arcana_gross"] = duplicate(actor.system.arcana.gross);
-      if(actor.system.arcana?.subtle) updateData["system.arcana_subtle"] = duplicate(actor.system.arcana.subtle);
-      updateData['system.-=arcana'] = null;
-
-      if(actor.system.gnosis && actor.system.wisdom) updateData["system.mage_traits"] = {gnosis: actor.system.gnosis, wisdom: actor.system.wisdom};
-      updateData['system.-=gnosis'] = null;
-      updateData['system.-=wisdom'] = null;
+    
 
       if(actor.system.disciplines?.common) updateData["system.disciplines_common"] = duplicate(actor.system.disciplines.common);
       if(actor.system.disciplines?.unique) updateData["system.disciplines_unique"] = duplicate(actor.system.disciplines.unique);
@@ -175,17 +168,6 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
       updateData['system.-=bloodPotency'] = null;
       updateData['system.-=humanity'] = null;
 
-      if(actor.system.wyrd) updateData["system.changeling_traits"] = {wyrd: actor.system.wyrd};
-      updateData['system.-=wyrd'] = null;
-    }
-
-    if(actor.type === "ephemeral"){
-      if(actor.system.power) updateData["system.eph_physical"] = {power: duplicate(actor.system.power)};
-      if(actor.system.finesse) updateData["system.eph_social"] = {finesse: duplicate(actor.system.finesse)};
-      if(actor.system.resistance) updateData["system.eph_mental"] = {resistance: duplicate(actor.system.resistance)};
-      updateData['system.-=power'] = null;
-      updateData['system.-=finesse'] = null;
-      updateData['system.-=resistance'] = null;
     }
 
     if(actor.system.speedMod && actor.system.armorMod && actor.system.initiativeModMod && actor.system.ballisticMod && actor.system.perceptionMod){ 
@@ -211,18 +193,7 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
     }
   }
   if(compareVersion(version_nums_current, [0,12,0])) { // 0.11.0 -> 0.12.0
-    const traitsToClean = [
-      "arcana_gross.forces",
-      "arcana_gross.life",
-      "arcana_gross.matter",
-      "arcana_gross.space",
-      "arcana_gross.time",
-      "arcana_subtle.death",
-      "arcana_subtle.fate",
-      "arcana_subtle.mind",
-      "arcana_subtle.prime",
-      "arcana_subtle.spirit",
-    ]
+
     traitsToClean.forEach(t => {
       updateData[`system.${t}.-=max`] = null;
       updateData[`system.${t}.-=min`] = null;
@@ -231,16 +202,8 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
     });
 
     const traitsToModify = [
-      "mage_traits.gnosis", 
-      "mage_traits.wisdom", 
-      "mage_traits.joining",
       "vampire_traits.bloodPotency",
       "vampire_traits.humanity",
-      "werewolf_traits.harmony",
-      "werewolf_traits.primalUrge",
-      "changeling_traits.mantle",
-      "changeling_traits.wyrd",
-      "demon_traits.primum"
     ]
     traitsToModify.forEach(trait => {
       const traitValue = trait.split('.').reduce((o,i) => {

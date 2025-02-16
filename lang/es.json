@@ -129,6 +129,8 @@
 
   "MTA.Scion": "Heredero",
   "MTA.Pantheon": "Panteon",
+  "MTA.Legend": "Leyenda",
+  "MTA.LegendPoints": "Puntos de Leyenda",
 
   "MTA.TooltipCalcMaxHealth": "Calcular salud máxima.",
   "MTA.TooltipCalcMaxVitae": "Calcular vitae máxima.",
@@ -149,7 +151,8 @@
   "MTA.Prepared": "Preparado",
   "MTA.GroupExp": "Exp. de grupo",
 
-  "MTA.DicePenalty": "Penalización de dados",
+  "MTA.DicePenalty": "Penalización de dados / DV",
+  "MTA.MovementPenalty": "Penalización de movimiento",
   "MTA.Attributes": "Atributos",
   "MTA.Skills": "Habilidades",
   "MTA.Skill": "Habilidad",
@@ -221,7 +224,8 @@
   },
 
   "MTA.scion_traits":{
-    "legend": "Leyenda"
+    "legend": "Leyenda",
+    "legend_points": "Puntos de Leyenda"
   },
 
 

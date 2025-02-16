@@ -83,7 +83,8 @@ MTA.all_traits = {
   scion_traits: {
     name: "MTA.Scion_traits",
     list: [
-      "legend"
+      "legend",
+      "legend_points"
     ]
   },
   vampire_traits: {
@@ -228,7 +229,7 @@ MTA.meleeTypes = ["Melee", "Unarmed", "Thrown"];
 /* -------------------------------------------- */
 
 MTA.bloodPotency_levels = [
-    {vitae_per_turn: 1, max_vitae: undefined},
+    {vitae_per_turn: 1, max_vitae: 1},
     {vitae_per_turn: 1, max_vitae: 10},
     {vitae_per_turn: 2, max_vitae: 11},
     {vitae_per_turn: 3, max_vitae: 12},
@@ -279,5 +280,6 @@ MTA.disciplines_unique = {
  * @type {Object}
  */
 MTA.scion_traits = {
- "legend": "MTA.Legend"
+ "legend": "MTA.Legend",
+ "legend_points": "MTA.LegendPoints"
 }

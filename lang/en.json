@@ -152,6 +152,7 @@
   "MTA.GroupExp": "Group Exp",
 
   "MTA.DicePenalty": "Dice Penalty",
+  "MTA.MovementPenalty": "Movement penalty",
   "MTA.Attributes": "Attributes",
   "MTA.Skills": "Skills",
   "MTA.Traits": "Traits",
@@ -162,6 +163,7 @@
 
   "MTA.Scion": "Scion",
   "MTA.Pantheon": "Pantheon",
+  "MTA.LegendPoints": "Puntos de leyenda",
 
   "MTA.HealthPenalty": {
     "YouAre": "You are",
@@ -224,7 +226,8 @@
   },
 
   "MTA.scion_traits":{
-    "legend": "Legend"
+    "legend": "Legend",
+    "legend_points": "Puntos de Leyenda"
   },
 
 

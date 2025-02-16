@@ -17,10 +17,10 @@ import * as templates from "./templates.js";
 
 const getInventory = () => ({
   firearm: {
-    dataset: [ "MTA.DamageShort", "MTA.Range", "MTA.Cartridge", "MTA.Magazine", "MTA.InitiativeShort"]
+    dataset: [ "MTA.DamageShort", "MTA.Range", "MTA.Cartridge", "MTA.Magazine"]
   },
   melee: {
-    dataset: [ "MTA.Damage", "MTA.Type", "MTA.Initiative"]
+    dataset: [ "MTA.Damage", "MTA.Type"]
   },
   armor: {
     dataset: [ "MTA.Rating", "MTA.Speed", "MTA.Coverage" ]
@@ -146,7 +146,7 @@ export class MtAActorSheet extends ActorSheet {
       }
     }
 
-    if (systemData.characterType === "Vampire") sheetData.vitae_per_turn = CONFIG.MTA.bloodPotency_levels[Math.min(10, Math.max(0, systemData.vampire_traits.bloodPotency.final))].vitae_per_turn;
+    if (systemData.characterType === "Vampire") sheetData.vitae_per_turn = CONFIG.MTA.bloodPotency_levels[Math.min(10, Math.max(0, systemData.vampire_traits.bloodPotency.value))].vitae_per_turn;
 
     //Get additional attributes & skills from config file
     if (actor.type === "character") {
@@ -885,13 +885,8 @@ async _onDropItemCreate(itemData) {
           if( trackerType == 'health' && !(this.actor.type === "ephemeral")){ 
             //let dicePenalty = dots.slice(-stateHighest).reduce( (a,v) => (v>0)?a+1:a ,0);
             let dicePenalty = this.actor.getWoundPenalties();
-            let penaltyMap = {
-              '0' : game.i18n.localize('MTA.HealthPenalty.physicallyStable'),
-              '1' : game.i18n.localize('MTA.HealthPenalty.losingConsciousness'),
-              '2' : game.i18n.localize('MTA.HealthPenalty.bleedingOut'),
-              '3' : game.i18n.localize('MTA.HealthPenalty.dead')
-            };
-            r += `<div class="info"><span>${game.i18n.localize('MTA.HealthPenalty.YouAre')} <b>${penaltyMap[dots[dots.length -1]]}</b>.</span><span>${game.i18n.localize('MTA.DicePenalty')}<b>−${dicePenalty}</b></span></div>`;
+            r += `<div class="info"><span>${game.i18n.localize('MTA.DicePenalty')}<b>: ${dicePenalty}</b></span></div>`;
+            r += `<div class="info"><span>${game.i18n.localize('MTA.MovementPenalty')}<b>: ${dicePenalty * 2} mts.</b></span></div>`;
           }
 
           renderBox.innerHTML = r;

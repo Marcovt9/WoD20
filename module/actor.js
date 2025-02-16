@@ -63,10 +63,14 @@ export class ActorMtA extends Actor {
     attributes.forEach(attribute => Object.values(attribute).forEach(trait => {
       //if(trait == undefined) console.warn("Null attribute found", attribute, this.name)
       if(trait == undefined) trait = {};
+      if(typeof trait != 'string'){ // Quick fix for a mistake I made for dream stats
+        trait.final = trait.value;
+        trait.raw = undefined;
+        trait.isModified = false;
+      };
+
       if(typeof trait == 'number') trait = {}; // Quick fix for a mistake I made for dream stats
-      trait.final = trait.value;
-      trait.raw = undefined;
-      trait.isModified = false;
+
     }));
 
     const der = systemData.derivedTraits;
@@ -111,13 +115,19 @@ export class ActorMtA extends Actor {
       const str = systemData.attributes_physical.strength.final;
       const dex = systemData.attributes_physical.dexterity.final;
       const wit = systemData.attributes_mental.wits.final;
-      const comp = systemData.attributes_social.composure.final;
+      const awr = systemData.skills_physical.awareness.final;
+      const per = systemData.attributes_mental.perception.final;
 
       
       der.speed.value = 5 + str + dex;
-      der.initiativeMod.value = comp + dex;
-      der.health.value = systemData.attributes_physical.stamina.final;
-      der.perception.value = comp + wit;
+      der.initiativeMod.value = awr + wit;
+      der.health.value = systemData.attributes_physical.stamina.value;
+      der.perception.value = per + awr;
+    }
+
+    if (this.system.characterType == "Scion"){
+      this.system.scion_traits.legend_points.value = 0;
+      this.system.scion_traits.legend_points.max = this.system.scion_traits.legend.value * this.system.scion_traits.legend.value;
     }
 
     der.armor.value = der.armor.mod + item_mods.armor;
@@ -381,9 +391,20 @@ export class ActorMtA extends Actor {
   getWoundPenalties() {
     const systemData = this.system;
     let woundPenalty = 0;
-    if(systemData.health.value <= 3 && !(this.type === "ephemeral")) {
-      woundPenalty = 2 - (systemData.health.value-1);
+    let agg = systemData.health.max - systemData.health.aggravated;
+    let lethal = systemData.health.max - systemData.health.lethal - agg;
+    // let bashing = systemData.health.max - lethal - systemData.health.value;
+
+    if(agg + lethal >= systemData.health.max * 0.8){
+      woundPenalty = -4;
     }
+    else if(agg + lethal >= systemData.health.max * 0.5){
+      woundPenalty = -2;
+    }
+    else if(agg + lethal >= systemData.health.max * 0.2){
+      woundPenalty = -1;
+    }
+
     return woundPenalty;
   }
 
@@ -395,8 +416,9 @@ export class ActorMtA extends Actor {
   calculateAndSetMaxHealth() {
     const system = this.system;
     const maxHealth_old = system.health.max;
-    let maxHealth = system.derivedTraits.health.final;
+    let maxHealth = system.derivedTraits.health.value;
     //if(data.characterType === "Vampire") maxHealth += data.disciplines.common.resilience.value;
+    if(system.characterType === "Scion") maxHealth = 7 + 1;
 
     let diff = maxHealth - maxHealth_old;
     if(diff === 0) return;

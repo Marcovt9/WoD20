@@ -29,7 +29,9 @@
             <div class="gold-border"> </div>
             <div class="kMageTracker" data-type="health" data-name="system.health" data-states="max/value/lethal/aggravated" data-marked="{{system.health.marked}}" data-max="{{system.health.max}}" data-aggravated="{{system.health.aggravated}}" data-lethal="{{system.health.lethal}}" data-value="{{system.health.value}}"></div>
           </div>
-
+        </div>
+      <!-- Row #3 -->
+       <div>
           <div class="kInput statBox big">
             <h4>
               <input class="attribute-check" id="Willpower{{actor.id}}" data-attribute="willpower" data-trait="willpower" data-attributeValue={{system.willpower.max}} data-attributeLabel="Willpower" type="checkbox" data-dtype="Boolean">
@@ -58,15 +60,42 @@
             {{{bigStatBox actor false "vampire_traits.humanity"}}}
             <div class="kInput statBox big health">
               <h4>
-                <div class="button charMacroButton calculate clarity tooltip">
-                  <span class="tooltip-text">{{ localize "MTA.TooltipCalcMaxClarity" }}</span>
-                  <img src="systems/WoD20/icons/gui/calculate.svg" alt="Calculate max. clarity.">
-                </div>
                 <input class="attribute-check" id="Clarity{{actor.id}}" data-attribute="clarity" data-trait="clarity.value" type="checkbox" data-dtype="Boolean">
-                <label class="button attribute-button" for="Clarity{{actor.id}}">{{ localize "MTA.ChangelingClarity" }}</label>
               </h4>
               </div>
           {{/if}}
+          {{#if (eq system.characterType "Scion")}}
+          {{{bigStatBox actor false "scion_traits.legend"}}}
+          <div class="kInput statBox big health">
+            <h4>
+              <input class="attribute-check" id="Clarity{{actor.id}}" data-attribute="clarity" data-trait="clarity.value" type="checkbox" data-dtype="Boolean">
+            </h4>
+            </div>
+            <div class="kInput statBox big">
+              <h4>
+                <input class="attribute-check" id="LegendPoints{{actor.id}}" data-attribute="legend_points" data-trait="legend_points" data-attributeValue={{system.legend_points.max}} data-attributeLabel="LegendPoints" type="checkbox" data-dtype="Boolean">
+                <label class="button attribute-button" for="LegendPoints{{actor.id}}">{{ localize "MTA.LegendPoints" }}</label>
+              </h4>
+              <div class="gold-border"> </div>
+              <div class="split">
+                <div class="niceNumber buttonsLeft">
+                  <input name="system.legend_points.value" type="number" value="{{system.legend_points.value}}" data-dtype="Number" onchange="this.value=Math.clamped(this.value,0,99);">
+                  <div class="numBtns">
+                    <div class="plusBtn">+</div>
+                    <div class="minusBtn">−</div>
+                  </div>
+                </div>
+                <span class="delimiter"> / </span>
+                <div class="niceNumber">
+                  <input name="system.legend_points.max" type="number" value="{{system.legend_points.max}}" data-dtype="Number" onchange="this.value=Math.clamped(this.value,0,99);">
+                  <div class="numBtns">
+                    <div class="plusBtn">+</div>
+                    <div class="minusBtn">−</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {{/if}}
         </div>
       </div>
     </div>
@@ -96,14 +125,14 @@
         <div class="gold-border"> </div>
         <div class="armourGrid">
           {{#each config.derivedTraits as |cvalue ckey|}}
-          {{#with (lookup ../system.derivedTraits [ckey])}}
+          {{#with (lookup ../system.derivedTraits ckey)}}
             <span>
-              <input class="attribute-check" id="{{cvalue}}{{../../actor.id}}" data-attribute="{{ckey}}" data-trait="derivedTraits.{{ckey}}" data-attributeValue={{chooseNum final value}} data-attributeLabel="{{cvalue}}" type="checkbox" data-dtype="Boolean">
+              <input class="attribute-check" id="{{cvalue}}{{../../actor.id}}" data-attribute="{{ckey}}" data-trait="derivedTraits.{{ckey}}" data-attributeValue="{{chooseNum final value}}" data-attributeLabel="{{cvalue}}" type="checkbox" data-dtype="Boolean">
               <label class="button attribute-button" for="{{cvalue}}{{../../actor.id}}">{{cvalue}}</label>
             </span>
             <input class="{{#if isModified}}{{posneg final value}}{{/if}}" value="{{chooseNum final value}}" disabled>
             <div class="niceNumber digits2" >
-              <input name="system.derivedTraits.{{ckey}}.mod" type="text" placeholder="0" data-dtype="Number" onchange="this.value=Math.clamped(this.value,-99,99);" value="{{numberFormat mod decimals=0 sign=true}}">
+              <input name="system.derivedTraits.{{ckey}}.mod" type="text" placeholder="0" data-dtype="Number" onchange="Number(this.value);" value="{{numberFormat mod decimals=0 sign=true}}">
               <div class="numBtns">
                 <div class="plusBtn">+</div>
                 <div class="minusBtn">−</div>
