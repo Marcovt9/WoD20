@@ -679,10 +679,6 @@ input[type="text"]::-moz-selection, input[type="number"]::-moz-selection, input[
   padding-left:.5rem;
 }    
 
-
-
-
-
     .kCharaSheet .topCharaBlock{
       display:grid;
       grid-auto-flow: column;

@@ -83,8 +83,7 @@ MTA.all_traits = {
   scion_traits: {
     name: "MTA.Scion_traits",
     list: [
-      "legend",
-      "legend_points"
+      "epic_attributes"
     ]
   },
   vampire_traits: {
@@ -130,12 +129,12 @@ MTA.skills_physical = {
     "animalKen": "MTA.AnimalKen",
     "art_1": "MTA.Art",
     "art_2": "MTA.Art",
-    "art_3": "MTA.Art",
     "athletics": "MTA.Athletics",
     "awareness": "MTA.Awareness",
     "brawl": "MTA.Brawl", 
     "command": "MTA.Command",
-    "control": "MTA.Control"
+    "control_1": "MTA.Control",
+    "control_2": "MTA.Control"
   };
 MTA.skills_social = {
     "craft_1": "MTA.Craft",
@@ -282,4 +281,22 @@ MTA.disciplines_unique = {
 MTA.scion_traits = {
  "legend": "MTA.Legend",
  "legend_points": "MTA.LegendPoints"
+}
+
+MTA.combat_traits = {
+  "dodge_dv" : "MTA.DodgeDV",
+  "parry_dv" : "MTA.ParryDV",
+  "dv_penalty": "MTA.DVPenalty"
+}
+
+MTA.epic_attributes = {
+  "epic_strength": "MTA.EpicStrength",
+  "epic_charisma": "MTA.EpicCharisma",
+  "epic_perception": "MTA.EpicPerception",
+  "epic_dexterity": "MTA.EpicDexterity",
+  "epic_manipulation": "MTA.EpicManipulation",
+  "epic_intelligence": "MTA.EpicIntelligence",
+  "epic_stamina": "MTA.EpicStamina",
+  "epic_appearance": "MTA.EpicAppearance",
+  "epic_wits": "MTA.EpicWits"
 }

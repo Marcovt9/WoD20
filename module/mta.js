@@ -135,7 +135,9 @@ Hooks.once("setup", function() {
 
   // Localize and sort CONFIG objects
   for ( let o of toLocalize ) {
+    console.log(o);
     const localized = Object.entries(CONFIG.MTA[o]).map(e => {
+      console.log(e)
       return [e[0], game.i18n.localize(e[1])];
     });
     if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));

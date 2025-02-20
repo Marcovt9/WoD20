@@ -93,10 +93,6 @@
             "value": 0,
             "specialties": []
           },
-          "art_3": {
-            "value": 0,
-            "specialties": []
-          },
           "athletics": {
             "value": 0,
             "specialties": []
@@ -113,7 +109,11 @@
             "value": 0,
             "specialties": []
           },
-          "control": {
+          "control_1": {
+            "value": 0,
+            "specialties": []
+          },
+          "control_2": {
             "value": 0,
             "specialties": []
           }
@@ -223,6 +223,22 @@
           "legend_points" : {"value": 0}
         }
       },
+      "combat_traits":{
+          "dodge_dv" : {"value": 0},
+          "parry_dv" : {"value": 0},
+          "dv_penalty" : {"value": 0}
+      },
+      "epic_attributes": {
+        "epic_strength": {"value": 0},
+        "epic_charisma": {"value": 0},
+        "epic_perception": {"value": 0},
+        "epic_dexterity": {"value": 0},
+        "epic_manipulation": {"value": 0},
+        "epic_stamina": {"value": 0},
+        "epic_appearance": {"value": 0},
+        "epic_intelligence": {"value": 0},
+        "epic_wits": {"value": 0}
+      },
       "vampire": {
         "clan": "",
         "bloodline": "",
@@ -296,24 +312,6 @@
       "characterType": "Mortal"
     },
     "ephemeral": {
-      "templates": ["base"],
-      "ephemeralType": "Spirit",
-      "rank": 1,
-      "rankName": "",
-      "bans": "",
-      "banes": "",
-      "aliases": "",
-      "trueName": "",
-      "virtue": "",
-      "vice": "",
-      "specialTraits": "",
-      "aspirations": "",
-      "essenceSource": "",
-      "fetterName": "",
-      "essence": {
-        "value": 10,
-        "max": 10
-      },
       "willpower": {
         "value": 0,
         "max": 5

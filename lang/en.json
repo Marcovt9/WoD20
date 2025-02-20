@@ -163,7 +163,23 @@
 
   "MTA.Scion": "Scion",
   "MTA.Pantheon": "Pantheon",
-  "MTA.LegendPoints": "Puntos de leyenda",
+  "MTA.Legend": "Legend",
+  "MTA.LegendPoints": "Legend points",
+
+  "MTA.DodgeDV" : "Dodge DV",
+  "MTA.ParryDV" : "Parry DV",
+  "MTA.DVPenalty" : "DV Penalty",
+
+  "MTA.EpicAttributes": "Epic attributes",
+  "MTA.EpicStrength": "Epic strength",
+  "MTA.EpicDexterity": "Epic dexterity",
+  "MTA.EpicStamina": "Epic stamina",
+  "MTA.EpicCharisma": "Epic charisma",
+  "MTA.EpicManipulation": "Epic manipulation",
+  "MTA.EpicAppearance": "Epic appearance",
+  "MTA.EpicPerception": "Epic perception",
+  "MTA.EpicIntelligence": "Epic intelligence",
+  "MTA.EpicWits": "Epic wits",
 
   "MTA.HealthPenalty": {
     "YouAre": "You are",
@@ -188,17 +204,18 @@
     "intelligence": "Intelligence",
     "wits": "Wits"    
   },
+
   "MTA.skills_physical": {
     "academics": "Academics",
     "animalKen": "Animal Ken",
     "art_1": "Art",
     "art_2": "Art",
-    "art_3": "Art",
     "athletics": "Athletics",
     "awareness": "Awareness",
     "brawl": "Brawl", 
     "command": "Command",
-    "control": "Control"
+    "control_1": "Control",
+    "control_2": "Control"
   },
   "MTA.skills_social": {
     "craft_1": "Craft",
@@ -227,9 +244,27 @@
 
   "MTA.scion_traits":{
     "legend": "Legend",
-    "legend_points": "Puntos de Leyenda"
+    "legend_points": "Legend Points"
+
   },
 
+  "MTA.combat_traits": {
+    "dodge_dv" : "Dodge DV",
+    "parry_dv" : "Parry DV",
+    "dv_penalty": "DV Penalty"
+  },
+
+  "MTA.epic_attributes": {
+    "epic_strength": "Epic Strength",
+    "epic_dexterity": "Epic Dexterity",
+    "epic_stamina": "Epic Stamina",
+    "epic_charisma": "Epic Charisma",
+    "epic_manipulation": "Epic Manipulation",
+    "epic_appearance": "Epic Appearance",
+    "epic_perception": "Epic Perception",
+    "epic_intelligence": "Epic Intelligence",
+    "epic_wits": "Epic Wits"    
+  },
 
   "MTA.vampire_traits": {
     "bloodPotency": "Blood Potency",

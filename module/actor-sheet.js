@@ -176,6 +176,12 @@ export class MtAActorSheet extends ActorSheet {
       });
     }
 
+    // if (systemData.characterType === "Scion"){
+    //   Object.entries(CONFIG.MTA.scion_traits).forEach(([key,value], index) => {
+    //     if(!systemData.scion_traits[key]) systemData.scion_traits[key] = {value: 0};
+    //   });
+    // }
+
     const data = {
       actor,
       inventory,

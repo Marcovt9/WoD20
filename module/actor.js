@@ -29,6 +29,24 @@ export class ActorMtA extends Actor {
       health: {value: 0, mod: 0}
     };
 
+    if(!systemData.combat_traits) systemData.combat_traits = {
+      dodge_dv: {value: 0, mod: 0},
+      parry_dv: {value: 0, mod: 0},
+      dv_penalty: {value: 0, mod: 0}
+    };
+
+    if(!systemData.epic_attributes) systemData.epic_attributes = {
+      epic_strength: {value: 0},
+      epic_charisma: {value: 0},
+      epic_perception: {value: 0},
+      epic_dexterity: {value: 0},
+      epic_manipulation: {value: 0},
+      epic_intelligence: {value: 0},
+      epic_stamina: {value: 0},
+      epic_appearance: {value: 0},
+      epic_wits: {value: 0}
+    };
+
     //Get modifiers from items
     let item_mods = this.items.reduce((acc, item) => {
       if (item.system.equipped) {
@@ -74,6 +92,7 @@ export class ActorMtA extends Actor {
     }));
 
     const der = systemData.derivedTraits;
+    const DV = systemData.combat_traits;
 
     let derivedTraitBuffs = [];
     let itemBuffs = [];
@@ -111,24 +130,54 @@ export class ActorMtA extends Actor {
     derivedTraitBuffs.push(...itemBuffs.filter( e => e.name.split('.')[0] === "derivedTraits" ));
 
     // Compute derived traits
-    if (this.type === "character") {
-      const str = systemData.attributes_physical.strength.final;
-      const dex = systemData.attributes_physical.dexterity.final;
-      const wit = systemData.attributes_mental.wits.final;
-      const awr = systemData.skills_physical.awareness.final;
-      const per = systemData.attributes_mental.perception.final;
+    let epic_str = 0, epic_dex = 0, epic_sta = 0, epic_cha = 0, epic_man = 0, epic_app = 0, epic_per = 0, epic_int = 0, epic_wit = 0;
+    if (this.system.characterType == "Scion"){
+      epic_str =systemData.epic_attributes.epic_strength.value;
+      epic_dex =systemData.epic_attributes.epic_dexterity.value;
+      epic_sta =systemData.epic_attributes.epic_stamina.value;
+      epic_cha =systemData.epic_attributes.epic_charisma.value;
+      epic_man =systemData.epic_attributes.epic_manipulation.value;
+      epic_app =systemData.epic_attributes.epic_appearance.value;
+      epic_per =systemData.epic_attributes.epic_perception.value;
+      epic_int =systemData.epic_attributes.epic_intelligence.value;
+      epic_wit =systemData.epic_attributes.epic_wits.value;
+    } 
 
+    if (this.type === "character") {
+      const str = systemData.attributes_physical.strength.final + epic_str;
+      const dex = systemData.attributes_physical.dexterity.final + epic_dex;
+      const sta = systemData.attributes_physical.stamina.final + epic_sta;
+      const cha = systemData.attributes_social.charisma.final + epic_sta;
+      const man = systemData.attributes_social.manipulation.final + epic_sta;
+      const app = systemData.attributes_social.appearance.final + epic_sta;
+      const per = systemData.attributes_mental.perception.final + epic_per;
+      const int  = systemData.attributes_mental.intelligence.final + epic_int;
+      const wit = systemData.attributes_mental.wits.final + epic_wit;
+      const awr = systemData.skills_physical.awareness.final;
+      const ath = systemData.skills_physical.athletics.final;
+      const bra = systemData.skills_physical.brawl.final;
+      const mel = systemData.skills_mental.melee.final;
       
-      der.speed.value = 5 + str + dex;
+      DV.dv_penalty.value = systemData.age;
+      DV.dodge_dv.value = dex + ath;
+      DV.parry_dv.value = Math.ceil( (dex + Math.max(bra, mel) ) / 2) - DV.dv_penalty.value;
+
+      if (this.system.characterType == "Scion"){
+        this.system.scion_traits.legend_points.max = this.system.scion_traits.legend.value * 2;
+        DV.dodge_dv.value = DV.dodge_dv.value + this.system.scion_traits.legend.value;
+      }
+      
+      DV.dodge_dv.value = Math.ceil(DV.dodge_dv.value / 2) - DV.dv_penalty.value;
+
+
+
+      der.speed.value = (6 + dex) * 2;
       der.initiativeMod.value = awr + wit;
       der.health.value = systemData.attributes_physical.stamina.value;
       der.perception.value = per + awr;
     }
 
-    if (this.system.characterType == "Scion"){
-      this.system.scion_traits.legend_points.value = 0;
-      this.system.scion_traits.legend_points.max = this.system.scion_traits.legend.value * this.system.scion_traits.legend.value;
-    }
+
 
     der.armor.value = der.armor.mod + item_mods.armor;
     der.ballistic.value += der.ballistic.mod + item_mods.ballistic;
@@ -418,7 +467,7 @@ export class ActorMtA extends Actor {
     const maxHealth_old = system.health.max;
     let maxHealth = system.derivedTraits.health.value;
     //if(data.characterType === "Vampire") maxHealth += data.disciplines.common.resilience.value;
-    if(system.characterType === "Scion") maxHealth = 7 + 1;
+    if(system.characterType === "Scion") maxHealth = 7 + system.scion_traits.legend.value;
 
     let diff = maxHealth - maxHealth_old;
     if(diff === 0) return;

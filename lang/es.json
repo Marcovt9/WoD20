@@ -131,6 +131,7 @@
   "MTA.Pantheon": "Panteon",
   "MTA.Legend": "Leyenda",
   "MTA.LegendPoints": "Puntos de Leyenda",
+  "MTA.CombatTraits": "Atributos de combate",
 
   "MTA.TooltipCalcMaxHealth": "Calcular salud máxima.",
   "MTA.TooltipCalcMaxVitae": "Calcular vitae máxima.",
@@ -167,6 +168,21 @@
     "bleedingOut": "sangrando",
     "dead": "muerto"
   },
+
+  "MTA.EpicAttributes": "Atributos épicos",
+  "MTA.EpicStrength": "Fuerza épica",
+  "MTA.EpicDexterity": "Destreza épica",
+  "MTA.EpicStamina": "Estamina épica",
+  "MTA.EpicCharisma": "Carisma épica",
+  "MTA.EpicManipulation": "Manipulación épica",
+  "MTA.EpicAppearance": "Apariencia épica",
+  "MTA.EpicPerception": "Percepción épica",
+  "MTA.EpicIntelligence": "Inteligencia épica",
+  "MTA.EpicWits": "Astucia épica",
+
+  "MTA.DodgeDV" : "DV Esquiva",
+  "MTA.ParryDV" : "DV Parada",
+  "MTA.DVPenalty" : "Penalizador DV",
  
   "MTA.attributes_physical": {
     "strength": "Fuerza",
@@ -191,12 +207,12 @@
     "animalKen": "Trato con animales",
     "art_1": "Arte",
     "art_2": "Arte",
-    "art_3": "Arte",
     "athletics": "Atletismo",
     "awareness": "Consciencia",
     "brawl": "Pelea", 
     "command": "Comando",
-    "control": "Manejo"
+    "control_1": "Manejo",
+    "control_2": "Manejo"
   },
   "MTA.skills_social": {
     "craft_1": "Artesanía",
@@ -228,6 +244,23 @@
     "legend_points": "Puntos de Leyenda"
   },
 
+  "MTA.combat_traits": {
+    "dodge_dv" : "DV Esquiva",
+    "parry_dv" : "DV Parada",
+    "dv_penalty": "Penalizador DV"
+  },
+
+  "MTA.epic_attributes": {
+    "epic_strength": "Fuerza épica",
+    "epic_dexterity": "Destreza épica",
+    "epic_stamina": "Estamina épica",
+    "epic_charisma": "Carisma épica",
+    "epic_manipulation": "Manipulación épica",
+    "epic_appearance": "Apariencia épica",
+    "epic_perception": "Percepción épica",
+    "epic_intelligence": "Inteligencia épica",
+    "epic_wits": "Astucia épica"    
+  },
 
   "MTA.vampire_traits": {
     "bloodPotency": "Generación",

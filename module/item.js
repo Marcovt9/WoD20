@@ -44,15 +44,13 @@ export class ItemMtA extends Item {
       return {traits: this.system.dicePool.attributes, diceBonus: this.system.dicePool.value};
     }
     const defaultTraits = { // TODO: Move this into Config?
-      firearm: ["attributes_physical.dexterity", "skills_physical.firearms"],
+      firearm: ["attributes_physical.dexterity", "skills_social.marksmanship"],
       melee: {
-        Unarmed: ["attributes_physical.strength", "skills_physical.brawl"],
+        Unarmed: ["attributes_physical.dexterity", "skills_physical.brawl"],
         Thrown: ["attributes_physical.dexterity", "skills_physical.athletics"],
-        default: ["attributes_physical.strength", "skills_physical.weaponry"],
+        default: ["attributes_physical.dexterity", "skills_mental.melee"],
       },
-      influence: ["eph_physical.power", "eph_social.finesse"],
-      manifestation: ["eph_physical.power", "eph_social.finesse"],
-      vehicle: ["attributes_physical.dexterity", "skills_physical.drive"],
+      vehicle: ["attributes_physical.dexterity", "skills_physical.control"],
       numen: ["eph_physical.power", "eph_social.finesse"]
     };
 

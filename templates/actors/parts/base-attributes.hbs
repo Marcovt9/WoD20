@@ -64,10 +64,16 @@
                            value="{{../actor.system.skills_physical.customSkillName_2}}" 
                            placeholder="{{''}}">
                 {{/if}}
-                    {{#if (eq ckey "art_3")}} 
+                    {{#if (eq ckey "control_1")}} 
                     <!-- Agregar un input solo si la clave es "customSkill" -->
                     <input type="text" name="system.skills_physical.customSkillName_3" 
                            value="{{../actor.system.skills_physical.customSkillName_3}}" 
+                           placeholder="{{''}}">
+                {{/if}}
+                    {{#if (eq ckey "control_2")}} 
+                    <!-- Agregar un input solo si la clave es "customSkill" -->
+                    <input type="text" name="system.skills_physical.customSkillName_4" 
+                           value="{{../actor.system.skills_physical.customSkillName_4}}" 
                            placeholder="{{''}}">
                 {{/if}}
         {{/each}}
@@ -122,5 +128,26 @@
                 {{/if}}
         {{/each}}
     </ol>
+    </div>
+
+    <div class="kInput statBox">
+        <h4> {{ localize "MTA.EpicAttributes" }}</h4>
+        <div class="gold-border"> </div>
+        <div class="armourGrid">
+          {{#each config.epic_attributes as |cvalue ckey|}}
+          {{#with (lookup ../system.epic_attributes ckey)}}
+            <span>
+              <label class="button attribute-button" for="{{cvalue}}{{../../actor.id}}">{{localize cvalue}}</label>
+            </span>
+            <div class="niceNumber digits2" >
+              <input name="system.epic_attributes.{{ckey}}.value" type="text" placeholder="0" data-dtype="Number" onchange="Number(this.value);" value="{{numberFormat value decimals=0 sign=true}}">
+              <div class="numBtns">
+                <div class="plusBtn">+</div>
+                <div class="minusBtn">−</div>
+              </div>
+            </div>
+          {{/with}}
+          {{/each}}
+    </div>
     </div>
 </div>
