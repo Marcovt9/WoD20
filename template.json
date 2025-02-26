@@ -79,126 +79,156 @@
         "skills_physical": {
           "academics": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "animalKen": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "art_1": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "art_2": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "athletics": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "awareness": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "brawl": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "command": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "control_1": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "control_2": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           }
         },
         "skills_social": {
           "craft_1": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "craft_2": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "craft_3": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "empathy": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "fortitude": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "integrity": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "investigation": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "larceny": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "marksmanship": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "medicine": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           }
         },
         "skills_mental": {
           "melee": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "occult": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "politics": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "presence": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "science_1": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "science_2": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "science_3": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "stealth": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "survival": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           },
           "thrown": {
             "value": 0,
+            "mod": 0,
             "specialties": []
           }
         }
@@ -224,20 +254,68 @@
         }
       },
       "combat_traits":{
-          "dodge_dv" : {"value": 0},
-          "parry_dv" : {"value": 0},
-          "dv_penalty" : {"value": 0}
+          "dodge_dv" : {
+            "value": 0,
+            "mod": 0
+          },
+          "parry_dv" : {
+            "value": 0,
+            "mod": 0
+          },
+          "dv_penalty" : {
+            "value": 0,
+            "mod": 0
+          },
+          "soak_bashing" : {
+            "value": 0,
+            "mod": 0
+          },
+          "soak_lethal" :{
+            "value": 0,
+            "mod": 0
+          },
+          "soak_agg" : {
+            "value": 0,
+            "mod": 0
+          }
       },
       "epic_attributes": {
-        "epic_strength": {"value": 0},
-        "epic_charisma": {"value": 0},
-        "epic_perception": {"value": 0},
-        "epic_dexterity": {"value": 0},
-        "epic_manipulation": {"value": 0},
-        "epic_stamina": {"value": 0},
-        "epic_appearance": {"value": 0},
-        "epic_intelligence": {"value": 0},
-        "epic_wits": {"value": 0}
+        "epic_strength": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_charisma": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_perception": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_dexterity": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_manipulation": {
+          "value": 0,
+          "mod": 0
+          },
+        "epic_stamina": {
+          "value": 0,
+          " mod": 0
+        },
+        "epic_appearance": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_intelligence": {
+          "value": 0,
+          "mod": 0
+        },
+        "epic_wits": {
+          "value": 0,
+          "mod": 0
+        }
       },
       "vampire": {
         "clan": "",
@@ -326,14 +404,7 @@
         "availability": 1
       },
       "object": {
-        "equipped": false,
-        "isMagical": false,
-        "magicType": "",
-        "magicClass": "",
-        "mana": {
-          "value": 0,
-          "max": 0
-        }
+        "equipped": false
       },
       "tool": {
         "diceBonus": 0
@@ -349,6 +420,12 @@
       },
       "rollable": {
         "dicePool": {
+          "value": 0,
+          "attributes": [],
+          "macro": "",
+          "comment": ""
+        },
+        "autoSuccess": {
           "value": 0,
           "attributes": [],
           "macro": "",
@@ -431,30 +508,7 @@
       "templates": ["effect", "rollable", "common", "tool"],
       "durability": 0,
       "structure": 0,
-      "speed": 0,
-      "isMagical": false,
-      "magicType": "None",
-      "mana": {
-        "value": 0,
-        "max": 0
-      }
-    },
-    "influence": {
-      "templates": ["effect", "rollable"],
-      "label": "Sphere of Influence",
-      "description": "",
-      "rating": 1
-    },
-    "rite": {
-      "templates": ["rollable", "effect"],
-      "label": "Rite",
-      "description": "",
-      "riteType": "Rite",
-      "level": 1,
-      "targetNumber": 5,
-      "withstandType": "Resisted by",
-      "withstand": "",
-      "sacrament": ""
+      "speed": 0
     },
     "discipline_power": {
       "templates": ["rollable", "effect"],

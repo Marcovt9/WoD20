@@ -1,7 +1,7 @@
 /*Dice Roller para Scion*/
 
 export class DiceRollerDialogue extends Application {
-  constructor({dicePool=0, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, macro, actor={}, token={}, comment=""}, ...args){
+  constructor({dicePool=0, target_successes=0, penalty=0, flavor="Tirada", addBonusFlavor=false, title="Tirada", blindGMRoll=false, actorOverride=undefined, damageRoll=false, weaponDamage=0, armorPiercing=0, itemName="", itemImg="", itemRef=undefined, itemDescr="", spendAmmo=false, macro, actor={}, token={}, comment="", autoSuccess=0}, ...args){
     super(...args);
     this.dicePool = +dicePool;
     this.penalty = penalty;
@@ -23,6 +23,7 @@ export class DiceRollerDialogue extends Application {
     this.actor = actor;
     this.token = token;
     this.comment = comment;
+    this.autoSuccess = +autoSuccess;
   }
 
   /* -------------------------------------------- */
@@ -46,6 +47,7 @@ export class DiceRollerDialogue extends Application {
     data.spendAmmo = this.spendAmmo;
     data.ammoPerShot = 1;
     data.penalty = this.penalty;
+    data.autoSuccess = this.autoSuccess;
     
     if(game.settings.get("mta", "showRollDifficulty")) data.enableDifficulty = true;
 
@@ -54,12 +56,12 @@ export class DiceRollerDialogue extends Application {
   
   _fetchInputs(html){
     const dicePool_userMod_input = html.find('[name="dicePoolBonus"]');
-    const autoSucess_userMod_input = html.find('[name="autoSucess"]');
+    const autoSuccess_userMod_input = html.find('[name="autoSuccess"]');
     const dicePool_difficulty_input = html.find('[name="dicePoolDifficulty"]');
     const ammoPerShot_input = html.find('[name="ammoPerShot"]');
     
     let dicePool_userMod = dicePool_userMod_input.length ? +dicePool_userMod_input[0].value : 0;
-    let autoSucess_userMod = autoSucess_userMod_input.length? + autoSucess_userMod_input[0].value : 0;
+    let autoSuccess_userMod = autoSuccess_userMod_input.length? + autoSuccess_userMod_input[0].value : 0;
 
     let dicePool_difficulty 
     if(game.settings.get("mta", "showRollDifficulty")) dicePool_difficulty = dicePool_difficulty_input.length ? +dicePool_difficulty_input[0].value : 0;
@@ -67,7 +69,7 @@ export class DiceRollerDialogue extends Application {
 
     let ammoPerShot = ammoPerShot_input.length ? +ammoPerShot_input[0].value : 0;
     
-    return {dicePool_userMod: dicePool_userMod, autoSucess_userMod: autoSucess_userMod, dicePool_difficulty: dicePool_difficulty, ammoPerShot: ammoPerShot}
+    return {dicePool_userMod: dicePool_userMod, autoSuccess_userMod: autoSuccess_userMod, dicePool_difficulty: dicePool_difficulty, ammoPerShot: ammoPerShot}
   }
   
   activateListeners(html) {
@@ -78,12 +80,13 @@ export class DiceRollerDialogue extends Application {
   
   async _executeRoll(html, ev) {
     const modifiers = this._fetchInputs(html);
-    const dicePool = this.dicePool + modifiers.dicePool_userMod;
+    const dicePool = modifiers.dicePool_userMod;
+    const autoSuccess = modifiers.autoSuccess_userMod;
     const flavor = (this.flavor || "Tirada")
                  + (modifiers.dicePool_userMod>0 ? " + " + modifiers.dicePool_userMod : modifiers.dicePool_userMod<0 ? " - " + -modifiers.dicePool_userMod : "");
     const rollReturn = {};
-    if(this.damageRoll) await DiceRollerDialogue.rollWithDamage({dicePool: dicePool, rollReturn: rollReturn, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, weaponDamage: this.weaponDamage, armorPiercing: this.armorPiercing, itemImg: this.itemImg, itemName: this.itemName, itemRef: this.itemRef, itemDescr: this.itemDescr, spendAmmo: this.spendAmmo, ammoPerShot: modifiers.ammoPerShot, comment: this.comment});
-    else await DiceRollerDialogue.rollToChat({dicePool: dicePool, autoSucess: modifiers.autoSucess_userMod, rollReturn: rollReturn, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, comment: this.comment});
+    if(this.damageRoll) await DiceRollerDialogue.rollWithDamage({dicePool: dicePool, autoSuccess: autoSuccess, rollReturn: rollReturn, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, weaponDamage: this.weaponDamage, armorPiercing: this.armorPiercing, itemImg: this.itemImg, itemName: this.itemName, itemRef: this.itemRef, itemDescr: this.itemDescr, spendAmmo: this.spendAmmo, ammoPerShot: modifiers.ammoPerShot, comment: this.comment});
+    else await DiceRollerDialogue.rollToChat({dicePool: dicePool, autoSuccess: autoSuccess, rollReturn: rollReturn, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, comment: this.comment});
   
     if (this.macro) {
       this.actor.setFlag('mta', 'rollReturn', rollReturn.roll);
@@ -91,7 +94,7 @@ export class DiceRollerDialogue extends Application {
     }
   }
   
-  static _roll({dicePool=1, autoSucess=0, exceptionalTarget=5}){
+  static _roll({dicePool=1, autoSuccess=0, exceptionalTarget=5}){
     //Create dice pool qualities
     const targetNumString =  "cs>="+ 7;
 
@@ -104,7 +107,7 @@ export class DiceRollerDialogue extends Application {
         }
     }
   
-    roll._total = roll._total + autoSucess;
+    roll._total = roll._total + autoSuccess;
     if(roll.total >= exceptionalTarget) roll.exceptionalSuccess = true;
 
     console.log(roll);
@@ -112,9 +115,9 @@ export class DiceRollerDialogue extends Application {
   }
   
 
-  static async rollToHtml({dicePool=1, autoSucess= 0, flavor="Tirada", showFlavor=true, exceptionalTarget=5, blindGMRoll=false, rollReturn, comment=""}){   
+  static async rollToHtml({dicePool=1, autoSuccess= 0, flavor="Tirada", showFlavor=true, exceptionalTarget=5, blindGMRoll=false, rollReturn, comment=""}){   
     
-    let roll = DiceRollerDialogue._roll({dicePool: dicePool, autoSucess: autoSucess, exceptionalTarget: exceptionalTarget});
+    let roll = DiceRollerDialogue._roll({dicePool: dicePool, autoSuccess: autoSuccess, exceptionalTarget: exceptionalTarget});
     if(rollReturn) rollReturn.roll = roll;
     //Create Roll Message
     let speaker = ChatMessage.getSpeaker();
@@ -139,12 +142,12 @@ export class DiceRollerDialogue extends Application {
   }
 
   
-  static async rollToChat({dicePool=1, autoSucess=0, exceptionalTarget=5, flavor="Tirada", blindGMRoll=false, actorOverride=undefined, rollReturn={}, comment=""}){
+  static async rollToChat({dicePool=1, autoSuccess=0, exceptionalTarget=5, flavor="Tirada", blindGMRoll=false, actorOverride=undefined, rollReturn={}, comment=""}){
     
     const templateData = {
       roll: await DiceRollerDialogue.rollToHtml({
         dicePool: dicePool, 
-        autoSucess: autoSucess,
+        autoSuccess: autoSuccess,
         exceptionalTarget: exceptionalTarget, 
         showFlavor: false,
         blindGMRoll: blindGMRoll,
@@ -194,7 +197,8 @@ export class DiceRollerDialogue extends Application {
     spendAmmo=false,
     ammoPerShot=0, 
     rollReturn={},
-    comment=""
+    comment="",
+    autoSuccess=0
   }) {
     const templateData = {
       data: {
@@ -202,7 +206,8 @@ export class DiceRollerDialogue extends Application {
         rolls: [ {
           title: "Hit Roll",
           html: await DiceRollerDialogue.rollToHtml({
-            dicePool: dicePool,   
+            dicePool: dicePool,  
+            autoSuccess: autoSuccess, 
             exceptionalTarget: exceptionalTarget, 
             showFlavor: false,
             blindGMRoll: blindGMRoll,

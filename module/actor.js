@@ -13,10 +13,10 @@ export class ActorMtA extends Actor {
   /**
    * Augment the basic Actor data model with additional dynamic data.
    */
+  
   prepareData() {
     super.prepareData();
-    
-
+      
     // Get the Actor's data object
     const systemData = this.system;
 
@@ -32,19 +32,22 @@ export class ActorMtA extends Actor {
     if(!systemData.combat_traits) systemData.combat_traits = {
       dodge_dv: {value: 0, mod: 0},
       parry_dv: {value: 0, mod: 0},
-      dv_penalty: {value: 0, mod: 0}
+      dv_penalty: {value: 0, mod: 0},
+      soak_bashing: {value: 0, mod: 0},
+      soak_lethal: {value: 0, mod: 0},
+      soak_agg: {value: 0, mod: 0}
     };
 
     if(!systemData.epic_attributes) systemData.epic_attributes = {
-      epic_strength: {value: 0},
-      epic_charisma: {value: 0},
-      epic_perception: {value: 0},
-      epic_dexterity: {value: 0},
-      epic_manipulation: {value: 0},
-      epic_intelligence: {value: 0},
-      epic_stamina: {value: 0},
-      epic_appearance: {value: 0},
-      epic_wits: {value: 0}
+      epic_strength: {value: 0, mod: 0},
+      epic_charisma: {value: 0, mod: 0},
+      epic_perception: {value: 0, mod: 0},
+      epic_dexterity: {value: 0, mod: 0},
+      epic_manipulation: {value: 0, mod: 0},
+      epic_intelligence: {value: 0, mod: 0},
+      epic_stamina: {value: 0, mod: 0},
+      epic_appearance: {value: 0, mod: 0},
+      epic_wits: {value: 0, mod: 0}
     };
 
     //Get modifiers from items
@@ -92,7 +95,7 @@ export class ActorMtA extends Actor {
     }));
 
     const der = systemData.derivedTraits;
-    const DV = systemData.combat_traits;
+    const CT = systemData.combat_traits;
 
     let derivedTraitBuffs = [];
     let itemBuffs = [];
@@ -126,21 +129,34 @@ export class ActorMtA extends Actor {
         console.warn("CofD: The trait does not support the effect system at the moment. " + e.name, this.name);
         return;
       }
-    });  
+    });  https://chatgpt.com/g/g-p-67a9f9984f7c8191ad0aa9390d1bc086-programacion-sistema-foundryvtt/c/67a9f9a9-e5e0-8010-b993-89b215358fd4
     derivedTraitBuffs.push(...itemBuffs.filter( e => e.name.split('.')[0] === "derivedTraits" ));
 
     // Compute derived traits
-    let epic_str = 0, epic_dex = 0, epic_sta = 0, epic_cha = 0, epic_man = 0, epic_app = 0, epic_per = 0, epic_int = 0, epic_wit = 0;
+    let epic_str = 0, epic_dex = 0, epic_sta = 0, epic_cha = 0, epic_man = 0, epic_app = 0, epic_per = 0, epic_int = 0, epic_wit = 0, leg = 0;
     if (this.system.characterType == "Scion"){
-      epic_str =systemData.epic_attributes.epic_strength.value;
-      epic_dex =systemData.epic_attributes.epic_dexterity.value;
-      epic_sta =systemData.epic_attributes.epic_stamina.value;
-      epic_cha =systemData.epic_attributes.epic_charisma.value;
-      epic_man =systemData.epic_attributes.epic_manipulation.value;
-      epic_app =systemData.epic_attributes.epic_appearance.value;
-      epic_per =systemData.epic_attributes.epic_perception.value;
-      epic_int =systemData.epic_attributes.epic_intelligence.value;
-      epic_wit =systemData.epic_attributes.epic_wits.value;
+      leg = systemData.scion_traits.legend.value;
+      let epic_attributes = systemData.epic_attributes;
+      for (const attribute in epic_attributes) {
+        if (Object.hasOwn(epic_attributes, attribute)) { 
+          if (systemData.epic_attributes[attribute].value == 0){
+            systemData.epic_attributes[attribute].mod = 0;
+          } else {
+          systemData.epic_attributes[attribute].mod = 0.5 * systemData.epic_attributes[attribute].value * systemData.epic_attributes[attribute].value - 0.5 * systemData.epic_attributes[attribute].value + 1; 
+        }
+      }
+      };
+
+
+      epic_str =systemData.epic_attributes.epic_strength.mod;
+      epic_dex =systemData.epic_attributes.epic_dexterity.mod;
+      epic_sta =systemData.epic_attributes.epic_stamina.mod;
+      epic_cha =systemData.epic_attributes.epic_charisma.mod;
+      epic_man =systemData.epic_attributes.epic_manipulation.mod;
+      epic_app =systemData.epic_attributes.epic_appearance.mod;
+      epic_per =systemData.epic_attributes.epic_perception.mod;
+      epic_int =systemData.epic_attributes.epic_intelligence.mod;
+      epic_wit =systemData.epic_attributes.epic_wits.mod;
     } 
 
     if (this.type === "character") {
@@ -158,22 +174,43 @@ export class ActorMtA extends Actor {
       const bra = systemData.skills_physical.brawl.final;
       const mel = systemData.skills_mental.melee.final;
       
-      DV.dv_penalty.value = systemData.age;
-      DV.dodge_dv.value = dex + ath;
-      DV.parry_dv.value = Math.ceil( (dex + Math.max(bra, mel) ) / 2) - DV.dv_penalty.value;
+      let woundPenalty = 0;
+      let agg = systemData.health.max - systemData.health.aggravated;
+      let lethal = systemData.health.max - systemData.health.lethal - agg;
+  
+      // systemData.health.value = systemData.health.max - Math.max(systemData.health.lethal, systemData.health.aggravated);
+
+      if(agg + lethal >= systemData.health.max * 0.8){
+        woundPenalty = -4;
+      }
+      else if(agg + lethal >= systemData.health.max * 0.5){
+        woundPenalty = -2;
+      }
+      else if(agg + lethal >= systemData.health.max * 0.2){
+        woundPenalty = -1;
+      }
+  
+      woundPenalty = Math.min(woundPenalty+epic_sta,0)
+
+      CT.dv_penalty.value = systemData.age;
+      CT.dodge_dv.value = Math.ceil( (dex + ath + leg + CT.dodge_dv.mod) / 2) - CT.dv_penalty.value + woundPenalty;
+      CT.parry_dv.value = Math.ceil( (dex + Math.max(bra, mel) + CT.parry_dv.mod) / 2) - CT.dv_penalty.value + woundPenalty;
+
+      CT.soak_bashing.value = sta + CT.soak_bashing.mod;
+      CT.soak_lethal.value = epic_sta + CT.soak_lethal.mod;
+      CT.soak_agg.value = epic_sta + CT.soak_agg.mod;
+
 
       if (this.system.characterType == "Scion"){
-        this.system.scion_traits.legend_points.max = this.system.scion_traits.legend.value * 2;
-        DV.dodge_dv.value = DV.dodge_dv.value + this.system.scion_traits.legend.value;
+        this.system.scion_traits.legend_points.max = this.system.scion_traits.legend.value * this.system.scion_traits.legend.value;
+        CT.soak_lethal.value += Math.ceil( systemData.attributes_physical.stamina.final  / 2)
       }
       
-      DV.dodge_dv.value = Math.ceil(DV.dodge_dv.value / 2) - DV.dv_penalty.value;
 
 
-
-      der.speed.value = (6 + dex) * 2;
+      der.speed.value = (6 + dex + woundPenalty) * 2;
       der.initiativeMod.value = awr + wit;
-      der.health.value = systemData.attributes_physical.stamina.value;
+      der.health.value = systemData.health.max;
       der.perception.value = per + awr;
     }
 
@@ -185,7 +222,7 @@ export class ActorMtA extends Actor {
     der.speed.value += der.speed.mod + item_mods.speed;
     der.initiativeMod.value += der.initiativeMod.mod + item_mods.initiativeMod;
     der.perception.value += der.perception.mod;
-    der.health.value += der.health.mod;
+    // der.health.value += der.health.mod;
 
     [systemData.derivedTraits].forEach(attribute => Object.values(attribute).forEach(trait => {
       trait.final = trait.value;
@@ -246,24 +283,25 @@ export class ActorMtA extends Actor {
    */
   roll({traits=[], diceBonus=0, rollName="Skill check", rollType="dialogue", damageRoll=false}) {
 
-    const {dicePool, flavor} = this.assembleDicePool({traits, diceBonus});
+    const {dicePool, flavor, autoSuccess} = this.assembleDicePool({traits, diceBonus});
 
     switch(rollType) {
       case 'dialogue':
         let title = "";
         title = rollName + ": " + flavor;
-        let diceRoller = new DiceRollerDialogue({dicePool, flavor: title, addBonusFlavor: true, title, actorOverride: this.actor});
+        let diceRoller = new DiceRollerDialogue({dicePool, flavor: title, addBonusFlavor: true, title, actorOverride: this.actor, autoSuccess: autoSuccess});
         diceRoller.render(true);
         break;
       case 'quick':
         DiceRollerDialogue.rollToChat({
           dicePool,
           flavor,
-          actorOverride: this.actor
+          actorOverride: this.actor,
+          autoSuccess
         });
         break;
       default:
-        return {flavor, dicePool};
+        return {flavor, dicePool, autoSuccess};
     }
     // TODO: Return result of the roll  
   }
@@ -287,13 +325,17 @@ export class ActorMtA extends Actor {
     //Get dice pool
     let dicePool = 0;
     let flavor = "";
-    
+    let autoSuccess = 0;
     if(traits.length > 0){
       // Get dice pool according to the item's dice pool attributes from the actor
       let diceFromTraits = traits ? traits.reduce((acc, cur) => {
         
         let ret = 0;
         let flv = "";
+        let att = "epic_" + cur.split('.')[1];
+        if (autoSuccess == 0){
+        autoSuccess = systemData.epic_attributes[att]?.value || 0;
+        }
         ret = cur.split('.').reduce((o,i) => {
           if(o != undefined && o[i] != undefined) return o[i];
           else return undefined;
@@ -331,7 +373,7 @@ export class ActorMtA extends Actor {
       flavor += " (Wound penalties: -" + woundPenalty + ")";
     }
 
-    return {dicePool, flavor};
+    return {dicePool, flavor, autoSuccess};
   }
 
   
@@ -375,7 +417,8 @@ export class ActorMtA extends Actor {
       flavor: flavor,
       title: flavor,
       blindGMRoll: hidden,
-      actorOverride: actorOverride
+      actorOverride: actorOverride,
+      autoSuccess
     });
     else {
       let diceRoller = new DiceRollerDialogue({
@@ -384,7 +427,8 @@ export class ActorMtA extends Actor {
         title: flavor,
         addBonusFlavor: true,
         blindGMRoll: true,
-        actorOverride: actorOverride
+        actorOverride: actorOverride,
+        autoSuccess: autoSuccess
       });
       diceRoller.render(true);
     }
@@ -454,8 +498,11 @@ export class ActorMtA extends Actor {
       woundPenalty = -1;
     }
 
+    systemData.health.value = systemData.health.max - agg-lethal;
+
     return woundPenalty;
   }
+
 
   /**
    * Calculates and sets the maximum health for the actor using the formula

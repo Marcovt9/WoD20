@@ -91,9 +91,6 @@
   "MTA.ButtonAdd": "+ Añad.",
   "MTA.EditItem": "Editar objeto",
   "MTA.DeleteItem": "Borrar objeto",
-  "MTA.Magical": "Mágico",
-  "MTA.MagicType": "Tipo magia",
-  "MTA.MagicClass": "Clase",
   "MTA.Exp": "Exp",
   "MTA.DerivedTraits": "Atributos derivados",
   "MTA.Physical": "Físico",
@@ -183,6 +180,9 @@
   "MTA.DodgeDV" : "DV Esquiva",
   "MTA.ParryDV" : "DV Parada",
   "MTA.DVPenalty" : "Penalizador DV",
+  "MTA.SoakBashing" : "Abs. Contundente",
+  "MTA.SoakLethal" : "Abs. Letal",
+  "MTA.SoakAggravated" : "Abs. Agravado",
  
   "MTA.attributes_physical": {
     "strength": "Fuerza",
@@ -247,7 +247,10 @@
   "MTA.combat_traits": {
     "dodge_dv" : "DV Esquiva",
     "parry_dv" : "DV Parada",
-    "dv_penalty": "Penalizador DV"
+    "dv_penalty": "Penalizador DV",
+    "soak_bashing" : "Abs. Contundente",
+    "soak_lethal" : "Abs. Letal",
+    "soak_agg" : "Abs. Agravado"
   },
 
   "MTA.epic_attributes": {
@@ -274,7 +277,7 @@
     "initiativeMod": "Iniciativa",
     "ballistic": "Balística",
     "perception": "Percepción",
-    "health": "Salud"
+    "health": "Vida"
   },
 
   "MTA.disciplines_common": {

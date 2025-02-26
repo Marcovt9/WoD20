@@ -286,7 +286,10 @@ MTA.scion_traits = {
 MTA.combat_traits = {
   "dodge_dv" : "MTA.DodgeDV",
   "parry_dv" : "MTA.ParryDV",
-  "dv_penalty": "MTA.DVPenalty"
+  "dv_penalty": "MTA.DVPenalty",
+  "soak_bashing": "MTA.SoakBashing",
+  "soak_lethal": "MTA.SoakLethal",
+  "soak_agg": "MTA.SoakAggravated"
 }
 
 MTA.epic_attributes = {

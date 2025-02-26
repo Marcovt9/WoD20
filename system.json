@@ -37,7 +37,7 @@
     }
   ],
   "initiative": "1d10 + @derivedTraits.initiativeMod.final",
-  "gridDistance": 1,
+  "gridDistance": 2,
   "gridUnits": "m",
-  "primaryTokenAttribute": "health"
+  "primaryTokenAttribute": "health.value"
 }

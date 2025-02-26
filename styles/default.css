@@ -2989,6 +2989,27 @@ input.fancyComboBox + div > div.kOptionHeader{
   border-radius: 3px;
 }
 
+.tokenHotBar .buttonArray .dv-increase {
+  color: var(--color-text-light-heading);
+}
+
+.tokenHotBar .buttonArray .dv-increase .fas:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.tokenHotBar .buttonArray .dv-number {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: 3em;
+  height: 1.6em;
+}
+
+.tokenHotBar .buttonArray .dv-apply {
+  width: 50px;
+  height: 50px;
+}
+
 .tokenHotBar .buttonArray .damage-increase {
   color: var(--color-text-light-heading);
 }
@@ -3491,6 +3512,10 @@ form .button.reset-color:hover {
   border: 1px solid var(--color-border-dark);
   padding: 3px 5px;
   border-radius: 3px;
+
+  display: flex;
+  justify-content: center;  /* Centers text horizontally */
+  align-items: center;      /* Centers text vertically */
 }
 
 .modernButton .button-content {
@@ -3528,6 +3553,16 @@ form .button.reset-color:hover {
 
 .modernButton.green:hover {
   background: rgba(5, 60, 0, 0.8);
+}
+
+.modernButton.blue {
+  background: rgba(0, 14, 60, 0.507);
+  border: 1px solid #4f3cff;
+  color: rgb(51, 123, 255);
+}
+
+.modernButton.blue:hover {
+  background: rgba(4, 5, 15, 0.699);
 }
 
 /* .modernButton:hover {

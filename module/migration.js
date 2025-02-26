@@ -15,9 +15,6 @@ export const migrateWorld = async function(version_nums_current, version_nums_mi
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
         if(compareVersion(version_nums_current, [0,6,0])) { // 0.5.0 -> 0.6.0
-          if(a.type === "character"){
-            await a.createWerewolfForms();
-          }
         }
       }
     } catch(err) {
@@ -359,9 +356,6 @@ export const compareVersion = function(version_nums_current, version_nums_migrat
 
 // Returns true if the item should not be on the actor
 function _isNotAllowedItemType(item, actor) {
-  if(actor.type === "ephemeral") {
-    return CONFIG.MTA.characterItemTypes.includes(item.type);
-  }
   if(actor.type === "character") {
     return CONFIG.MTA.ephemeralItemTypes.includes(item.type);
   }

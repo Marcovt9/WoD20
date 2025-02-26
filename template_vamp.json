@@ -338,14 +338,7 @@
         "availability": 1
       },
       "object": {
-        "equipped": false,
-        "isMagical": false,
-        "magicType": "",
-        "magicClass": "",
-        "mana": {
-          "value": 0,
-          "max": 0
-        }
+        "equipped": false
       },
       "tool": {
         "diceBonus": 0
@@ -488,13 +481,7 @@
       "templates": ["effect", "rollable", "common", "tool"],
       "durability": 0,
       "structure": 0,
-      "speed": 0,
-      "isMagical": false,
-      "magicType": "None",
-      "mana": {
-        "value": 0,
-        "max": 0
-      }
+      "speed": 0
     },
     "influence": {
       "templates": ["effect", "rollable"],

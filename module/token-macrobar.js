@@ -150,12 +150,12 @@ export class TokenHotBar extends Application {
             if(damageAmount < 0) {
                 $('.damage-apply').addClass('green');
                 $('.damage-apply').removeClass('red');
-                $('.damage-apply').html('Heal');
+                $('.damage-apply').html('Curar');
             }
             else {
                 $('.damage-apply').removeClass('green');
                 $('.damage-apply').addClass('red');
-                $('.damage-apply').html('Damage');
+                $('.damage-apply').html('Dañar');
             }
         });
 
@@ -164,12 +164,12 @@ export class TokenHotBar extends Application {
             if(damageAmount < 0) {
                 $('.damage-apply').addClass('green');
                 $('.damage-apply').removeClass('red');
-                $('.damage-apply').html('Heal');
+                $('.damage-apply').html('Curar');
             }
             else {
                 $('.damage-apply').removeClass('green');
                 $('.damage-apply').addClass('red');
-                $('.damage-apply').html('Damage');
+                $('.damage-apply').html('Dañar');
             }
         });
 
@@ -202,6 +202,53 @@ export class TokenHotBar extends Application {
                 }
             });
         });
+
+        //Modificadores de DV
+
+        html.find('.dv-increase .fa-minus').click(ev => {
+            let dvAmount = $('.dv-number').val();
+            dvAmount--;
+            $('.dv-number').val(dvAmount);
+        });
+
+        html.find('.dv-increase .fa-plus').click(ev => {
+            let dvAmount = $('.dv-number').val();
+            dvAmount++;
+            $('.dv-number').val(dvAmount);
+        });
+
+        html.find('.dv-number').change(ev => {
+            let dvAmount = $('.dv-number').val();
+            $('.dv-number').val(dvAmount);
+        });
+
+        html.find('.dv-apply').click(ev => {
+            let dvAmount = $('.dv-number').val();
+
+            this.tokens.forEach(token => {
+                let actor = token.actor;
+                if (dvAmount >= 0) {
+                let diff = Math.abs(actor.system.age - dvAmount);
+                if(actor) {
+                    if (actor.system.age >= dvAmount){
+
+                        actor.system.combat_traits.dodge_dv.value += diff;
+                        actor.system.combat_traits.parry_dv.value += diff;
+                    } else {
+                        actor.system.combat_traits.dodge_dv.value -= diff;
+                        actor.system.combat_traits.parry_dv.value -= diff;
+                    }
+                    actor.system.age = Number(dvAmount);
+                    actor.system.combat_traits.dv_penalty.value = Number(dvAmount);
+
+                }
+            }
+            });
+        });
+
+
+
+
       }
 
       static tokenHotbarInit() {

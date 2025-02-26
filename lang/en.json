@@ -131,10 +131,7 @@
   "MTA.FormAbility": "Form Ability",
   "MTA.FormAbilities": "Form Abilities",
   "MTA.TooltipCalcMaxHealth": "Calculate maximum Health.",
-  "MTA.TooltipCalcMaxMana": "Calculate maximum Mana.",
   "MTA.TooltipCalcMaxVitae": "Calculate maximum Vitae.",
-  "MTA.TooltipCalcMaxClarity": "Calculate maximum Clarity.",
-  "MTA.TooltipCalcMaxEssence": "Calculate maximum Essence.",
   "MTA.TooltipTypeVisible": "Should the character type be visible for players with limited permission?",
   "MTA.TooltipSkillTest": "Execute Skill test. Rolls the selected Attributes/Skills. Right-click executes a roll without modifiers.",
   "MTA.TooltipPerceptionCheck": "Perception check. Rolls Wits + Composure. The result will be hidden to the player. Right-click executes a roll without modifiers.",
@@ -169,6 +166,9 @@
   "MTA.DodgeDV" : "Dodge DV",
   "MTA.ParryDV" : "Parry DV",
   "MTA.DVPenalty" : "DV Penalty",
+  "MTA.SoakBashing" : "Bashing Soak",
+  "MTA.SoakLethal" : "Lethal Soak",
+  "MTA.SoakAggravated" : "Aggravated Soak",
 
   "MTA.EpicAttributes": "Epic attributes",
   "MTA.EpicStrength": "Epic strength",
@@ -251,7 +251,10 @@
   "MTA.combat_traits": {
     "dodge_dv" : "Dodge DV",
     "parry_dv" : "Parry DV",
-    "dv_penalty": "DV Penalty"
+    "dv_penalty": "DV Penalty",
+    "soak_bashing" : "Bashing Soak",
+    "soak_lethal" : "Lethal Soak",
+    "soak_agg" : "Aggravated Soak"
   },
 
   "MTA.epic_attributes": {

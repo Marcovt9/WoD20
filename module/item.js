@@ -50,8 +50,7 @@ export class ItemMtA extends Item {
         Thrown: ["attributes_physical.dexterity", "skills_physical.athletics"],
         default: ["attributes_physical.dexterity", "skills_mental.melee"],
       },
-      vehicle: ["attributes_physical.dexterity", "skills_physical.control"],
-      numen: ["eph_physical.power", "eph_social.finesse"]
+      vehicle: ["attributes_physical.dexterity", "skills_physical.control"]
     };
 
     let traits = [];
@@ -121,7 +120,7 @@ export class ItemMtA extends Item {
 
     const {traits, diceBonus} = this.getRollTraits();
 
-    let {dicePool, flavor} = this.actor.assembleDicePool({traits, diceBonus});
+    let {dicePool, flavor, autoSuccess} = this.actor.assembleDicePool({traits, diceBonus});
     if(!flavor) flavor = "Skill Check";
 
     let extended = false,
@@ -171,7 +170,8 @@ export class ItemMtA extends Item {
       macro,
       actor: this.actor,
       token: this.actor.token,
-      comment: this.system.dicePool?.comment
+      comment: this.system.dicePool?.comment,
+      autoSuccess: autoSuccess
     });
     diceRoller.render(true);
   }

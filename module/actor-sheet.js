@@ -890,7 +890,8 @@ async _onDropItemCreate(itemData) {
           let r = '<div class="boxes">' + dots.reduce( (a,v,k) => a + `<div data-state="${v}" data-index="${k}"${markingOn&&markedBoxes[k]?' data-marked="true" title="Resistant"':''}></div>`,'') + '</div>';
           if( trackerType == 'health' && !(this.actor.type === "ephemeral")){ 
             //let dicePenalty = dots.slice(-stateHighest).reduce( (a,v) => (v>0)?a+1:a ,0);
-            let dicePenalty = this.actor.getWoundPenalties();
+            let dicePenalty = this.actor.getWoundPenalties()+this.actor.system.epic_attributes.epic_stamina.mod;
+            dicePenalty = Math.min(0, dicePenalty);
             r += `<div class="info"><span>${game.i18n.localize('MTA.DicePenalty')}<b>: ${dicePenalty}</b></span></div>`;
             r += `<div class="info"><span>${game.i18n.localize('MTA.MovementPenalty')}<b>: ${dicePenalty * 2} mts.</b></span></div>`;
           }
