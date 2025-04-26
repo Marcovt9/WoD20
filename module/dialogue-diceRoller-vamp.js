@@ -37,7 +37,7 @@ export class DiceRollerDialogue extends Application {
    * @returns {Object}
    */
 	static get defaultOptions() {
-	  return mergeObject(super.defaultOptions, {
+	  return foundry.utils.mergeObject(super.defaultOptions, {
   	  classes: ["worldbuilding", "dialogue", "mta-sheet"],
   	  template: "systems/WoD20/templates/dialogues/dialogue-diceRoller.html",
       resizable: true
@@ -93,7 +93,7 @@ export class DiceRollerDialogue extends Application {
     const flavor = (this.flavor || "Tirada")
                  + (modifiers.dicePool_userMod>0 ? " + " + modifiers.dicePool_userMod : modifiers.dicePool_userMod<0 ? " - " + -modifiers.dicePool_userMod : "");
     const explodeThreshold = modifiers.explode_threshold;
-    const targetNumber = Math.clamped(modifiers.dicePool_difficulty, 1, 10);
+    const targetNumber = Math.clamp(modifiers.dicePool_difficulty, 1, 10);
     const rollReturn = {};
     if(this.damageRoll) await DiceRollerDialogue.rollWithDamage({dicePool: dicePool, targetNumber: targetNumber, rollReturn: rollReturn, tenAgain: explodeThreshold===10, nineAgain: explodeThreshold===9, eightAgain: explodeThreshold===8, roteAction: roteAction, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, weaponDamage: this.weaponDamage, armorPiercing: this.armorPiercing, itemImg: this.itemImg, itemName: this.itemName, itemRef: this.itemRef, itemDescr: this.itemDescr, spendAmmo: this.spendAmmo, ammoPerShot: modifiers.ammoPerShot, advancedAction: modifiers.advancedAction, comment: this.comment});
     else await DiceRollerDialogue.rollToChat({dicePool: dicePool, targetNumber: targetNumber, extended: modifiers.extended, extended_accumulatedSuccesses: this.accumulatedSuccesses, extended_rolls: this.extendedRolls, extended_rollsMax: this.dicePool, rollReturn: rollReturn, tenAgain: explodeThreshold===10, nineAgain: explodeThreshold===9, eightAgain: explodeThreshold===8, roteAction: roteAction, flavor: flavor, blindGMRoll: this.blindGMRoll, actorOverride: this.actorOverride, advancedAction: modifiers.advancedAction, comment: this.comment});

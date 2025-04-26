@@ -10,7 +10,7 @@ export class TokenHotBar extends Application {
    * @returns {Object}
    */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["worldbuilding", "dialogue", "mta-sheet"],
             template: "systems/WoD20/templates/other/tokenHotBar.html",
             popOut: false,

@@ -121,7 +121,7 @@ export class ActorMtA extends Actor {
         }
         const newVal = (Number.isInteger(trait.raw) ? trait.raw : trait.value ) + e.value;
         trait.raw = e.overFive  ?  newVal  :  Math.min( newVal, Math.max(trait.value, this.getTraitMaximum()) );
-        trait.final = Math.clamped(trait.raw, 0, Math.max(trait.value,CONFIG.MTA.traitMaximum));
+        trait.final = Math.clamp(trait.raw, 0, Math.max(trait.value,CONFIG.MTA.traitMaximum));
         trait.isModified = true;
       }
       else {

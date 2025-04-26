@@ -15,7 +15,7 @@ export class ReloadDialogue extends Application {
    * @returns {Object}
    */
 	static get defaultOptions() {
-	  return mergeObject(super.defaultOptions, {
+	  return foundry.utils.mergeObject(super.defaultOptions, {
   	  classes: ["worldbuilding", "dialogue"],
   	  template: "systems/WoD20/templates/dialogues/dialogue-reload.html",
       width: 200,

@@ -51,7 +51,7 @@ export class TokenHealthColorSettingsDialogue extends FormApplication{
    * @returns {Object}
    */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
           classes: ["worldbuilding", "dialogue", "mta-sheet"],
           template: "systems/WoD20/templates/dialogues/dialogue-tokenHealthColorSettings.html",
         resizable: true,

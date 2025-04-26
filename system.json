@@ -10,8 +10,8 @@
 	],
   "compatibility": {
     "minimum": "11",
-    "verified": "11",
-    "maximum": "11"
+    "verified": "12",
+    "maximum": "12"
   },
   "esmodules": ["module/mta.js"],
   "styles": ["styles/default.css", "styles/override.css"],

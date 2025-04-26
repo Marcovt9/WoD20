@@ -136,6 +136,7 @@ MTA.skills_physical = {
     "control_1": "MTA.Control",
     "control_2": "MTA.Control"
   };
+  
 MTA.skills_social = {
     "craft_1": "MTA.Craft",
     "craft_2": "MTA.Craft",

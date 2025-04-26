@@ -33,7 +33,7 @@ export class DiceRollerDialogue extends Application {
    * @returns {Object}
    */
 	static get defaultOptions() {
-	  return mergeObject(super.defaultOptions, {
+	  return foundry.utils.mergeObject(super.defaultOptions, {
   	  classes: ["worldbuilding", "dialogue", "mta-sheet"],
   	  template: "systems/WoD20/templates/dialogues/dialogue-diceRoller.html",
       resizable: true
@@ -94,12 +94,12 @@ export class DiceRollerDialogue extends Application {
     }
   }
   
-  static _roll({dicePool=1, autoSuccess=0, exceptionalTarget=5}){
+  static async _roll({dicePool=1, autoSuccess=0, exceptionalTarget=5}){
     //Create dice pool qualities
     const targetNumString =  "cs>="+ 7;
 
-    let roll = new Roll(dicePool + "d10" + targetNumString).roll({async: false});
-
+    let roll = new Roll(dicePool + "d10" + targetNumString);
+    await roll.evaluate();
     //Especialización
     for (let i = 0; i <  roll.terms[0].number; i++) {
         if (roll.terms[0].results[i].result === 10) {
@@ -117,7 +117,7 @@ export class DiceRollerDialogue extends Application {
 
   static async rollToHtml({dicePool=1, autoSuccess= 0, flavor="Tirada", showFlavor=true, exceptionalTarget=5, blindGMRoll=false, rollReturn, comment=""}){   
     
-    let roll = DiceRollerDialogue._roll({dicePool: dicePool, autoSuccess: autoSuccess, exceptionalTarget: exceptionalTarget});
+    let roll = await DiceRollerDialogue._roll({dicePool: dicePool, autoSuccess: autoSuccess, exceptionalTarget: exceptionalTarget});
     if(rollReturn) rollReturn.roll = roll;
     //Create Roll Message
     let speaker = ChatMessage.getSpeaker();

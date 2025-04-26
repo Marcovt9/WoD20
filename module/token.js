@@ -28,14 +28,14 @@ export class TokenMTA extends Token {
       if ( health && health.lethal !== undefined && health.aggravated !== undefined ) {
         // Handle health rendering
         const val = Number( data.value );
-        const pct = Math.clamped( val, 0, data.max ) / data.max;
-        const aggravated = Math.clamped( data.max - health.aggravated, 0, data.max ) / data.max;
-        const lethal = Math.clamped( data.max - health.lethal, 0, data.max ) / data.max;
-        const bashing = Math.clamped( data.max - data.value, 0, data.max ) / data.max;
+        const pct = Math.clamp( val, 0, data.max ) / data.max;
+        const aggravated = Math.clamp( data.max - health.aggravated, 0, data.max ) / data.max;
+        const lethal = Math.clamp( data.max - health.lethal, 0, data.max ) / data.max;
+        const bashing = Math.clamp( data.max - data.value, 0, data.max ) / data.max;
         // Determine sizing
         let h = Math.max( ( canvas.dimensions.size / 12 ), 8 );
         const w = this.w;
-        const bs = Math.clamped( h / 8, 1, 2 );
+        const bs = Math.clamp( h / 8, 1, 2 );
         if ( this.height >= 2 ) h *= 1.6;  // Enlarge the bar for large tokens
         // Determine the color to use
         const blk = 0x000000;

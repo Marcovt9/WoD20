@@ -77,7 +77,7 @@ export class MtAActorSheet extends ActorSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["mta-sheet", "worldbuilding", "sheet", "actor"],
       width: 1166,
       height: 830,

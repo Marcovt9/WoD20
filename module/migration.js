@@ -314,12 +314,12 @@ export const migrateSceneData = function(scene, version_nums_current, version_nu
         const updates = new Map(update[embeddedName].map(u => [u._id, u]));
         t.actorData[embeddedName].forEach(original => {
           const u = updates.get(original._id);
-          if (u) foundry.utils.mergeObject(original, u);
+          if (u) foundry.utils.foundry.utils.mergeObject(original, u);
         });
         delete update[embeddedName];
       });
 
-      mergeObject(t.actorData, update);
+      foundry.utils.mergeObject(t.actorData, update);
     }
     return t;
   });
@@ -334,7 +334,7 @@ export const migrateSceneData = function(scene, version_nums_current, version_nu
 
 /**
  * Converts all properties with value null to value undefined,
- * in order to let the mergeObject function replace these values.
+ * in order to let the foundry.utils.mergeObject function replace these values.
  * @private
  */
 function _nullToUndefined(data, recDepth) {

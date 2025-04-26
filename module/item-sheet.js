@@ -18,7 +18,7 @@ export class MtAItemSheet extends ItemSheet {
    * @returns {Object}
    */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["mta-sheet", "sheet", "item"],
       width: 630,
       tabs: [{
