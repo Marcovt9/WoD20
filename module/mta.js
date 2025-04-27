@@ -175,7 +175,7 @@ Hooks.once("ready", function() {
     }
   }
   CONFIG.MTA.TOKENBAR = TokenHotBar.tokenHotbarInit();
-  debounce(createTokenBar, 200);
+  foundry.utils.debounce(createTokenBar, 200);
 
 });
 
@@ -282,8 +282,8 @@ const createTokenBar = () =>
     }
   }
 
-Hooks.on("controlToken", debounce(createTokenBar, 200));
+Hooks.on("controlToken", foundry.utils.debounce(createTokenBar, 200));
 
-Hooks.on("updateActor", debounce(createTokenBar, 200));
-Hooks.on("updateItem", debounce(createTokenBar, 200));
-Hooks.on("updateToken", debounce(createTokenBar, 200));
+Hooks.on("updateActor", foundry.utils.debounce(createTokenBar, 200));
+Hooks.on("updateItem", foundry.utils.debounce(createTokenBar, 200));
+Hooks.on("updateToken", foundry.utils.debounce(createTokenBar, 200));

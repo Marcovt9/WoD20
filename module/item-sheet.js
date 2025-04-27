@@ -231,7 +231,7 @@ export class MtAItemSheet extends ItemSheet {
 
   /** @override */
   async _updateObject(event, formData) {
-    if (!formData.system) formData = expandObject(formData);
+    if (!formData.system) formData = foundry.utils.expandObject(formData);
 
     if(formData.system?.dicepools_primary) {
       formData.system.dicepools_primary = Object.values(formData.system.dicepools_primary);

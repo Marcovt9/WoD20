@@ -244,12 +244,13 @@ export class DiceRollerDialogue extends Application {
     // Basic chat message data
     let chatData = {
       user: game.user.id,
-      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      //type: CONST.CHAT_MESSAGE_STYLES.ROLL,
       content: html,
       speaker: speaker,
       flavor: flavor,
       sound: CONFIG.sounds.dice,
       roll: rollReturn.roll,
+      rolls: [rollReturn.roll],
       rollMode: rollMode
     };
 
@@ -349,12 +350,13 @@ export class DiceRollerDialogue extends Application {
      // Basic chat message data
      let chatData = {
       user: game.user.id,
-      type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+      //type: CONST.CHAT_MESSAGE_STYLES.ROLL,
       content: html,
       speaker: speaker,
       flavor: flavor,
       sound: CONFIG.sounds.dice,
       roll: rollReturn.roll,
+      rolls: [rollReturn.roll],
       rollMode: rollMode
     };
 

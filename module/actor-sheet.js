@@ -935,7 +935,7 @@ async _onDropItemCreate(itemData) {
 
   /** @override */
   async _updateObject(event, formData) {
-    if (!formData.data) formData = expandObject(formData);
+    if (!formData.data) formData = foundry.utils.expandObject(formData);
     // Update the Item
     await super._updateObject(event, formData);
   }

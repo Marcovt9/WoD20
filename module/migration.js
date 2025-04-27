@@ -233,7 +233,7 @@ export const migrateActorData = function(actor, version_nums_current, version_nu
     // Update the Owned Item
     if ( !foundry.utils.isEmpty(itemUpdate) ) {
       itemUpdate._id = itemData._id;
-      arr.push(foundry.utils.expandObject(itemUpdate));
+      arr.push(foundry.utils.foundry.utils.expandObject(itemUpdate));
     }
 
     return arr;

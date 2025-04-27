@@ -13,7 +13,7 @@ export const createShortActionMessage = async function (flavor="", actor){
     // Basic chat message data
     let chatData = {
       user: game.user.id,
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+      type: CONST.CHAT_MESSAGE_STYLES.OTHER,
       content: html,
       speaker: actor ? ChatMessage.getSpeaker({actor: actor, token: actor.token}) : ChatMessage.getSpeaker(),
       flavor: flavor

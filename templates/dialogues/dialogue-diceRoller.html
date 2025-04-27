@@ -7,8 +7,13 @@
       <dl>
         <dt>Pool de dados:</dt>
         <dd>
-          <div class="niceNumber" onmousedown="let v = event.target.textContent;let i= this.querySelectorAll('input')[0];if(v=='+'){i.value++}if(v=='−'){i.value--};i.dispatchEvent(new Event('input'))">
-            <div class="theNumber first"><input name="dicePoolBonus" type="number" min="-99" max="99" value="{{dicePool}}" oninput="this.previousElementSibling.textContent=this.value"></div>
+          <div class="niceNumber" onmousedown="let v = event.target.textContent; let i = this.querySelectorAll('input')[0]; if(v=='+'){i.value++; i.dispatchEvent(new Event('input'))} if(v=='−'){i.value--; i.dispatchEvent(new Event('input'))}">
+            <div class="theNumber first">
+              <span class="displayNumber">{{dicePool}}</span>
+              <input name="dicePoolBonus" type="number" min="-99" max="99" value="{{dicePool}}" 
+                     style="display:none;" 
+                     oninput="this.previousElementSibling.textContent=this.value">
+            </div>
             <div class="numBtns">
               <div class="plusBtn">+</div>
               <div class="minusBtn">−</div>
@@ -18,8 +23,13 @@
         
         <dt>Éxitos automáticos:</dt>
         <dd>
-          <div class="niceNumber" onmousedown="let j = event.target.textContent;let k= this.querySelectorAll('input')[0];if(j=='+'){k.value++}if(j=='−'){k.value--};k.dispatchEvent(new Event('input'))">
-            <div class="theNumber first"><input name="autoSuccess" type="number" min="-99" max="99" value="{{autoSuccess}}" oninput="this.previousElementSibling.textContent=this.value"></div>
+          <div class="niceNumber" onmousedown="let j = event.target.textContent; let k = this.querySelectorAll('input')[0]; if(j=='+'){k.value++; k.dispatchEvent(new Event('input'))} if(j=='−'){k.value--; k.dispatchEvent(new Event('input'))}">
+            <div class="theNumber first">
+              <span class="displayNumber">{{autoSuccess}}</span>
+              <input name="autoSuccess" type="number" min="-99" max="99" value="{{autoSuccess}}" 
+                     style="display:none;" 
+                     oninput="this.previousElementSibling.textContent=this.value">
+            </div>
             <div class="numBtns">
               <div class="plusBtn">+</div>
               <div class="minusBtn">−</div>

@@ -1,23 +1,5 @@
 export class TokenMTA extends Token {
-   
-   /**
-   * Draw the active effects and overlay effect icons which are present upon the Token
-   * @Override Also draws conditions and tilts
-   */
-  async drawEffects() {
-    const actorTilts = (this.actor?.items.filter(item => {
-      if ( item.type === "tilt" || item.type === "condition" ) {
-        if ( item.system.statusVisibility === "All" || ( item.system.statusVisibility === "Owner" && this.actor.isOwner ) ) {
-          if ( item.type === "condition" && !game.settings.get( "mta", "showConditionsOnTokens" ) ) return false;
-          return true;
-        }
-      }
-    })) || [];
-    const tiltEffects = actorTilts.map( item => item.img );
-    this.document.effects = tiltEffects;
-    super.drawEffects( );
-  }
-  
+    
   /**
    * Draw a single resource bar, given provided data
    * @Override Draws a custom bar for health, otherwise uses the default function.
