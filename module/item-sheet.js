@@ -139,7 +139,7 @@ export class MtAItemSheet extends ItemSheet {
     // Add effect
     html.find('.effectAdd').click(async event => {
       const systemData = this.item.system;
-      const effectList = systemData.effects ? duplicate(systemData.effects) : [];
+      const effectList = systemData.effects ? foundry.utils.duplicate(systemData.effects) : [];
       if(CONFIG.MTA.ephemeralItemTypes.includes(this.item.type) || this.actor?.type === "ephemeral") effectList.push({name: "eph_physical.power", value: 0}); 
       else effectList.push({name: "attributes_physical.strength", value: 0});
     
@@ -151,7 +151,7 @@ export class MtAItemSheet extends ItemSheet {
     // Remove effect
     html.find('.effectRemove').click(async event => {
       const systemData = this.item.system;
-      const effectList = systemData.effects ? duplicate(systemData.effects) : [];
+      const effectList = systemData.effects ? foundry.utils.duplicate(systemData.effects) : [];
       const index = event.currentTarget.dataset.index;
       effectList.splice(index, 1);
     
@@ -166,10 +166,10 @@ export class MtAItemSheet extends ItemSheet {
 
       if(systemData.dicepools_primary) {
         const index = event.currentTarget.dataset.index;
-        let attributeList = systemData.dicepools_primary[index].attributes ? duplicate(systemData.dicepools_primary[index].attributes) : [];
+        let attributeList = systemData.dicepools_primary[index].attributes ? foundry.utils.duplicate(systemData.dicepools_primary[index].attributes) : [];
         attributeList.push("attributes_physical.strength");
       
-        let dicepoolList = duplicate(systemData.dicepools_primary);
+        let dicepoolList = foundry.utils.duplicate(systemData.dicepools_primary);
         dicepoolList[index].attributes = attributeList;
 
         await this.item.update({
@@ -177,7 +177,7 @@ export class MtAItemSheet extends ItemSheet {
         });
       }
       else { // Default
-        let attributeList = systemData.dicePool?.attributes ? duplicate(systemData.dicePool.attributes) : [];
+        let attributeList = systemData.dicePool?.attributes ? foundry.utils.duplicate(systemData.dicePool.attributes) : [];
         attributeList.push("attributes_physical.strength");
       
         await this.item.update({
@@ -193,10 +193,10 @@ export class MtAItemSheet extends ItemSheet {
       if(systemData.dicepools_primary) {
         const index = event.currentTarget.dataset.index;
         const dpindex = event.currentTarget.dataset.dpindex;
-        let attributeList = systemData.dicepools_primary[index].attributes ? duplicate(systemData.dicepools_primary[index].attributes) : [];
+        let attributeList = systemData.dicepools_primary[index].attributes ? foundry.utils.duplicate(systemData.dicepools_primary[index].attributes) : [];
         attributeList.splice(dpindex, 1);
       
-        let dicepoolList = duplicate(systemData.dicepools_primary);
+        let dicepoolList = foundry.utils.duplicate(systemData.dicepools_primary);
         dicepoolList[index].attributes = attributeList;
 
         await this.item.update({
@@ -204,7 +204,7 @@ export class MtAItemSheet extends ItemSheet {
         });
       }
       else { // Default
-        let attributeList = systemData.dicePool?.attributes ? duplicate(systemData.dicePool.attributes) : [];
+        let attributeList = systemData.dicePool?.attributes ? foundry.utils.duplicate(systemData.dicePool.attributes) : [];
         const index = event.currentTarget.dataset.index;
         attributeList.splice(index, 1);
       
@@ -216,7 +216,7 @@ export class MtAItemSheet extends ItemSheet {
 
     html.find('.multipleDicePoolsRemove').click(async event => {
       const systemData = this.item.system;
-      let dicePoolList = systemData.dicepools_primary ? duplicate(systemData.dicepools_primary) : [];
+      let dicePoolList = systemData.dicepools_primary ? foundry.utils.duplicate(systemData.dicepools_primary) : [];
       const index = event.currentTarget.dataset.index;
       dicePoolList.splice(index, 1);
     
@@ -333,7 +333,7 @@ export class MtAItemSheet extends ItemSheet {
       const data = this.getData();
       const index = Number(event.currentTarget.dataset.index);
       const type = event.currentTarget.dataset.type;
-      let itemList = duplicate(data.system.contents);
+      let itemList = foundry.utils.duplicate(data.system.contents);
       let indexToDelete = this._getItemIndex(index,type,data);      
       
       if(indexToDelete > -1) {
@@ -365,7 +365,7 @@ export class MtAItemSheet extends ItemSheet {
     let index = this._getItemIndex(Number(li.data("index")),li.data("type"),data)
     let item = this.item.system.contents[index];
 
-    let chatData = item.system ? duplicate(item.system) : item.data;
+    let chatData = item.system ? foundry.utils.duplicate(item.system) : item.data;
     chatData.description = await TextEditor.enrichHTML(chatData.description, {
       secrets: this.owner,
       async: true,
@@ -395,7 +395,7 @@ export class MtAItemSheet extends ItemSheet {
     const data = this.getData();
     const index = this._getItemIndex(Number(event.currentTarget.dataset.index),event.currentTarget.dataset.type,data);
     let item = this.item.system.contents[index];
-    item = duplicate(item);
+    item = foundry.utils.duplicate(item);
     if(item.data) { // 
       item.system = item.data;
       item.data = undefined;
@@ -428,7 +428,7 @@ export class MtAItemSheet extends ItemSheet {
       const item = await Item.implementation.fromDropData(data);
 
       const newItem = await Item.implementation.create(item.toObject());
-      let itemList = duplicate(ownData.system.contents);
+      let itemList = foundry.utils.duplicate(ownData.system.contents);
       if(!newItem.system) {
         newItem.system = newItem.data || {}
       }

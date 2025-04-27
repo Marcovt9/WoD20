@@ -16,7 +16,6 @@ import {
 } from "./dialogue-diceRoller.js"
 import { registerSystemSettings } from "./settings.js";
 import * as templates from "./templates.js";
-import * as migrations from "./migration.js";
 import { MTA } from "./config.js";
 import {
   TokenHotBar
@@ -148,37 +147,6 @@ Hooks.once("setup", function() {
   }
 
 });
-
-/**
- * Once the entire VTT framework is initialized, check to see if we should perform a data migration.
- * Small version changes (after the last dot) do not need a migration.
- */
-Hooks.once("ready", function() {
-  // Determine whether a system migration is required and feasible
-  const currentVersion = game.settings.get("mta", "systemMigrationVersion");
-  const migrationVersion = game.system.version;
-  console.log("MTA Current Version: " + currentVersion);
-  let version_nums_current = currentVersion.split(".").map(x=>+x);
-  let version_nums_migration = migrationVersion.split(".").map(x=>+x);
-  //const NEEDS_MIGRATION_VERSION = 0.84;
-  //const COMPATIBLE_MIGRATION_VERSION = 0.80;
-  let needMigration = (version_nums_current[0] < version_nums_migration[0]) || (version_nums_current[0] === version_nums_migration[0] && version_nums_current[1] < version_nums_migration[1]) || (currentVersion === null);
-
-  // Perform the migration
-  if(game.user.isGM){
-    if ( needMigration) {
-      migrations.migrateWorld(version_nums_current, version_nums_migration);
-    }
-    else if(!migrations.compareVersion(version_nums_current, version_nums_migration) && (version_nums_current[0] !== version_nums_migration[0] || version_nums_current[1] !== version_nums_migration[1] || version_nums_current[2] !== version_nums_migration[2])){
-      game.settings.set("mta", "systemMigrationVersion", game.system.version);
-      ui.notifications.info(`MtA System downgraded to version ${game.system.version}.`, {permanent: true});
-    }
-  }
-  CONFIG.MTA.TOKENBAR = TokenHotBar.tokenHotbarInit();
-  foundry.utils.debounce(createTokenBar, 200);
-
-});
-
 
 
 Hooks.on("renderChatMessage", (message, html, data) => {

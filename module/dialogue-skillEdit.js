@@ -44,7 +44,7 @@ export class SkillEditDialogue extends Application {
   }
 
   async _onAddSpecialty(event) {
-    let skills = duplicate(this.actor.system[this.skill_type]);
+    let skills = foundry.utils.duplicate(this.actor.system[this.skill_type]);
 
     if(!skills[this.skill_key].specialties) skills[this.skill_key].specialties = [];
     skills[this.skill_key].specialties.push("New Specialty");
@@ -56,7 +56,7 @@ export class SkillEditDialogue extends Application {
   }
   
   async _onRemoveSpecialty(event) {
-    let skills = duplicate(this.actor.system[this.skill_type]);
+    let skills = foundry.utils.duplicate(this.actor.system[this.skill_type]);
     const specialty_index = event.currentTarget.dataset.index;
 
     if(!skills[this.skill_key].specialties) skills[this.skill_key].specialties = [];
@@ -71,7 +71,7 @@ export class SkillEditDialogue extends Application {
   async _onChangeSpecialty(event) {
     const specialty_index = event.currentTarget.dataset.index;
     const specialty_value = event.currentTarget.value;
-    let skills = duplicate(this.actor.system[this.skill_type]);
+    let skills = foundry.utils.duplicate(this.actor.system[this.skill_type]);
     skills[this.skill_key].specialties[specialty_index] = specialty_value;
     
     let updateData = {}
@@ -81,7 +81,7 @@ export class SkillEditDialogue extends Application {
   }
   
    async _onToggleAsset(event) {
-    let skills = duplicate(this.actor.system[this.skill_type]);
+    let skills = foundry.utils.duplicate(this.actor.system[this.skill_type]);
     skills[this.skill_key].isAssetSkill = !skills[this.skill_key].isAssetSkill;
     
     let updateData = {}

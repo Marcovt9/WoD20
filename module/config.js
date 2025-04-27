@@ -49,7 +49,11 @@ MTA.traitMaximumLower = 5; // The maximum used for buffs without the checkbox, o
  * Any value added to this list will fall back to the Mortal sheet.
  * @type {Array[]}
  */
-MTA.characterTypes = ["Mortal", "Vampire", "Scion"];
+MTA.characterTypes = {
+  "Mortal": "Mortal",
+  "Vampire": "Vampire",
+  "Scion": "Scion"
+};
 
 /**
  * The list of supported ephemeral entity types.
@@ -184,17 +188,10 @@ MTA.derivedTraits = {
 MTA.cartridges = ["9mm", ".38 Special", ".44 Magnum", ".45 ACP", "30.06", "5.56mm", "12-gauge", "Arrow", "Bolt", "Fuel Canister"];
 
 /**
- * The list of relationship impressions.
- * Can freely be modified.
- * @type {Array[]}
- */
-MTA.impressions = ["Hostile","Average","Good","Excellent","Perfect"];
-
-/**
  * A list of item types that only normal characters use, to make sure that other characters can't use them.
  */
 MTA.characterItemTypes = [
- "relationship", "rite", "discipline_power", "form", "formAbility"
+ "rite", "discipline_power", "form", "formAbility"
 ]
 
 /**

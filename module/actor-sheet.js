@@ -386,7 +386,7 @@ export class MtAActorSheet extends ActorSheet {
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
     html.find('.discipline-create').click(ev => {
-      let ownDisciplines = this.actor.system.disciplines_own ? duplicate(this.actor.system.disciplines_own) : {};
+      let ownDisciplines = this.actor.system.disciplines_own ? foundry.utils.duplicate(this.actor.system.disciplines_own) : {};
       let discipline = {
         label: "New Discipline",
         value: 0
@@ -403,7 +403,7 @@ export class MtAActorSheet extends ActorSheet {
     });
 
     html.find('.discipline-delete').click(ev => {
-      let ownDisciplines = this.actor.system.disciplines_own ? duplicate(this.actor.system.disciplines_own) : {};
+      let ownDisciplines = this.actor.system.disciplines_own ? foundry.utils.duplicate(this.actor.system.disciplines_own) : {};
       const discipline_key = ev.currentTarget.closest(".discipline-delete").dataset.attribute;
 
       //delete ownDisciplines[discipline_key];
@@ -713,7 +713,7 @@ async _onDropItemCreate(itemData) {
     const itemData = {
       name: `New ${type.capitalize()}`,
       type: type,
-      data: duplicate(header.dataset)
+      data: foundry.utils.duplicate(header.dataset)
     };
     
     delete itemData.data["type"];

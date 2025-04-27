@@ -18,11 +18,7 @@
           </label>
         </span>
         <select name="system.characterType">
-          {{#select system.characterType}}
-            {{#each config.characterTypes}}
-              <option value="{{this}}">{{this}}</option>
-            {{/each}}
-          {{/select}}
+            {{selectOptions config.characterTypes selected=system.characterType}}
         </select>
       </div>
       </div>
@@ -130,8 +126,6 @@
             </div>
           </div>
         {{/if}}
-
-
         </div>
       </div>
     </div>
@@ -273,58 +267,9 @@
             <label> {{localize "MTA.Aspirations"}} </label>
             <textarea name="system.aspirations" placeholder="Aspirations">{{system.aspirations}}</textarea>
           </div>
-        </div>
-        {{!-- Relationships --}}
-        <table class="item-table">
-          <thead>
-            <tr class="item-row header">
-              <th class="cell header first"> 
-                <span class="collapsible button fas fa-minus-square"> </span>
-                <span class="sortable button" data-type="relationship">{{localize "MTA.Relationships"}}<i class="fas fa-sort"></i> </span>
-              </th>
-              {{#each inventory.relationship.dataset}}
-                <th class="cell header"> {{this}} </th>
-              {{/each}}
-              <th class="cell header button item-create" data-type="relationship">{{ localize "MTA.ButtonAdd" }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each inventory.relationship.items as |item iid|}}
-              <tr class="item-row item" data-item-id="{{item.id}}">
-                <td class="cell item-name first {{#if @last}} lastRow {{/if}}" data-item-id="{{item.id}}">
-                  <div class="item-name-wrapper">
-                    <div class="item-image" style="background-image: url({{item.img}})"></div>
-                    <span> {{item.name}} </span>
-                  </div>
-                </td>
-                <td class="cell {{#if @last}} lastRow {{/if}}"> {{system.impression}}</td>
-                <td class="cell {{#if @last}} lastRow {{/if}}"> {{system.doors.value}} / {{system.doors.max}}</td>
-                <td class="cell {{#if @last}} lastRow {{/if}}"> {{system.penalty}}</td>
-                <td class="cell edit-delete {{#if @last}} lastRow {{/if}}">
-                  <span class="button stoneButton item-edit" data-item-id="{{item.id}}" title="{{ localize 'MTA.EditItem' }}"><i class="fas fa-edit"></i></span>
-                  <span class="button stoneButton item-delete" data-item-id="{{item.id}}" title="{{ localize 'MTA.DeleteItem' }}"><i class="fas fa-times-circle"></i></span>
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <div class="item-stat-block">
           <div class="form-line">
             <label> {{localize "MTA.Notes"}} </label>
             <textarea name="system.notes" placeholder="Notes">{{system.notes}}</textarea>
-          </div>
-          <div class="form-line">
-            <label> {{localize "MTA.usesDreadPowers"}} </label>
-            <label class="checkBox">
-              <input data-dtype="Boolean" name="system.usesDreadPowers" type="checkbox" {{checked system.usesDreadPowers}}>
-              <span></span>
-            </label>
-          </div>
-          <div class="form-line">
-            <label class="wide"> {{localize "MTA.Description"}} </label>
-            <div class="wide editor-container">
-              {{editor (enrichHTML system.description actor) target="system.description" button=true owner=owner editable=editable}}
-            </div>
           </div>
         </div>
       </div>
