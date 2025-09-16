@@ -14,7 +14,7 @@ export const preloadHandlebarsTemplates = async function () {
   ];
 
   // Load the template parts
-  return loadTemplates(templatePaths);
+  return foundry.applications.handlebars.loadTemplates(templatePaths);
 };
 
 export const registerHandlebarsHelpers = function () {
@@ -138,7 +138,7 @@ export const registerHandlebarsHelpers = function () {
       <span class="stoneButton dicePoolAdd">+</span>
       ${sheet.system.dicePool.attributes.reduce((acc, cur, index) => 
         acc + `<select name="system.dicePool.attributes.${index}">
-          ${traitsList(sheet.all_traits, cur)}
+          ${traitsList(Object.assign({}, sheet.all_traits) , cur)}
         </select>
       <span class="stoneButton dicePoolRemove" data-index=${index}>-</span>
       `, '')}
@@ -173,7 +173,7 @@ export const registerHandlebarsHelpers = function () {
       ${sheet.system.effects.reduce((acc, cur, index) =>
       acc + `<span>
         <select name="system.effects.${index}.name">
-          ${traitsList(sheet.all_traits, cur.name)}
+          ${traitsList(Object.assign({}, sheet.all_traits), cur.name)}  
         </select>
         <input name="system.effects.${index}.value" type="number" data-dtype="Number" value="${cur.value}" />
         <label class="checkBox overFive" title="Can increase traits above five (or splat-specific power trait maximum)?">

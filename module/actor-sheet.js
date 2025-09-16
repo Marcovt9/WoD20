@@ -49,7 +49,7 @@ const getInventory = () => ({
   }
 });
 
-export class MtAActorSheet extends ActorSheet {
+export class MtAActorSheet extends foundry.appv1.sheets.ActorSheet {
   constructor(...args) {
     super(...args);
 

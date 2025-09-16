@@ -1,4 +1,4 @@
-export class TokenMTA extends Token {
+export class TokenMTA extends foundry.canvas.placeables.Token {
     
   /**
    * Draw a single resource bar, given provided data

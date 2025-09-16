@@ -40,9 +40,9 @@ export class ItemMtA extends Item {
     // FIXME: Currently this will only get the default traits if no dice bonus is defined.
     // Not sure if that is good behaviour..
 
-    if(this.system.dicePool && (this.system.dicePool?.attributes?.length > 0 || this.system.dicePool.value)) { 
-      return {traits: this.system.dicePool.attributes, diceBonus: this.system.dicePool.value};
-    }
+    // if(this.system.dicePool && (this.system.dicePool?.attributes?.length > 0 || this.system.dicePool.value)) { 
+    //   return {traits: this.system.dicePool.attributes, diceBonus: this.system.dicePool.value};
+    // }
     const defaultTraits = { // TODO: Move this into Config?
       firearm: ["attributes_physical.dexterity", "skills_social.marksmanship"],
       melee: {
@@ -118,6 +118,8 @@ export class ItemMtA extends Item {
       target = targets ? targets.values().next().value : undefined;
     }
 
+    let itemBonus = this.system.dicePool.value;
+
     const {traits, diceBonus} = this.getRollTraits();
 
     let {dicePool, flavor, autoSuccess} = this.actor.assembleDicePool({traits, diceBonus});
@@ -126,6 +128,8 @@ export class ItemMtA extends Item {
     let extended = false,
     target_successes = 0,
     penalty = 0;
+
+    this.system.diceBonus = itemBonus;
 
     if(this.system.diceBonus) {
       dicePool += this.system.diceBonus;
@@ -136,13 +140,6 @@ export class ItemMtA extends Item {
     if(this.system.dicePool?.extended) {
       extended = true;
       if(this.system.dicePool.target_successes) target_successes = this.system.dicePool.target_successes;
-    }
-
-    const damageRoll = this.isWeapon();
-    if(damageRoll) { // TODO: Put into another function?
-      if(target) {
-        flavor += " vs target " + target.name;
-      }
     }
 
     let macro;
@@ -158,12 +155,10 @@ export class ItemMtA extends Item {
       flavor, 
       addBonusFlavor: true, 
       title: this.name + " - " + flavor, 
-      damageRoll, 
       itemName: this.name, 
       itemImg: this.img, 
       itemDescr: this.system.description, 
       itemRef: this, 
-      weaponDamage: this.system.damage, 
       armorPiercing: this.system.penetration, 
       spendAmmo: this.type === "firearm", 
       actorOverride: this.actor,
@@ -197,8 +192,10 @@ export class ItemMtA extends Item {
   /* -------------------------------------------- */
 
   static chatListeners(html) {
-    html.on('click', '.button', this._onChatCardAction.bind(this));
-    html.on('click', '.item-name', this._onChatCardToggleContent.bind(this));
+    const $html = html instanceof jQuery ? html : $(html);
+
+    $html.on('click', '.button', this._onChatCardAction.bind(this));
+    $html.on('click', '.item-name', this._onChatCardToggleContent.bind(this));
   }
   
   /* -------------------------------------------- */

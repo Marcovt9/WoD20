@@ -27,7 +27,6 @@ export class TokenHealthColorSettingsDialogue extends FormApplication{
             this.render();
             break;
           case 'bashing':
-
             this.object.color_bashing = '#eaba0a';
             this._updateObject(ev, {color_bashing: '#eaba0a'});
             this.render();

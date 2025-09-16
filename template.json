@@ -5,6 +5,7 @@
       "base": {
         "health": {
           "max": 5,
+          "bashing": 5,
           "lethal": 5,
           "aggravated": 5,
           "value": 5
@@ -460,11 +461,7 @@
     "firearm": {
       "templates": ["rollable", "weapon", "combatEquipment", "tool", "object", "common"],
       "label": "Firearm",
-      "ranges": {
-        "short": 20,
-        "medium": 40,
-        "long": 80
-      },
+      "range": 50,
       "capacity": 1,
       "magazine": null,
       "cartridge": "9mm",

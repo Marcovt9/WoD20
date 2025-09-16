@@ -177,8 +177,6 @@ export class ActorMtA extends Actor {
       let woundPenalty = 0;
       let agg = systemData.health.max - systemData.health.aggravated;
       let lethal = systemData.health.max - systemData.health.lethal - agg;
-  
-      // systemData.health.value = systemData.health.max - Math.max(systemData.health.lethal, systemData.health.aggravated);
 
       if(agg + lethal >= systemData.health.max * 0.8){
         woundPenalty = -4;
@@ -222,7 +220,7 @@ export class ActorMtA extends Actor {
     der.speed.value += der.speed.mod + item_mods.speed;
     der.initiativeMod.value += der.initiativeMod.mod + item_mods.initiativeMod;
     der.perception.value += der.perception.mod;
-    // der.health.value += der.health.mod;
+
 
     [systemData.derivedTraits].forEach(attribute => Object.values(attribute).forEach(trait => {
       trait.final = trait.value;
@@ -334,7 +332,7 @@ export class ActorMtA extends Actor {
         let flv = "";
         let att = "epic_" + cur.split('.')[1];
         if (autoSuccess == 0){
-        autoSuccess = systemData.epic_attributes[att]?.value || 0;
+        autoSuccess = systemData.epic_attributes[att]?.mod || 0;
         }
         ret = cur.split('.').reduce((o,i) => {
           if(o != undefined && o[i] != undefined) return o[i];
@@ -438,8 +436,12 @@ export class ActorMtA extends Actor {
   damage(damageAmount, damagetype) {
     if(damageAmount === 0) return;
     console.log("Damaging " + this.name + " by " + damageAmount + " " + damagetype + " damage");
-    if(damagetype === "bashing") damagetype = "value"
-    
+    // if(damagetype === "bashing") damagetype = "value"
+    let bashing = this.system.health.max.value - this.system.health.bashing.value;
+    let lethal = this.system.health.max.value - this.system.health.lethal.value;
+    let aggravated = this.system.health.max.value - this.system.health.aggravated.value;
+    let healthy = this.system.health.max.value - bashing - lethal - aggravated;
+
     if(this.system.health[damagetype] != undefined) {
       let updateData = {};
       if(damageAmount > 0) {
@@ -455,7 +457,15 @@ export class ActorMtA extends Actor {
           updateData[`data.health.lethal`] = Math.max(0, this.system.health.lethal - damageAmount);
           updateData[`data.health.value`] = Math.max(0, this.system.health.value - damageAmount);
         }
-        else if(damagetype === 'value') {
+        else if(damagetype === 'bashing') {
+          if (damageAmount <= healthy){
+            bashing = bashing + healthy;
+            updateData[`data.health.bashing`] = Math.max(0, this.system.health.bashing - damageAmount);
+            updateData[`data.health.value`] = Math.max(0, this.system.health.value - damageAmount);
+          } else {
+              
+            }
+          
           let carryOver_lethal = - Math.min(0, this.system.health.value - damageAmount);
           let carryOver_aggravated = - Math.min(0, this.system.health.lethal - carryOver_lethal);
 

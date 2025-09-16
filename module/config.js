@@ -185,7 +185,7 @@ MTA.derivedTraits = {
  * Can freely be modified.
  * @type {Array[]}
  */
-MTA.cartridges = ["9mm", ".38 Special", ".44 Magnum", ".45 ACP", "30.06", "5.56mm", "12-gauge", "Arrow", "Bolt", "Fuel Canister"];
+MTA.cartridges = ["9mm", ".38 Special", ".44 Magnum", ".45 ACP", "30.06", "5.56mm", "7.62mm", "12-gauge", "Arrow", "Bolt", "Fuel Canister"];
 
 /**
  * A list of item types that only normal characters use, to make sure that other characters can't use them.
@@ -250,14 +250,39 @@ MTA.rite_withstandTypes = ["Resisted by", "Contested by"];
  */
 MTA.disciplines_common = {
   "celerity": "MTA.DisciplineCelerity",
-  "animalism": "MTA.DisciplineAnimalism",
-  "obfuscate": "MTA.DisciplineObfuscate",
+  "fortitude": "MTA.DisciplineFortitude",
+  "potence": "MTA.DisciplinePotence",
 };
 
 MTA.disciplines_unique = {
+  "abombwe": "MTA.DisciplineAbombwe",
+  "animalism": "MTA.DisciplineAnimalism",
   "auspex": "MTA.DisciplineAuspex",
+  "bardo": "MTA.DisciplineBardo",
+  "chimerstry": "MTA.DisciplineChimerstry",
+  "daimonion": "MTA.DisciplineDaimonion",
+  "dementation": "MTA.DisciplineDementation",
   "dominate": "MTA.DisciplineDominate",
+  "flight": "MTA.DisciplineFlight",
+  "mytherceria": "MTA.DisciplineMytherceria",
+  "necromancy": "MTA.DisciplineNecromancy",
+  "obtenebration": "MTA.DisciplineObtenebration",
+  "obfuscate": "MTA.DisciplineObfuscate",
+  "ogham": "MTA.DisciplineOgham",
+  "presence": "MTA.DisciplinePresence",
   "protean": "MTA.DisciplineProtean",
+  "quietus_visier": "MTA.DisciplineQuietusVisier",
+  "quietus_warrior": "MTA.DisciplineQuietusWarrior",
+  "serpentis": "MTA.DisciplineSerpentis",
+  "spiritus": "MTA.DisciplineSpiritus",
+  "temporis": "MTA.DisciplineTemporis",
+  "thaumaturgy": "MTA.DisciplineThaumaturgy",
+  "thanatosis": "MTA.DisciplineThanatosis",
+  "valeren_healer": "MTA.DisciplineValerenHealer",
+  "valeren_warrior": "MTA.DisciplineValerenWarrior",
+  "valeren_watcher": "MTA.DisciplineValerenWatcher",
+  "vicissitude": "MTA.DisciplineVicissitude",
+  "visceratika": "MTA.DisciplineVisceratika",
 };
 
 /**

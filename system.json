@@ -10,8 +10,8 @@
 	],
   "compatibility": {
     "minimum": "11",
-    "verified": "12",
-    "maximum": "12"
+    "verified": "13",
+    "maximum": "13"
   },
   "esmodules": ["module/mta.js"],
   "styles": ["styles/default.css", "styles/override.css"],
@@ -37,7 +37,7 @@
     }
   ],
   "initiative": "1d10 + @derivedTraits.initiativeMod.final",
-  "gridDistance": 2,
-  "gridUnits": "m",
+  "grid.distance": 2,
+  "grid.units": "m",
   "primaryTokenAttribute": "health.value"
 }

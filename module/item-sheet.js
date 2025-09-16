@@ -8,7 +8,7 @@ import * as templates from "./templates.js";
  * Extend the basic ItemSheet with some very simple modifications
  */
 
-export class MtAItemSheet extends ItemSheet {
+export class MtAItemSheet extends foundry.appv1.sheets.ItemSheet {
   constructor(...args) {
     super(...args);
   }
@@ -140,8 +140,7 @@ export class MtAItemSheet extends ItemSheet {
     html.find('.effectAdd').click(async event => {
       const systemData = this.item.system;
       const effectList = systemData.effects ? foundry.utils.duplicate(systemData.effects) : [];
-      if(CONFIG.MTA.ephemeralItemTypes.includes(this.item.type) || this.actor?.type === "ephemeral") effectList.push({name: "eph_physical.power", value: 0}); 
-      else effectList.push({name: "attributes_physical.strength", value: 0});
+      effectList.push({name: "attributes_physical.strength", value: 0});
     
       await this.item.update({
         ["system.effects"]: effectList
